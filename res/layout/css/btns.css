@@ -56,3 +56,7 @@
   .font-icons-sounds::before {
     content: "\25E2"
   }
+
+  .font-icons-volume-up:before {
+    content: "\f028";
+  }

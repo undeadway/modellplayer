@@ -15,9 +15,14 @@
 			font-size: 12px;
 		}
 		.box {
-			width: 350px;
+			width: 310px;
 			height: 500px;
-			background: #F7f7f7;
+			background: #f0fffa;
+			padding:3px;
+		}
+
+		.box>div {
+			background: #F7F7F7;
 		}
 
 		.name {
@@ -65,6 +70,10 @@
 			text-align: left;
 		}
 
+		.times {
+			width: 110px;
+		}
+
 		.panel-tabs li {
 			display: inline-block;
 			vertical-align: baseline;
@@ -82,7 +91,11 @@
 		}
 
 		.font-icons-btn:active, .now-status {
-			font-size: 15px;
+			color: #d40000;
+		}
+
+		.font-icons-btn:active {
+			-webkit-text-stroke: 2px #d40000;
 		}
 
 
@@ -94,32 +107,64 @@
 			position: absolute;
 			top:15px;
 			left: 3px;
+			display: none;
 		}
 		.play-type li {
 			display: block;
 		}
-		
-		
+
+		.labels {
+			display: inline-block;
+			/* width: 80px; */
+			padding: 5px 10px 5px 6px;
+			text-align: center;
+			background: #ddfcfc;
+		}
+
+		.rows {
+			height: 400px;
+			overflow-y: scroll;
+			background: #EEEEEE;
+		}
+
+		.rows ul:nth-child(odd) {
+			background: #FFFFFF;
+		}
+
+		.rows li {
+			display: inline-block;
+			text-align: left;
+			padding: 4px;
+		}
+
+		.rows li:nth-child(2) {
+			width: 200px;
+			color: #28a745;
+			border-right: 1px solid #FAFAFA;
+		}
 	</style>
 </head>
 <body>
 	<div class="box">
 		<!-- 上部，设置部分 -->
 		<div><!-- 进度条滑块 -->
-			<div class="name">歌名</div>
+			<div class="name">名称</div>
 			<div class="pgsbar-box">
 				<div class="pgsbar pgsbar-bk"></div>
 				<div class="pgsbar pgsbar-played" style="width: 50%;"></div>
 				<div class="pgsbar-thumb" style="left: 50%;"></div>
 			</div>
 			<ul class="panel-tabs">
-				<li class="times">000:00 / 000:00</li><!-- 现在时间/总时长 -->
+				<li class="times">0000:00 / 0000:00</li><!-- 现在时间/总时长 -->
 				<li class="font-icons font-icons-btn font-icons-stop"></li><!-- 停止 -->
 				<li class="font-icons font-icons-btn font-icons-backward"></li><!-- 上一曲 -->
-				<li class="font-icons font-icons-btn font-icons-play"></li><!-- 播放 / 暂停 -->
+				<li class="font-icons font-icons-btn font-icons-play now-status"></li><!-- 播放 / 暂停 -->
 				<li class="font-icons font-icons-btn font-icons-forward"></li><!-- 下一曲 -->
-				<li class="play-type-box">
-					<div class="font-icons font-icons-btn font-icons-retweet" onclick="changePlayType()"></div>
+				<li><!-- 调节音量 -->
+					<div class="font-icons font-icons-volume-up"></div>
+				</li>
+				<li class="play-type-box"><!-- 设置播放顺序 -->
+					<div class="font-icons font-icons-retweet" onclick="changePlayType()"></div>
 					<ul class="play-type" id="play-type-ul">
 						<li onclick="selectPlayType('reweet')" class="font-icons font-icons-retweet"></li><!-- 顺序循环 -->
 						<li onclick="selectPlayType('reweet-one')" class="font-icons font-icons-retweet-one"></li><!-- 单曲 -->
@@ -127,25 +172,33 @@
 						<li onclick="selectPlayType('random')" class="font-icons font-icons-random"></li><!-- 乱序 -->
 					</ul>
 				</li>
-				<li class="font-icons font-icons-sounds"></li>
 				
 			</ul>
 		</div>
 		<!-- 下部播放列表部分 -->
 		<div>
-			<div>
-				<p>播放列表</p>
+			<label class="labels name">播放列表</label>
+			<div class="rows">
 				<ul>
-					<li></li><!-- 打开 -->
-					<li></li><!-- 删除 -->
-					<li></li><!-- 播放顺序 -->
-					<li></li>
+					<li>▶</li><li>哈哈哈哈哈</li><li>0000:00</li><!-- 时长 -->
 				</ul>
-			</div>
-			<div>
 				<ul>
-					<li></li><!-- 歌名 -->
-					<li></li><!-- 时长 -->
+					<li>▶</li><li>哈哈哈哈哈</li><li>0000:00</li><!-- 时长 -->
+				</ul>
+				<ul>
+					<li>▶</li><li>哈哈哈哈哈</li><li>0000:00</li><!-- 时长 -->
+				</ul>
+				<ul>
+					<li>▶</li><li>哈哈哈哈哈</li><li>0000:00</li><!-- 时长 -->
+				</ul>
+				<ul>
+					<li>▶</li><li>哈哈哈哈哈</li><li>0000:00</li><!-- 时长 -->
+				</ul>
+				<ul>
+					<li>▶</li><li>哈哈哈哈哈</li><li>0000:00</li><!-- 时长 -->
+				</ul>
+				<ul>
+					<li>▶</li><li>哈哈哈哈哈</li><li>0000:00</li><!-- 时长 -->
 				</ul>
 			</div>
 		</div>
