@@ -19,7 +19,7 @@ exports.init = () => {
 		});
 
 		loginWindow.setMenu(null);
-		loginWindow.loadURL(__dirname + '/../../res/html/login.html');
+		loginWindow.loadURL(__dirname + '/../../res/html/main.html');
 
 		// 当 window 被关闭，这个事件会被发出
 		loginWindow.on('closed', function () {

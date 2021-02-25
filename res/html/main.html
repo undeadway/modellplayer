@@ -2,6 +2,7 @@
 <head>
 	<title>木头人播放器</title>
 	<link rel="stylesheet" href="./../css/btns.css" />
+	<script type="text/javascript">const logic = require('./../../src/logic/main');</script>
 	<style>
 		html, body, p, ul, li {
 			margin: 0px;
@@ -161,15 +162,15 @@
 				<li class="font-icons font-icons-btn font-icons-play now-status"></li><!-- 播放 / 暂停 -->
 				<li class="font-icons font-icons-btn font-icons-forward"></li><!-- 下一曲 -->
 				<li><!-- 调节音量 -->
-					<div class="font-icons font-icons-volume-up"></div>
+					<div class="font-icons font-icons-volume-up" onclick="logic.changeVolume()"></div>
 				</li>
 				<li class="play-type-box"><!-- 设置播放顺序 -->
-					<div class="font-icons font-icons-retweet" onclick="changePlayType()"></div>
+					<div class="font-icons font-icons-retweet" onclick="logic.changePlayType()"></div>
 					<ul class="play-type" id="play-type-ul">
-						<li onclick="selectPlayType('reweet')" class="font-icons font-icons-retweet"></li><!-- 顺序循环 -->
-						<li onclick="selectPlayType('reweet-one')" class="font-icons font-icons-retweet-one"></li><!-- 单曲 -->
-						<li onclick="selectPlayType('reorder-list')" class="font-icons font-icons-reorder-list"></li><!-- 顺序（不循环） -->
-						<li onclick="selectPlayType('random')" class="font-icons font-icons-random"></li><!-- 乱序 -->
+						<li onclick="logic.selectPlayType('reweet')" class="font-icons font-icons-retweet"></li><!-- 顺序循环 -->
+						<li onclick="logic.selectPlayType('reweet-one')" class="font-icons font-icons-retweet-one"></li><!-- 单曲 -->
+						<li onclick="logic.selectPlayType('reorder-list')" class="font-icons font-icons-reorder-list"></li><!-- 顺序（不循环） -->
+						<li onclick="logic.selectPlayType('random')" class="font-icons font-icons-random"></li><!-- 乱序 -->
 					</ul>
 				</li>
 				
@@ -178,7 +179,7 @@
 		<!-- 下部播放列表部分 -->
 		<div>
 			<label class="labels name">播放列表</label>
-			<div class="rows">
+			<div class="rows" id="play-list">
 				<ul>
 					<li>▶</li><li>哈哈哈哈哈</li><li>0000:00</li><!-- 时长 -->
 				</ul>
