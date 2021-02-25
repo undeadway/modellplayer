@@ -1,0 +1,58 @@
+@font-face {
+    font-family: zicon;
+    src: url(../fonts/icon.eot);
+    src: url(../fonts/icon.eot?#iefix) format("embedded-opentype"),
+    url(../fonts/icon.woff) format("woff"),
+    url(../fonts/icon.ttf) format("truetype"),
+    url(../fonts/icon.svg#uxzfont) format("svg");
+}
+
+.font-icons {
+    display: inline-block;
+    font: normal normal normal 14px/1 zicon;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+
+.font-icons-play:before {
+	content: "\f04b";
+  }
+  
+  .font-icons-pause:before {
+	content: "\f04c";
+  }
+  
+  .font-icons-stop:before {
+	content: "\f04d";
+  }
+  
+  .font-icons-forward:before {
+	content: "\f04e";
+  }
+
+  .font-icons-backward:before {
+    content: "\f04a";
+  }
+
+  .font-icons-retweet:before {
+    content: "\f079";
+  }
+  
+  .font-icons-retweet-one:before {
+    content: "\f080";
+  }
+
+  .font-icons-reorder-list:before {
+    content: "\f0c9";
+  }
+
+  .font-icons-random:before {
+    content: "\f074";
+  }
+  
+  .font-icons-sounds::before {
+    content: "\25E2"
+  }
