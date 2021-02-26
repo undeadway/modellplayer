@@ -6,6 +6,8 @@ exports.init = () => {
 
 	app.on('ready', function () {
 
+		const appmenu = require("./appmenu");
+
 		mainWindow = new BrowserWindow({
 			width: AppConfig.ui.main.width, height: AppConfig.ui.main.height,
 			transparent: true,
@@ -18,8 +20,11 @@ exports.init = () => {
 			icon: `./../..${AppConfig.base.ico[16]}`
 		});
 
-		mainWindow.setMenu(null);
+		// mainWindow.setMenu(null);
 		mainWindow.loadURL(__dirname + '/../../res/html/main.html');
+
+		const menu = Menu.buildFromTemplate(appmenu);
+		Menu.setApplicationMenu(menu);
 
 		// 当 window 被关闭，这个事件会被发出
 		mainWindow.on('closed', function () {
