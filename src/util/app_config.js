@@ -7,25 +7,9 @@ global.AppConfig = {
 		}
 	},
 	ui: {
-		login: {
-			width: 530,
-			height: 720
-		},
-		index : {
-			width: 400,
-			height: 300
-		},
-		books: {
-			width: 450,
-			height: 210
-		},
-		user_org: {
-			width: 480,
-			height: 400
-		},
-		exports: {
-			width: 410,
-			height: 250
+		main: {
+			width: 356,
+			height: 545
 		}
 	}
 }
