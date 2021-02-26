@@ -10,16 +10,15 @@
 		}
 
 		html, body {
-			width: 350px;
-			height: 500px;
+			width: 100%;
+			height: 100%;
 			color: #450745;
-			font-size: 12px;
+			font-size: 15px;
 		}
 		.box {
-			width: 310px;
+			width: 350px;
 			height: 500px;
 			background: #f0fffa;
-			padding:3px;
 		}
 
 		.box>div {
@@ -72,7 +71,7 @@
 		}
 
 		.times {
-			width: 110px;
+			width: 150px;
 		}
 
 		.panel-tabs li {
@@ -152,35 +151,34 @@
 			<div class="name">名称</div>
 			<div class="pgsbar-box">
 				<div class="pgsbar pgsbar-bk"></div>
-				<div class="pgsbar pgsbar-played" style="width: 50%;"></div>
-				<div class="pgsbar-thumb" style="left: 50%;"></div>
+				<div class="pgsbar pgsbar-played" style="width: 50%;" onclick="main.changePercent(this)"></div>
+				<div class="pgsbar-thumb" style="left: 40%;" onclick="main.changePercent(this)" onmousemove="logic.movePercent(this)"></div>
 			</div>
 			<ul class="panel-tabs">
 				<li class="times">0000:00 / 0000:00</li><!-- 现在时间/总时长 -->
-				<li class="font-icons font-icons-btn font-icons-stop"></li><!-- 停止 -->
-				<li class="font-icons font-icons-btn font-icons-backward"></li><!-- 上一曲 -->
-				<li class="font-icons font-icons-btn font-icons-play now-status"></li><!-- 播放 / 暂停 -->
-				<li class="font-icons font-icons-btn font-icons-forward"></li><!-- 下一曲 -->
+				<li class="font-icons font-icons-btn font-icons-stop" onclick="main.stop()"></li><!-- 停止 -->
+				<li class="font-icons font-icons-btn font-icons-backward" onclick="main.back()"></li><!-- 上一曲 -->
+				<li class="font-icons font-icons-btn font-icons-play now-status" onclick="main.paly(this)"></li><!-- 播放 / 暂停 -->
+				<li class="font-icons font-icons-btn font-icons-forward" onclick="main.next()"></li><!-- 下一曲 -->
 				<li><!-- 调节音量 -->
-					<div class="font-icons font-icons-volume-up" onclick="logic.changeVolume()"></div>
+					<div class="font-icons font-icons-btn font-icons-volume-up" onclick="main.changeVolume()"></div>
 				</li>
 				<li class="play-type-box"><!-- 设置播放顺序 -->
-					<div class="font-icons font-icons-retweet" onclick="logic.changePlayType()"></div>
+					<div class="font-icons font-icons-btn font-icons-retweet" onclick="main.changePlayType()"></div>
 					<ul class="play-type" id="play-type-ul">
-						<li onclick="logic.selectPlayType('reweet')" class="font-icons font-icons-retweet"></li><!-- 顺序循环 -->
-						<li onclick="logic.selectPlayType('reweet-one')" class="font-icons font-icons-retweet-one"></li><!-- 单曲 -->
-						<li onclick="logic.selectPlayType('reorder-list')" class="font-icons font-icons-reorder-list"></li><!-- 顺序（不循环） -->
-						<li onclick="logic.selectPlayType('random')" class="font-icons font-icons-random"></li><!-- 乱序 -->
+						<li onclick="main.selectPlayType(this)" class="font-icons font-icons-retweet"></li><!-- 顺序循环 -->
+						<li onclick="main.selectPlayType(this)" class="font-icons font-icons-retweet-one"></li><!-- 单曲 -->
+						<li onclick="main.selectPlayType(this)" class="font-icons font-icons-reorder-list"></li><!-- 顺序（不循环） -->
+						<li onclick="main.selectPlayType(this)" class="font-icons font-icons-random"></li><!-- 乱序 -->
 					</ul>
 				</li>
-				
 			</ul>
 		</div>
 		<!-- 下部播放列表部分 -->
 		<div>
 			<label class="labels name">播放列表</label>
 			<div class="rows" id="play-list">
-				<ul>
+				<ul class="play-file" id="play-list-0">
 					<li>▶</li><li>哈哈哈哈哈</li><li>0000:00</li><!-- 时长 -->
 				</ul>
 				<ul>
@@ -205,4 +203,7 @@
 		</div>
 	</div>
 </body>
+<script>
+const main = logic();
+</script>
 </html>
