@@ -9,7 +9,7 @@ global.AppConfig = {
 	ui: {
 		main: {
 			width: 356,
-			height: 545
+			height: 562
 		}
 	}
 }
