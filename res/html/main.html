@@ -17,7 +17,7 @@
 			font-size: 15px;
 		}
 		.box {
-			width: 350px;
+			width: 100%;
 			height: 500px;
 			background: #f0fffa;
 		}
@@ -31,9 +31,16 @@
 			font-size: 14px;
 		}
 
+		/* audio {
+			width: 350px;
+			background: #28a745;
+			border-radius: 100px;
+			height: 30px;
+		} */
+
 		.pgsbar-box {
 			width: 100%;
-			height: 15px;
+			height: 25px;
 			position: relative;
 			background: #5eacd1;
 		}
@@ -43,26 +50,29 @@
 		}
 
 		.pgsbar {
-			height: 3px;
+			height: 5px;
 			width: 100%;
-			top: 6px;
+			top: 9px;
 		}
 
 		.pgsbar-bk {
 			background: #E0E4FE;
+			cursor: pointer;
 		}
 
 		.pgsbar-played {
+			cursor: pointer;
 			background: #0000FF;
 		}
 
 		.pgsbar-thumb {
 			border-radius: 50%;
 			border:1px solid #febe0b;
-			height: 7px;
-			width: 7px;
+			height: 10px;
+			width: 10px;
 			background: #febe0b;
-			top:3px;
+			top: 6px;
+			cursor: pointer;
 		}
 
 		.panel-tabs {
@@ -78,13 +88,7 @@
 		.panel-tabs li {
 			display: inline-block;
 			vertical-align: baseline;
-		}
-
-		.font-icons {
-			width: 27px;
-			height: 30px;
-			line-height: 30px;
-			text-align: center;
+			margin-right:12px;
 		}
 
 		.font-icons:hover {
@@ -104,14 +108,18 @@
 			position: relative;
 		}
 
-		.play-type {
+		.play-type-ul {
 			position: absolute;
-			top:15px;
-			left: 3px;
-			display: none;
+			top:25px;
+			left: 5px;
+			border:1 px solid #0066CC;
+			background:#F7F7F7;
 		}
-		.play-type li {
+		.play-type-ul li {
 			display: block;
+		}
+		.play-type-ul li:hover {
+			background:#ddfcfc;
 		}
 
 		.labels {
@@ -155,7 +163,11 @@
 				<div class="pgsbar pgsbar-played" style="width: 50%;" id="pgs-bar"></div>
 				<div class="pgsbar-thumb" style="left: 40%;" id="pgs-btn"></div>
 			</div>
-			<ul class="panel-tabs">
+		</div>
+		<!-- 下部播放列表部分 -->
+		<div class="panel-tabs">
+			<ul>
+				<li class="labels name">播放列表</li>
 				<li class="times">0000:00 / 0000:00</li><!-- 现在时间/总时长 -->
 				<li class="font-icons font-icons-btn font-icons-stop" id="stop-btn"></li><!-- 停止 -->
 				<li class="font-icons font-icons-btn font-icons-backward" id="back-btn"></li><!-- 上一曲 -->
@@ -166,18 +178,14 @@
 				</li>
 				<li class="play-type-box"><!-- 设置播放顺序 -->
 					<div class="font-icons font-icons-btn font-icons-retweet" id="change-play-type-btn"></div>
-					<ul class="play-type" id="play-type-ul">
-						<li id="retweet-btn" class="font-icons font-icons-retweet"></li><!-- 顺序循环 -->
-						<li id="retweet-one-btn" class="font-icons font-icons-retweet-one"></li><!-- 单曲 -->
-						<li id="reorder-list-btn" class="font-icons font-icons-reorder-list"></li><!-- 顺序（不循环） -->
-						<li id="random-btn" class="font-icons font-icons-random"></li><!-- 乱序 -->
+					<ul class="play-type-ul" id="play-type-list">
+						<li id="retweet-btn" class="font-icons font-icons-btn font-icons-retweet"></li><!-- 顺序循环 -->
+						<li id="retweet-one-btn" class="font-icons font-icons-btn font-icons-retweet-one"></li><!-- 单曲 -->
+						<li id="reorder-list-btn" class="font-icons font-icons-btn font-icons-reorder-list"></li><!-- 顺序（不循环） -->
+						<li id="random-btn" class="font-icons font-icons-btn font-icons-random"></li><!-- 乱序 -->
 					</ul>
 				</li>
 			</ul>
-		</div>
-		<!-- 下部播放列表部分 -->
-		<div>
-			<label class="labels name">播放列表</label>
 			<div class="rows" id="play-list">
 			</div>
 		</div>
