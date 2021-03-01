@@ -8,8 +8,8 @@ global.AppConfig = {
 	},
 	ui: {
 		main: {
-			width: 356,
-			height: 562
+			width: 456,
+			height: 605
 		}
 	}
 }

@@ -5,8 +5,7 @@ exports.init = () => {
 
 	let plaing = false
 	let index = 0
-	let isPlayTypeListShown = false
-	const playTypeUl = $("#play-type-ul");
+	let playType = 'retweet';
 
 	function createPlayListItem (index, name, timeLong) {
 		return $(`<ul class="play-file" id="play-list-${index}">
@@ -22,6 +21,12 @@ exports.init = () => {
 	const backBtn = $("#back-btn");
 	const playBtn = $("#play-btn");
 	const nextBtn = $("#next-btn");
+	const changePlayTypeBtn = $("#change-play-type-btn");
+	const playTypeList = $("#play-type-list");
+	const retweetBtn = $("#retweet-btn");
+	const retweetOneBtn = $("#retweet-one-btn");
+	const reorderListBtn = $("#reorder-list-btn");
+	const randomBtn = $("#random-btn");
 
 	stopBtn.on("click", () => {
 		playing = false;
@@ -43,7 +48,7 @@ exports.init = () => {
 		}
 		plaing = !plaing;
 	});
-	backBtn.on("click", () => {
+	nextBtn.on("click", () => {
 		index++;
 		if (index >= playList.length) {
 			if (playType === '') {
@@ -57,4 +62,33 @@ exports.init = () => {
 		}
 		alert(index);
 	})
+
+	playTypeList.hide();
+	changePlayTypeBtn.on("click", () => {
+		playTypeList.show();
+	});
+
+	retweetBtn.on("click", () => {
+		playTypeList.hide();
+		changePlayType("retweet");
+	});
+
+	retweetOneBtn.on("click", () => {
+		playTypeList.hide();
+		changePlayType("retweet-one");
+	});
+
+	reorderListBtn.on("click", () => {
+		playTypeList.hide();
+		changePlayType("reorder-list");
+	});
+
+	randomBtn.on("click", () => {
+		playTypeList.hide();
+		changePlayType("random");
+	});
+
+	function changePlayType(name) {
+		changePlayTypeBtn.attr("class", `font-icons font-icons-btn font-icons-${name}`);
+	}
 }
