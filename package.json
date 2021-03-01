@@ -4,10 +4,13 @@
   "dependencies": {
     "jquery": "^3.5.1"
   },
+	"devDependencies": {
+		"electron": "6.0.1"
+	},
   "scripts": {
     "start": "electron .",
     "debug": "electron . --debug-brk=5858",
-    "test": "electron-packager . ModellPlayer --win --out ./dist --arch=x64 --electronVersion 6.0.1 -overwrite=force --icon=./res/ico/16_16 --ignore=\"(test|dist|doc|.vscode|.gitignore|package-lock.json|README.md)\"",
-    "publish": "electron-packager . ModellPlayer --win --out ./dist --arch=x64 --asar --electronVersion 6.0.1 --overwrite=force --icon=./res/ico/16_16 --ignore=\"(test|dist|doc|.vscode|.gitignore|package-lock.json|README.md)\""
+		"package": "electron-packager . ModellPlayer --win --out ./dist --arch=x64 -overwrite=force --icon=./res/ico/16_16 --ignore=\"(dist|doc|.vscode|.gitignore|package.json|package-lock.json|README.md|test)\"",
+		"publish": "electron-packager . ModellPlayer --win --out ./dist --arch=x64 --asar --overwrite=force --icon=./res/ico/16_16 --ignore=\"(dist|doc|.vscode|.gitignore|package.json|package-lock.json|README.md|test)\""
   }
 }
