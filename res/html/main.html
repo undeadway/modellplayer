@@ -3,7 +3,6 @@
 	<title>木头人播放器</title>
 	<link rel="stylesheet" href="./../css/btns.css" />
 	<body oncontextmenu="return false;" onselectstart="return false"></body>
-	<script type="text/javascript">const logic = require('./../../src/logic/main');</script>
 	<style>
 		html, body, p, ul, li {
 			margin: 0px;
@@ -196,10 +195,7 @@
 	</div>
 </body>
 <script type="text/javascript">
-try {
- logic.init();
-} catch (e) {
-	alert(e.stack)
-}
+	const logic = require('./../../src/logic/main');
+	logic.init();
 </script>
 </html>
