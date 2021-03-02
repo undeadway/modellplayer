@@ -1,94 +1,153 @@
 require("./../util/ui_init");
 const $ = require("jquery");
 
-exports.init = () => {
 
-	let plaing = false
-	let index = 0
-	let playType = 'retweet';
+const Logic = {
+	init: () => {
+		let plaing = false;
+		let index = 0;
+		let playType = "retweet";
+		let canChange = false;
 
-	function createPlayListItem (index, name, timeLong) {
-		return $(`<ul class="play-file" id="play-list-${index}">
-			<li>▶</li><li>${name}</li><li>${timeLong}</li>
-		</ul>`);
-	}
-
-	const playList = [];
-
-	const pgsBar = $("#psg-bar");
-	const pgsBtn = $("#psg-btn");
-	const stopBtn = $("#stop-btn");
-	const backBtn = $("#back-btn");
-	const playBtn = $("#play-btn");
-	const nextBtn = $("#next-btn");
-	const changePlayTypeBtn = $("#change-play-type-btn");
-	const playTypeList = $("#play-type-list");
-	const retweetBtn = $("#retweet-btn");
-	const retweetOneBtn = $("#retweet-one-btn");
-	const reorderListBtn = $("#reorder-list-btn");
-	const randomBtn = $("#random-btn");
-
-	stopBtn.on("click", () => {
-		playing = false;
-		playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
-	});
-	backBtn.on("click", () => {
-		index--;
-		if (index < 0) {
-			index = 0;
+		function createPlayListItem(index, name, timeLong) {
+			return $(`<ul class="play-file" id="play-list-${index}">
+					<li>▶</li><li>${name}</li><li>${timeLong}</li>
+				</ul>`);
 		}
-		alert(index);
-	})
-	playBtn.on("click", () => {
-		
-		if(plaing) {
-			playBtn.attr("class", "font-icons font-icons-btn font-icons-pause now-status");
-		} else {
-			playBtn.attr("class", "font-icons font-icons-btn font-icons-play now-status");
-		}
-		plaing = !plaing;
-	});
-	nextBtn.on("click", () => {
-		index++;
-		if (index >= playList.length) {
-			if (playType === '') {
-				playing = false;
-				stopBtn.attr("class", "font-icons font-icons-btn font-icons-play now-status");
-				playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
-				index = 0;
-			} else {
+
+		const playList = [];
+
+		const pgsBox = $("#pgs-box");
+		const pgsBak = $("#pgs-bak");
+		const pgsBar = $("#pgs-bar");
+		const pgsBtn = $("#pgs-btn");
+		const stopBtn = $("#stop-btn");
+		const backBtn = $("#back-btn");
+		const playBtn = $("#play-btn");
+		const nextBtn = $("#next-btn");
+		const changePlayTypeBtn = $("#change-play-type-btn");
+		const playTypeList = $("#play-type-list");
+		const retweetBtn = $("#retweet-btn");
+		const retweetOneBtn = $("#retweet-one-btn");
+		const reorderListBtn = $("#reorder-list-btn");
+		const randomBtn = $("#random-btn");
+
+		stopBtn.on("click", () => {
+			playing = false;
+			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
+		});
+		backBtn.on("click", () => {
+			index--;
+			if (index < 0) {
 				index = 0;
 			}
+			alert(index);
+		});
+		playBtn.on("click", () => {
+			if (plaing) {
+				playBtn.attr(
+					"class",
+					"font-icons font-icons-btn font-icons-pause now-status"
+				);
+			} else {
+				playBtn.attr(
+					"class",
+					"font-icons font-icons-btn font-icons-play now-status"
+				);
+			}
+			plaing = !plaing;
+		});
+		nextBtn.on("click", () => {
+			index++;
+			if (index >= playList.length) {
+				if (playType === "") {
+					playing = false;
+					stopBtn.attr(
+						"class",
+						"font-icons font-icons-btn font-icons-play now-status"
+					);
+					playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
+					index = 0;
+				} else {
+					index = 0;
+				}
+			}
+			alert(index);
+		});
+
+		playTypeList.hide();
+		changePlayTypeBtn.on("click", () => {
+			playTypeList.show();
+		});
+
+		retweetBtn.on("click", () => {
+			playTypeList.hide();
+			changePlayType("retweet");
+		});
+
+		retweetOneBtn.on("click", () => {
+			playTypeList.hide();
+			changePlayType("retweet-one");
+		});
+
+		reorderListBtn.on("click", () => {
+			playTypeList.hide();
+			changePlayType("reorder-list");
+		});
+
+		randomBtn.on("click", () => {
+			playTypeList.hide();
+			changePlayType("random");
+		});
+
+		function changePlayType(name) {
+			changePlayTypeBtn.attr(
+				"class",
+				`font-icons font-icons-btn font-icons-${name}`
+			);
 		}
-		alert(index);
-	})
 
-	playTypeList.hide();
-	changePlayTypeBtn.on("click", () => {
-		playTypeList.show();
-	});
+		function changeTo(evt) {
+			if (!canChange) return;
 
-	retweetBtn.on("click", () => {
-		playTypeList.hide();
-		changePlayType("retweet");
-	});
+			let clientX = evt.clientX - 10;
+			if (clientX < -3) {
+				clientX = -3;
+			}
+			if (clientX > 445) {
+				clientX = 445;
+			}
 
-	retweetOneBtn.on("click", () => {
-		playTypeList.hide();
-		changePlayType("retweet-one");
-	});
+			pgsBtn.css({ left: clientX });
+			pgsBar.css({ width: (evt.clientX / 445) * 100 + "%" });
+		}
 
-	reorderListBtn.on("click", () => {
-		playTypeList.hide();
-		changePlayType("reorder-list");
-	});
+		function unbind () {
+			canChange = false;
+			pgsBox.unbind("mousemove");
+			pgsBar.unbind("mousemove");
+		}
 
-	randomBtn.on("click", () => {
-		playTypeList.hide();
-		changePlayType("random");
-	});
+		pgsBtn.on("mousedown", () => {
+			canChange = true;
+			pgsBox.on("mousemove", changeTo);
+			pgsBar.on("mousemove", changeTo);
+		});
 
-	function changePlayType(name) {
-		changePlayTypeBtn.attr("class", `font-icons font-icons-btn font-icons-${name}`);
+		pgsBak.on("click", (evt) => {
+			canChange = true;
+			changeTo(evt);
+			unbind();
+		});
+		pgsBar.on("click",  (evt) => {
+			canChange = true;
+			changeTo(evt);
+			unbind();
+		});
+
+		pgsBox.on("mouseout", unbind);
+		pgsBtn.on("mouseup", unbind);
 	}
-}
+};
+
+exports = module.exports = Logic;
