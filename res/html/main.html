@@ -10,10 +10,11 @@
 		}
 
 		html, body {
-			width: 100%;
+			width: 450px;
 			height: 100%;
 			color: #450745;
 			font-size: 15px;
+			overflow: hidden;
 		}
 		.box {
 			width: 100%;
@@ -38,8 +39,8 @@
 		} */
 
 		.pgsbar-box {
-			width: 100%;
 			height: 25px;
+			margin: 0px 5px;
 			position: relative;
 			background: #5eacd1;
 		}
@@ -49,9 +50,9 @@
 		}
 
 		.pgsbar {
-			height: 5px;
+			height: 4px;
 			width: 100%;
-			top: 9px;
+			top: 10px;
 		}
 
 		.pgsbar-bk {
@@ -161,10 +162,10 @@
 		<!-- 上部，设置部分 -->
 		<div><!-- 进度条滑块 -->
 			<div class="name">名称</div>
-			<div class="pgsbar-box">
-				<div class="pgsbar pgsbar-bk"></div>
-				<div class="pgsbar pgsbar-played" style="width: 50%;" id="pgs-bar"></div>
-				<div class="pgsbar-thumb" style="left: 40%;" id="pgs-btn"></div>
+			<div class="pgsbar-box"  id="pgs-box">
+				<div class="pgsbar pgsbar-bk" id="pgs-bak"></div>
+				<div class="pgsbar pgsbar-played" style="width: 0%;" id="pgs-bar"></div>
+				<div class="pgsbar-thumb" id="pgs-btn"></div>
 			</div>
 		</div>
 		<!-- 下部播放列表部分 -->
