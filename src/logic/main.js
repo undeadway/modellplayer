@@ -1,23 +1,12 @@
 const $ = require("jquery");
 const { ipcRenderer }  = require("electron");
+const Play = require("./../logic/play");
 
 const Logic = {
 	init: () => {
 
-		let plaing = false;
-		let index = 0;
-		let playType = "retweet";
 		let canChange = false;
 
-		function createPlayListItem(index, name, timeLong) {
-			return $(`<ul class="play-file" id="play-list-${index}">
-					<li>▶</li><li>${name}</li><li>${timeLong}</li>
-				</ul>`);
-		}
-
-		const playList = [];
-
-		const audio = $("#audio");
 		const pgsBox = $("#pgs-box");
 		const pgsBak = $("#pgs-bak");
 		const pgsBar = $("#pgs-bar");
@@ -32,8 +21,14 @@ const Logic = {
 		const retweetOneBtn = $("#retweet-one-btn");
 		const reorderListBtn = $("#reorder-list-btn");
 		const randomBtn = $("#random-btn");
+		const playListDiv = $("#play-list");
+		const playObj = Play($("#audio"));
 
-		audio.hide();
+		function createPlayListItem(index, name, timeLong) {
+			playListDiv.append($(`<ul class="play-list" id="play-list-${index}">
+					<li id="playing-${index}"></li><li>${name}</li><li>${timeLong}</li>
+				</ul>`));
+		}
 
 		stopBtn.on("click", () => {
 			playing = false;
@@ -108,6 +103,7 @@ const Logic = {
 				"class",
 				`font-icons font-icons-btn font-icons-${name}`
 			);
+			playObj.changePlayType(name);
 		}
 
 		function changeTo(evt) {
@@ -151,8 +147,14 @@ const Logic = {
 		pgsBox.on("mouseout", unbind);
 		pgsBtn.on("mouseup", unbind);
 
-		ipcRenderer.on("sendFiles", (event, {files, typeName}) => {
-			alert(files, typeName);
+		ipcRenderer.on("sendFiles", (event, files) => {
+
+			// 再将播放列表导入
+			for (let i = 0, len = files.length; i < len; i++) {
+				createPlayListItem(i, files[i], "");
+			}
+
+			playObj.start(files);
 		});
 	}
 };
