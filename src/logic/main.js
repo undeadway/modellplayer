@@ -3,7 +3,7 @@
  */
 const $ = require("jquery");
 const { ipcRenderer }  = require("electron");
-const Play = require("./../logic/play");
+const _Player = require("./../logic/player");
 
 const Logic = {
 	init: () => {
@@ -26,7 +26,12 @@ const Logic = {
 		const reorderListBtn = $("#reorder-list-btn");
 		const randomBtn = $("#random-btn");
 		const playListDiv = $("#play-list");
-		const player = Play(document.getElementById("audio"));
+
+		const player = _Player(
+			$("#currentTime"),
+			$("#duration"),
+			document.getElementById("audio")
+		);
 
 		function createPlayListItem(index, name, timeLong) {
 			playListDiv.append($(`<ul class="play-list" id="play-list-${index}">
@@ -47,7 +52,7 @@ const Logic = {
 			player.back();
 		});
 		playBtn.on("click", () => {
-			if (plaing) {
+			if (playing) {
 				playBtn.attr(
 					"class",
 					"font-icons font-icons-btn font-icons-pause now-status"
@@ -60,7 +65,7 @@ const Logic = {
 				);
 				player.play();
 			}
-			plaing = !plaing;
+			playing = !playing;
 		});
 		nextBtn.on("click", () => {
 			index++;
