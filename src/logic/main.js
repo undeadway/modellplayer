@@ -26,7 +26,7 @@ const Logic = {
 		const reorderListBtn = $("#reorder-list-btn");
 		const randomBtn = $("#random-btn");
 		const playListDiv = $("#play-list");
-		const playObj = Play($("#audio"));
+		const player = Play(document.getElementById("audio"));
 
 		function createPlayListItem(index, name, timeLong) {
 			playListDiv.append($(`<ul class="play-list" id="play-list-${index}">
@@ -37,14 +37,14 @@ const Logic = {
 		stopBtn.on("click", () => {
 			playing = false;
 			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
-			playObj.stop();
+			player.stop();
 		});
 		backBtn.on("click", () => {
 			index--;
 			if (index < 0) {
 				index = 0;
 			}
-			playObj.back();
+			player.back();
 		});
 		playBtn.on("click", () => {
 			if (plaing) {
@@ -52,13 +52,13 @@ const Logic = {
 					"class",
 					"font-icons font-icons-btn font-icons-pause now-status"
 				);
-				playObj.pause();
+				player.pause();
 			} else {
 				playBtn.attr(
 					"class",
 					"font-icons font-icons-btn font-icons-play now-status"
 				);
-				playObj.play();
+				player.play();
 			}
 			plaing = !plaing;
 		});
@@ -77,7 +77,7 @@ const Logic = {
 					index = 0;
 				}
 			}
-			playObj.next();
+			player.next();
 		});
 
 		playTypeList.hide();
@@ -110,7 +110,7 @@ const Logic = {
 				"class",
 				`font-icons font-icons-btn font-icons-${name}`
 			);
-			playObj.changePlayType(name);
+			player.changePlayType(name);
 		}
 
 		function changeTo(evt) {
@@ -161,7 +161,7 @@ const Logic = {
 				createPlayListItem(i, files[i], "");
 			}
 
-			playObj.start(files);
+			player.start(files);
 			playing = true;
 		});
 	}
