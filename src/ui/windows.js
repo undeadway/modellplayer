@@ -1,14 +1,13 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 
-let mainWindow; //, booksWindow, userOrgWindow, exportsWindow;
-
 exports.init = () => {
 
 	app.on('ready', function () {
 
 		const appmenu = require("./appmenu");
 
-		mainWindow = new BrowserWindow({
+		// 因为关闭窗口的时候 mainWindow 也会被清理掉，所以这里不能将 mainWindow 设置为 const
+		let mainWindow = new BrowserWindow({
 			width: AppConfig.ui.main.width, height: AppConfig.ui.main.height,
 			transparent: true,
 			webPreferences: {
@@ -22,6 +21,9 @@ exports.init = () => {
 
 		// mainWindow.setMenu(null);
 		mainWindow.loadURL(__dirname + '/../../res/html/main.html');
+
+		// 打开开发者工具
+		mainWindow.webContents.openDevTools();
 
 		const menu = Menu.buildFromTemplate(appmenu);
 		Menu.setApplicationMenu(menu);
@@ -175,40 +177,3 @@ exports.init = () => {
 // function openExportsWindow() {
 // 	exportsWindow.show();
 // }
-
-// function openWindow(name) {
-// 	switch (name) {
-// 		case 'books':
-// 			if (!booksWindow) {
-// 				createBooksWindow();
-// 			}
-// 			openBooksWindow();
-// 			break;
-// 		case 'user_org':
-// 			if (!userOrgWindow) {
-// 				createUserOrgWindow();
-// 			}
-// 			openUserOrgWindow();
-// 			break;
-// 		case 'exports':
-// 			if (!exportsWindow) {
-// 				createExportsWindow();
-// 			}
-// 			openExportsWindow();
-// 			break;
-// 	}
-// }
-
-// exports.openWindow = openWindow;
-
-// ipcMain.on('showMainPage', () => {
-// 	//mainWindow.hide();
-// 	// createMainwindow();
-// 	// createBooksWindow();
-// 	// createUserOrgWindow();
-// 	// createExportsWindow();
-// });
-
-// ipcMain.on('openWindow', (event, name) => {
-// 	openWindow(name);
-// });
