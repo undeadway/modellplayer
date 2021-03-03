@@ -6,6 +6,7 @@ const Logic = {
 	init: () => {
 
 		let canChange = false;
+		let playing = false;
 
 		const pgsBox = $("#pgs-box");
 		const pgsBak = $("#pgs-bak");
@@ -33,13 +34,14 @@ const Logic = {
 		stopBtn.on("click", () => {
 			playing = false;
 			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
+			playObj.stop();
 		});
 		backBtn.on("click", () => {
 			index--;
 			if (index < 0) {
 				index = 0;
 			}
-			alert(index);
+			playObj.back();
 		});
 		playBtn.on("click", () => {
 			if (plaing) {
@@ -47,11 +49,13 @@ const Logic = {
 					"class",
 					"font-icons font-icons-btn font-icons-pause now-status"
 				);
+				playObj.pause();
 			} else {
 				playBtn.attr(
 					"class",
 					"font-icons font-icons-btn font-icons-play now-status"
 				);
+				playObj.play();
 			}
 			plaing = !plaing;
 		});
@@ -70,7 +74,7 @@ const Logic = {
 					index = 0;
 				}
 			}
-			alert(index);
+			playObj.next();
 		});
 
 		playTypeList.hide();
@@ -155,6 +159,7 @@ const Logic = {
 			}
 
 			playObj.start(files);
+			playing = true;
 		});
 	}
 };
