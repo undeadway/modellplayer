@@ -1,22 +1,23 @@
-const { shell } = require('electron');
-const windows = require("./windows");
+// const { Menu,shell,ipcMain,BrowserWindow,app } =require('electron');
+const { shell } =require('electron');
+const dialog = require("./../logic/dialog");
 
 exports = module.exports = [
 	{
 		label: '文件',
 		submenu: [
 			{
-				label: '打开',
-				accelerator: 'CmdOrCtrl+O',
+				label: '打开文件',
+				accelerator: 'CmdOrCtrl+F',
 				click() {
-					windows.openWindow('books');
+					dialog().open("openFile");
 				},
 			},
 			{
-				label: '添加',
-				accelerator: 'CmdOrCtrl+A',
+				label: '打开文件夹',
+				accelerator: 'CmdOrCtrl+D',
 				click() {
-					windows.openWindow('user_org');
+					dialog().open("openDirectory");
 				},
 			},
 			{
@@ -62,7 +63,7 @@ exports = module.exports = [
 				click() {
 					windows.openWindow('exports');
 				},
-				accelerator: 'CmdOrCtrl+A'
+				accelerator: 'CmdOrCtrl+P'
 			},
 			{
 				type: 'separator'
@@ -76,6 +77,13 @@ exports = module.exports = [
 		label: '播放列表',
 		submenu: [
 			{
+				label: '导入播放列表',
+				accelerator: 'CmdOrCtrl+Shift+I',
+				click() {
+					windows.openWindow('user_org');
+				},
+			},
+			{
 				label: '导出播放列表',
 				accelerator: 'CmdOrCtrl+Shift+E',
 				click() {
@@ -87,13 +95,14 @@ exports = module.exports = [
 				click() {
 					windows.openWindow('exports');
 				},
-				accelerator: 'CmdOrCtrl++Shift+I'
+				accelerator: 'CmdOrCtrl++Shift+A'
 			},
 			{
-				type: 'separator'
-			},
-			{
-				label: '退出', role: 'quit'
+				label: '从播放列表中删除',
+				click() {
+					windows.openWindow('exports');
+				},
+				accelerator: 'CmdOrCtrl++Shift+D'
 			}
 		]
 	},
@@ -101,12 +110,9 @@ exports = module.exports = [
 		label: '帮助',
 		submenu: [
 			{
-				label: '使用文档',
-				click() { shell.openExternal(process.cwd() + './help/index.html'); }
-			},
-			{
 				label: '关于',
-				click() { shell.openExternal('http://waygc.net'); }
+				accelerator: 'CmdOrCtrl+A',
+				click() { shell.openExternal('http://modellplayer.net'); }
 			}
 		]
 	}
