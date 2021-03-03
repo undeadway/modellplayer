@@ -48,6 +48,8 @@ function openOpenDialog(window, typeName){
 		default:
 	}
 
+	if (!files || files.length === 0) return;
+
 	window.webContents.send("sendFiles", files);
 }
 
