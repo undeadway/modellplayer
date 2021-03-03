@@ -1,9 +1,9 @@
-require("./../util/ui_init");
 const $ = require("jquery");
-
+const { ipcRenderer }  = require("electron");
 
 const Logic = {
 	init: () => {
+
 		let plaing = false;
 		let index = 0;
 		let playType = "retweet";
@@ -17,6 +17,7 @@ const Logic = {
 
 		const playList = [];
 
+		const audio = $("#audio");
 		const pgsBox = $("#pgs-box");
 		const pgsBak = $("#pgs-bak");
 		const pgsBar = $("#pgs-bar");
@@ -31,6 +32,8 @@ const Logic = {
 		const retweetOneBtn = $("#retweet-one-btn");
 		const reorderListBtn = $("#reorder-list-btn");
 		const randomBtn = $("#random-btn");
+
+		audio.hide();
 
 		stopBtn.on("click", () => {
 			playing = false;
@@ -114,12 +117,12 @@ const Logic = {
 			if (clientX < -3) {
 				clientX = -3;
 			}
-			if (clientX > 445) {
-				clientX = 445;
+			if (clientX > 430) {
+				clientX = 430;
 			}
 
 			pgsBtn.css({ left: clientX });
-			pgsBar.css({ width: (evt.clientX / 445) * 100 + "%" });
+			pgsBar.css({ width: (evt.clientX / 430) * 100 + "%" });
 		}
 
 		function unbind () {
@@ -147,6 +150,10 @@ const Logic = {
 
 		pgsBox.on("mouseout", unbind);
 		pgsBtn.on("mouseup", unbind);
+
+		ipcRenderer.on("sendFiles", (event, {files, typeName}) => {
+			alert(files, typeName);
+		});
 	}
 };
 
