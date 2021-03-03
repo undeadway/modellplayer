@@ -1,10 +1,9 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron');
+const appmenu = require("./appmenu");
 
 exports.init = () => {
 
 	app.on('ready', function () {
-
-		const appmenu = require("./appmenu");
 
 		// 因为关闭窗口的时候 mainWindow 也会被清理掉，所以这里不能将 mainWindow 设置为 const
 		let mainWindow = new BrowserWindow({
@@ -25,7 +24,7 @@ exports.init = () => {
 		// 打开开发者工具
 		mainWindow.webContents.openDevTools();
 
-		const menu = Menu.buildFromTemplate(appmenu);
+		const menu = Menu.buildFromTemplate(appmenu(mainWindow));
 		Menu.setApplicationMenu(menu);
 
 		// 当 window 被关闭，这个事件会被发出

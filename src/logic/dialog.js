@@ -1,12 +1,12 @@
 const fs = require("fs");
 
-function openOpenDialog(typeName){
+function openOpenDialog(window, typeName){
 
 	/*
 	 * 因为需要多次打开，所以这里需要用函数来不断引入
 	 * 暂时没找到怎么关闭 dialog 或者其他的处理方式
 	 */
-	const { dialog, ipcMain } = require('electron');
+	const { dialog, BrowserWindow } = require('electron');
 
 	let options = {
 		defaultPath: "",
@@ -44,17 +44,9 @@ function openOpenDialog(typeName){
 		default:
 	}
 
-	ipcMain.on("sendFiles", (event, arg) => {
-		console.log(arg);
-		event.sender.send("sendFiles", { files, typeName });
-	});
-	// ipcMain.on('openWindow', (event, name) => {
-	// 	openWindow(name);
-	// });
+	window.webContents.send("sendFiles", files);
 }
 
-module.exports = () => {
-	return {
-		open: openOpenDialog
-	};
+module.exports = {
+	open: openOpenDialog
 };
