@@ -1,3 +1,7 @@
+/**
+ * 对话框，对应界面上所有的对话框操作
+ */
+
 const fs = require("fs");
 
 function openOpenDialog(window, typeName){

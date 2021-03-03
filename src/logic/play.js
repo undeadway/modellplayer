@@ -1,3 +1,6 @@
+/**
+ * 播放逻辑，对应播放器的播放逻辑
+ */
 module.exports = exports = (audio) => {
 
 	let playType = "retweet";

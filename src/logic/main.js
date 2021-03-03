@@ -1,3 +1,6 @@
+/**
+ * 主逻辑文件，对应播放器界面上的操作
+ */
 const $ = require("jquery");
 const { ipcRenderer }  = require("electron");
 const Play = require("./../logic/play");
