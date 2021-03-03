@@ -144,15 +144,19 @@
 			background: #FFFFFF;
 		}
 
-		.rows li {
+		.play-title {
+			background: #c2dff3;
+			color: #28a745;
+		}
+
+		.play-list li {
 			display: inline-block;
 			text-align: left;
 			padding: 4px;
 		}
 
-		.rows li:nth-child(2) {
-			width: 200px;
-			color: #28a745;
+		.play-list li:nth-child(2) {
+			width: 300px;
 			border-right: 1px solid #FAFAFA;
 		}
 	</style>
@@ -191,7 +195,12 @@
 					</ul>
 				</li>
 			</ul>
-			<div class="rows" id="play-list">
+			<div>
+				<ul class="play-list play-title">
+					<li></li><li>标题</li></li><li>时长</li>
+				</ul>
+				<div class="rows" id="play-list">
+				</div>
 			</div>
 		</div>
 	</div>
