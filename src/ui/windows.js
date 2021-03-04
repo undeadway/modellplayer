@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const appmenu = require("./appmenu");
+const utils = require("./../util/utils");
 
 exports.init = () => {
 
@@ -22,7 +23,9 @@ exports.init = () => {
 		mainWindow.loadURL(__dirname + '/../../res/html/main.html');
 
 		// 打开开发者工具
-		mainWindow.webContents.openDevTools();
+		if (utils.isDevMode()) {
+			mainWindow.webContents.openDevTools();
+		}
 
 		const menu = Menu.buildFromTemplate(appmenu(mainWindow));
 		Menu.setApplicationMenu(menu);

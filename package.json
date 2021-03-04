@@ -19,8 +19,9 @@
 	},
 	"homepage": "http://prj.waygc.net/?coralian",
 	"scripts": {
+		"dev": "electron . --devmode",
 		"start": "electron .",
-		"debug": "electron . --debug-brk=5858",
+		"debug": "electron . dev --devmode --debug-brk=5858",
 		"pkgtest": "electron-packager . ModellPlayer --win --out ./dist --arch=x64 -overwrite=force --icon=./res/ico/16_16 --ignore=\"(test|doc|.vscode|.gitignore|package-lock.json|README.md)\"",
 		"publish": "electron-packager . ModellPlayer --win --out ./dist --arch=x64 --asar --overwrite=force --icon=./res/ico/16_16 --ignore=\"(test|doc|.vscode|.gitignore|package-lock.json|README.md|help)\""
 	}
