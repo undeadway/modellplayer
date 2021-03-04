@@ -1,5 +1,5 @@
-const separator = (require("os").type().toLocaleLowerCase().indexOf("windows") >= 0) ?
-	"\\" :  "/";
+const isWindows = require("os").type().toLocaleLowerCase().indexOf("windows") >= 0;
+const separator = isWindows ? "\\" :  "/";
 
 
 function a(e) {
@@ -14,4 +14,8 @@ exports.secondToTime = function(e) {
 
 exports.getSeparator = () => {
 	return separator;
+}
+
+exports.isWIndows = () => {
+	return isWindows;
 }
