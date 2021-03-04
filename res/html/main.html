@@ -155,9 +155,12 @@
 			padding: 4px;
 		}
 
+		.play-list li:first-child {
+			width: 7px;
+		}
+
 		.play-list li:nth-child(2) {
-			width: 300px;
-			border-right: 1px solid #FAFAFA;
+			border-left: 1px solid #FAFAFA;
 		}
 	</style>
 </head>
@@ -197,9 +200,9 @@
 			</ul>
 			<div>
 				<ul class="play-list play-title">
-					<li></li><li>标题</li></li><li>时长</li>
+					<li></li><li>标题</li></li>
 				</ul>
-				<div class="rows" id="play-list">
+				<div class="rows play-list" id="play-list">
 				</div>
 			</div>
 		</div>
