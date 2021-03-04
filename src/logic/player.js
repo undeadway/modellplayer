@@ -31,10 +31,10 @@ module.exports = exports = (player) => {
 			audio.preload = "metadata";
 			play(callback);
 		},
-		play: (callback) => {
+		play: play,
+		autoNext: (callback) => {
 			switch (playType) {
 				case "retweet":
-					index++;
 					break;
 				case "retweet-one":
 					break;
@@ -61,11 +61,10 @@ module.exports = exports = (player) => {
 			}
 			play(callback);
 		},
-		stop: (callback) => {
+		stop: () => {
 			player.pause();
 			player.currentTime = 0;
 			clearInterval(interval);
-			callback(index, player.currentTime, player.duration);
 		},
 		changePlayType: (type) => {
 			playType = type;
