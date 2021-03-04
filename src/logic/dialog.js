@@ -42,6 +42,8 @@ function openOpenDialog(window, typeName){
 	}
 
 	let result = dialog.showOpenDialogSync(options);
+	if (!result || result.length === 0) return;
+	let folderName = result[0];
 	let files = null;
 
 	switch (typeName) {
@@ -49,13 +51,13 @@ function openOpenDialog(window, typeName){
 			files = result;
 			break;
 		case "openDirectory":
-			let folderName = result[0];
 			files = fs.readdirSync(folderName);
 
 			files = files.map(item => {
 				return folderName + utils.getSeparator() + item;
 			});
-
+			break;
+		case "importPlayList":
 			break;
 		default:
 	}
