@@ -21,7 +21,6 @@ function openOpenDialog(window, typeName){
 
 	switch (typeName) {
 		case "openFile":
-
 			options.title = "打开文件";
 			options.filters = [
 				{name: '有损压缩', extensions: ["mp3", "ogg"]},
@@ -32,6 +31,12 @@ function openOpenDialog(window, typeName){
 			break;
 		case "openDirectory":
 			options.title = "打开文件夹";
+			break;
+		case "importPlayList":
+			options.title = "导入播放列表";
+			options.filters = [
+				{name: '索引文件', extensions: ["cue"]},
+			];
 			break;
 		default:
 	}
