@@ -92,9 +92,11 @@ const Logic = {
 			player.next(playCallback);
 		});
 
+		// 播放结束后动作
 		audio.addEventListener("ended", () => {
-			console.log("xxxxx");
 			playingTabIndex.text("");
+			play.autoNext();
+			pgsBar.css({ width: "0%" });
 		});
 
 		playSwitchList.hide();
