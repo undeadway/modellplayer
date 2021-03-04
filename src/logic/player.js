@@ -39,14 +39,19 @@ module.exports = exports = (player) => {
 		},
 		play: play,
 		autoNext: (callback) => {
+			stopAt = player.currentTime = 0;
 			switch (playSwitch) {
 				case "retweet":
-					index++;
+					if (++index > listSize) {
+						index = 0;
+					}
 					break;
 				case "retweet-one":
 					break;
 				case "reorder-list":
-					if (++index === listSize) {
+					if (++index > listSize) {
+						index = 0;
+						clearInterval(interval);
 						return; // 停止播放的后续操作
 					}
 					break;
@@ -60,12 +65,16 @@ module.exports = exports = (player) => {
 			if (++index > listSize) {
 				index = 0;
 			}
+			stopAt = 0;
+			clearInterval(interval);
 			play(callback);
 		},
 		back: (callback) => {
 			if (--index < 0) {
 				index = listSize;
 			}
+			stopAt = 0;
+			clearInterval(interval);
 			play(callback);
 		},
 		stop: () => {

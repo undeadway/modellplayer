@@ -52,21 +52,22 @@ const Logic = {
 			if (player.isEmpty()) return;
 			playing = false;
 			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
-			player.stop(playCallback);
+			player.stop();
 		});
 		backBtn.on("click", () => {
 			if (player.isEmpty()) return;
+			playingTabIndex.text("");
 			player.back(playCallback);
 		});
 		playBtn.on("click", () => {
 			if (player.isEmpty()) return;
+			playingTabIndex.text("");
 			if (playing) {
-				playingTabIndex.text("");
 				playBtn.attr(
 					"class",
 					"font-icons font-icons-btn font-icons-play now-status"
 				);
-				player.pause(playCallback);
+				player.pause();
 			} else {
 				playBtn.attr(
 					"class",
@@ -82,11 +83,13 @@ const Logic = {
 			player.next(playCallback);
 		});
 
-		// 播放结束后动作
+		// 播放结束后动作，将所有的播放状态全部置为不播放
 		audio.addEventListener("ended", () => {
 			playingTabIndex.text("");
-			player.autoNext();
+			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
 			pgsBar.css({ width: "0%" });
+			player.autoNext(playCallback);
+			playing = false;
 		});
 
 		playSwitchList.hide();
@@ -115,6 +118,8 @@ const Logic = {
 		});
 
 		function playCallback(index, cutrentTime, duration) {
+			playing = true;
+			playBtn.attr("class", "font-icons font-icons-btn font-icons-pause now-status");
 			currentTimeDiv.html(utils.secondToTime(cutrentTime));
 			durationDiv.html(utils.secondToTime(duration));
 
@@ -193,7 +198,6 @@ const Logic = {
 				"class",
 				"font-icons font-icons-btn font-icons-pause now-status"
 			);
-			playing = true;
 
 			player.start(files, playCallback);
 		});
