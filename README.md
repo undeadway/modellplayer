@@ -28,11 +28,14 @@
 
 ## 运行
 
-下载、解压周，直接双击 `ModellPlayer.exe` 即可运行程序。  
+下载、解压周，直接双击 `ModellPlayer.exe` 即可运行程序。
+
 ![](./documents/how-open.png)
+
 下载链接：[度盘提取码：**fru0**](https://pan.baidu.com/s/1XWUq-68uPNNjJKBG9Zos5A)  
 
 ## 实例图
+
 ![](./documents/instance.png)
 
 ## 版本号
