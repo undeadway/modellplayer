@@ -49,45 +49,35 @@ const Logic = {
 		}
 
 		stopBtn.on("click", () => {
+			if (player.isEmpty()) return;
 			playing = false;
 			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
 			player.stop(playCallback);
 		});
 		backBtn.on("click", () => {
+			if (player.isEmpty()) return;
 			player.back(playCallback);
 		});
 		playBtn.on("click", () => {
+			if (player.isEmpty()) return;
 			if (playing) {
+				playingTabIndex.text("");
 				playBtn.attr(
 					"class",
-					"font-icons font-icons-btn font-icons-pause now-status"
+					"font-icons font-icons-btn font-icons-play now-status"
 				);
-				playingTabIndex.text("");
 				player.pause(playCallback);
 			} else {
 				playBtn.attr(
 					"class",
-					"font-icons font-icons-btn font-icons-play now-status"
+					"font-icons font-icons-btn font-icons-pause now-status"
 				);
 				player.play(playCallback);
 			}
 			playing = !playing;
 		});
 		nextBtn.on("click", () => {
-			// index++;
-			// if (index >= playList.length) {
-			// 	if (playSwitch === "") {
-			// 		playing = false;
-			// 		stopBtn.attr(
-			// 			"class",
-			// 			"font-icons font-icons-btn font-icons-play now-status"
-			// 		);
-			// 		playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
-			// 		index = 0;
-			// 	} else {
-			// 		index = 0;
-			// 	}
-			// }
+			if (player.isEmpty()) return;
 			playingTabIndex.text("");
 			player.next(playCallback);
 		});
