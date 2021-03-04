@@ -1,9 +1,9 @@
 /**
  * 播放逻辑，对应播放器的播放逻辑
  */
-const utils = require("./../util/utils");
+const { Callbacks } = require("jquery");
 
-module.exports = exports = (currentTime, duration, player) => {
+module.exports = exports = (player) => {
 
 	let playType = "retweet";
 	let index = 0;
@@ -11,26 +11,27 @@ module.exports = exports = (currentTime, duration, player) => {
 	let listSize = 0;
 	let interval = 0;
 
-	function play() {
+	function play(callback) {
 		if (!playList) return;
 		player.src = playList[index];
 		if (!player.src) return;
 		player.play();
 		interval = setInterval(() => {
-			currentTime.text(utils.secondToTime(player.currentTime));
-			duration.text(utils.secondToTime(player.duration));
+			if (callback) {
+				callback(index, player.currentTime, player.duration);
+			}
 		}, 50);
 	}
 
 	return {
-		start: (list) => {
+		start: (list, callback) => {
 			playList = list;
 			listSize = playList.length - 1;
 			audio.loop = 0;
 			audio.preload = "metadata";
-			play();
+			play(callback);
 		},
-		play: () => {
+		play: (callback) => {
 			switch (playType) {
 				case "retweet":
 					index++;
@@ -46,29 +47,32 @@ module.exports = exports = (currentTime, duration, player) => {
 					index = Math.trunc(Math.random() * (listSize + 1))
 					break;
 			}
-			play();
+			play(callback);
 		},
-		next: () => {
+		next: (callback) => {
 			if (++index > listSize) {
 				index = 0;
 			}
-			play();
+			play(callback);
 		},
-		back: () => {
+		back: (callback) => {
 			if (--index < 0) {
 				index = listSize;
 			}
-			play();
+			play(callback);
 		},
-		stop: () => {
+		stop: (callback) => {
 			player.pause();
 			player.currentTime = 0;
+			clearInterval(interval);
+			callback(index, player.currentTime, player.duration);
 		},
 		changePlayType: (type) => {
 			playType = type;
 		},
-		pause: () => {
+		pause: (callback) => {
 			player.pause();
+			clearInterval(interval);
 		}
 	}
 };
