@@ -81,7 +81,7 @@ module.exports = exports =(window) => {
 					label: '导入播放列表',
 					accelerator: 'CmdOrCtrl+Shift+I',
 					click() {
-						windows.openWindow('user_org');
+						dialog.open(window, "importPlayList");
 					},
 				},
 				{
