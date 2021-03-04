@@ -6,6 +6,7 @@ const { ipcRenderer }  = require("electron");
 const _Player = require("./../logic/player");
 const utils = require("./../util/utils");
 
+
 const Logic = {
 	init: () => {
 
@@ -29,26 +30,32 @@ const Logic = {
 		const playListDiv = $("#play-list");
 		const currentTimeDiv = $("#currentTime");
 		const durationDiv = $("#duration");
+		const audio = document.getElementById("audio");
+		let playingTabIndex = null;
 
-		const player = _Player(document.getElementById("audio"));
+		const player = _Player(audio);
 
-		function createPlayListItem(index, name, timeLong) {
+		function createPlayListItem(index, name) {
+
+			name = name.split(utils.getSeparator());
+			name = name[name.length - 1];
+
 			playListDiv.append($(`<ul class="play-list" id="play-list-${index}">
-					<li id="playing-${index}"></li><li>${name}</li><li>${timeLong}</li>
+					<li id="playing-tab-${index}"></li><li>${name}</li>
 				</ul>`));
 		}
 
 		stopBtn.on("click", () => {
 			playing = false;
 			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
-			player.stop(rewriteTimes);
+			player.stop(playCallback);
 		});
 		backBtn.on("click", () => {
 			index--;
 			if (index < 0) {
 				index = 0;
 			}
-			player.back(rewriteTimes);
+			player.back(playCallback);
 		});
 		playBtn.on("click", () => {
 			if (playing) {
@@ -56,32 +63,39 @@ const Logic = {
 					"class",
 					"font-icons font-icons-btn font-icons-pause now-status"
 				);
-				player.pause(rewriteTimes);
+				playingTabIndex.text("");
+				player.pause(playCallback);
 			} else {
 				playBtn.attr(
 					"class",
 					"font-icons font-icons-btn font-icons-play now-status"
 				);
-				player.play(rewriteTimes);
+				player.play(playCallback);
 			}
 			playing = !playing;
 		});
 		nextBtn.on("click", () => {
-			index++;
-			if (index >= playList.length) {
-				if (playType === "") {
-					playing = false;
-					stopBtn.attr(
-						"class",
-						"font-icons font-icons-btn font-icons-play now-status"
-					);
-					playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
-					index = 0;
-				} else {
-					index = 0;
-				}
-			}
-			player.next(rewriteTimes);
+			// index++;
+			// if (index >= playList.length) {
+			// 	if (playType === "") {
+			// 		playing = false;
+			// 		stopBtn.attr(
+			// 			"class",
+			// 			"font-icons font-icons-btn font-icons-play now-status"
+			// 		);
+			// 		playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
+			// 		index = 0;
+			// 	} else {
+			// 		index = 0;
+			// 	}
+			// }
+			playingTabIndex.text("");
+			player.next(playCallback);
+		});
+
+		audio.addEventListener("ended", () => {
+			console.log("xxxxx");
+			playingTabIndex.text("");
 		});
 
 		playTypeList.hide();
@@ -109,11 +123,13 @@ const Logic = {
 			changePlayType("random");
 		});
 
-		function rewriteTimes(cutrentTime, duration) {
+		function playCallback(index, cutrentTime, duration) {
 			currentTimeDiv.html(utils.secondToTime(cutrentTime));
 			durationDiv.html(utils.secondToTime(duration));
 
 			pgsBar.css({ width: (cutrentTime / duration) * 100 + "%" });
+			playingTabIndex = $(`#playing-tab-${index}`);
+			playingTabIndex.text("▶");
 		}
 
 		function changePlayType(name) {
@@ -167,12 +183,19 @@ const Logic = {
 
 		ipcRenderer.on("sendFiles", (event, files) => {
 
-			// 再将播放列表导入
-			for (let i = 0, len = files.length; i < len; i++) {
-				createPlayListItem(i, files[i], "");
+			player.stop();
+			if (playingTabIndex) {
+				playingTabIndex.text("");
 			}
 
-			player.start(files, rewriteTimes);
+			playListDiv.empty();
+
+			// 再将播放列表导入
+			for (let i = 0, len = files.length; i < len; i++) {
+				createPlayListItem(i, files[i]);
+			}
+
+			player.start(files, playCallback);
 			playing = true;
 		});
 	}
