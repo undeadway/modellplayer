@@ -13,6 +13,7 @@ const Logic = {
 		let canChange = false;
 		let playing = false;
 
+		const playTitle = $("#play-title");
 		const pgsBox = $("#pgs-box");
 		const pgsBak = $("#pgs-bak");
 		const pgsBar = $("#pgs-bar");
@@ -32,6 +33,7 @@ const Logic = {
 		const durationDiv = $("#duration");
 		const audio = document.getElementById("audio");
 		let playingTabIndex = null;
+		let titles = [];
 
 		const player = _Player(audio);
 
@@ -40,6 +42,7 @@ const Logic = {
 			name = name.split(utils.getSeparator());
 			name = name[name.length - 1];
 
+			titles.push(name);
 			playListDiv.append($(`<ul class="play-list" id="play-list-${index}">
 					<li id="playing-tab-${index}"></li><li>${name}</li>
 				</ul>`));
@@ -51,10 +54,6 @@ const Logic = {
 			player.stop(playCallback);
 		});
 		backBtn.on("click", () => {
-			index--;
-			if (index < 0) {
-				index = 0;
-			}
 			player.back(playCallback);
 		});
 		playBtn.on("click", () => {
@@ -130,6 +129,8 @@ const Logic = {
 			pgsBar.css({ width: (cutrentTime / duration) * 100 + "%" });
 			playingTabIndex = $(`#playing-tab-${index}`);
 			playingTabIndex.text("▶");
+
+			playTitle.text(titles[index]);
 		}
 
 		function changePlayType(name) {
@@ -188,6 +189,7 @@ const Logic = {
 				playingTabIndex.text("");
 			}
 
+			titles = [];
 			playListDiv.empty();
 
 			// 再将播放列表导入
