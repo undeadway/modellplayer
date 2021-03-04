@@ -37,6 +37,7 @@ module.exports = exports = (player) => {
 		autoNext: (callback) => {
 			switch (playSwitch) {
 				case "retweet":
+					index++;
 					break;
 				case "retweet-one":
 					break;
