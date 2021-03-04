@@ -4,6 +4,7 @@
 const $ = require("jquery");
 const { ipcRenderer }  = require("electron");
 const _Player = require("./../logic/player");
+const utils = require("./../util/utils");
 
 const Logic = {
 	init: () => {
@@ -14,7 +15,7 @@ const Logic = {
 		const pgsBox = $("#pgs-box");
 		const pgsBak = $("#pgs-bak");
 		const pgsBar = $("#pgs-bar");
-		const pgsBtn = $("#pgs-btn");
+		// const pgsBtn = $("#pgs-btn");
 		const stopBtn = $("#stop-btn");
 		const backBtn = $("#back-btn");
 		const playBtn = $("#play-btn");
@@ -26,12 +27,10 @@ const Logic = {
 		const reorderListBtn = $("#reorder-list-btn");
 		const randomBtn = $("#random-btn");
 		const playListDiv = $("#play-list");
+		const currentTimeDiv = $("#currentTime");
+		const durationDiv = $("#duration");
 
-		const player = _Player(
-			$("#currentTime"),
-			$("#duration"),
-			document.getElementById("audio")
-		);
+		const player = _Player(document.getElementById("audio"));
 
 		function createPlayListItem(index, name, timeLong) {
 			playListDiv.append($(`<ul class="play-list" id="play-list-${index}">
@@ -42,14 +41,14 @@ const Logic = {
 		stopBtn.on("click", () => {
 			playing = false;
 			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
-			player.stop();
+			player.stop(rewriteTimes);
 		});
 		backBtn.on("click", () => {
 			index--;
 			if (index < 0) {
 				index = 0;
 			}
-			player.back();
+			player.back(rewriteTimes);
 		});
 		playBtn.on("click", () => {
 			if (playing) {
@@ -57,13 +56,13 @@ const Logic = {
 					"class",
 					"font-icons font-icons-btn font-icons-pause now-status"
 				);
-				player.pause();
+				player.pause(rewriteTimes);
 			} else {
 				playBtn.attr(
 					"class",
 					"font-icons font-icons-btn font-icons-play now-status"
 				);
-				player.play();
+				player.play(rewriteTimes);
 			}
 			playing = !playing;
 		});
@@ -82,7 +81,7 @@ const Logic = {
 					index = 0;
 				}
 			}
-			player.next();
+			player.next(rewriteTimes);
 		});
 
 		playTypeList.hide();
@@ -110,6 +109,13 @@ const Logic = {
 			changePlayType("random");
 		});
 
+		function rewriteTimes(cutrentTime, duration) {
+			currentTimeDiv.html(utils.secondToTime(cutrentTime));
+			durationDiv.html(utils.secondToTime(duration));
+
+			pgsBar.css({ width: (cutrentTime / duration) * 100 + "%" });
+		}
+
 		function changePlayType(name) {
 			changePlayTypeBtn.attr(
 				"class",
@@ -129,35 +135,35 @@ const Logic = {
 				clientX = 430;
 			}
 
-			pgsBtn.css({ left: clientX });
+			// pgsBtn.css({ left: clientX });
 			pgsBar.css({ width: (evt.clientX / 430) * 100 + "%" });
 		}
 
 		function unbind () {
 			canChange = false;
-			pgsBox.unbind("mousemove");
-			pgsBar.unbind("mousemove");
+			// pgsBox.unbind("mousemove");
+			// pgsBar.unbind("mousemove");
 		}
 
-		pgsBtn.on("mousedown", () => {
-			canChange = true;
-			pgsBox.on("mousemove", changeTo);
-			pgsBar.on("mousemove", changeTo);
-		});
+		// pgsBtn.on("mousedown", () => {
+		// 	canChange = true;
+		// 	pgsBox.on("mousemove", changeTo);
+		// 	pgsBar.on("mousemove", changeTo);
+		// });
 
-		pgsBak.on("click", (evt) => {
-			canChange = true;
-			changeTo(evt);
-			unbind();
-		});
-		pgsBar.on("click",  (evt) => {
-			canChange = true;
-			changeTo(evt);
-			unbind();
-		});
+		// pgsBak.on("click", (evt) => {
+		// 	canChange = true;
+		// 	changeTo(evt);
+		// 	unbind();
+		// });
+		// pgsBar.on("click",  (evt) => {
+		// 	canChange = true;
+		// 	changeTo(evt);
+		// 	unbind();
+		// });
 
-		pgsBox.on("mouseout", unbind);
-		pgsBtn.on("mouseup", unbind);
+		// pgsBox.on("mouseout", unbind);
+		// pgsBtn.on("mouseup", unbind);
 
 		ipcRenderer.on("sendFiles", (event, files) => {
 
@@ -166,7 +172,7 @@ const Logic = {
 				createPlayListItem(i, files[i], "");
 			}
 
-			player.start(files);
+			player.start(files, rewriteTimes);
 			playing = true;
 		});
 	}
