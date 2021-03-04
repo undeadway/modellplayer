@@ -26,6 +26,9 @@ module.exports = exports = (player) => {
 	}
 
 	return {
+		isEmpty: () => {
+			return listSize === 0;
+		},
 		start: (list, callback) => {
 			playList = list;
 			listSize = playList.length - 1;
