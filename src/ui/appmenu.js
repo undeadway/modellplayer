@@ -113,7 +113,7 @@ module.exports = exports =(window) => {
 				{
 					label: '关于',
 					accelerator: 'CmdOrCtrl+A',
-					click() { shell.openExternal('http://modellplayer.net'); }
+					click() { shell.openExternal('http://prj.waygc.net?modellplayer'); }
 				}
 			]
 		}
