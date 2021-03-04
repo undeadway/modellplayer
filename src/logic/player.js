@@ -10,11 +10,13 @@ module.exports = exports = (player) => {
 	let playList = null;
 	let listSize = 0;
 	let interval = 0;
+	let stopAt = 0;
 
 	function play(callback) {
 		if (!playList) return;
 		player.src = playList[index];
 		if (!player.src) return;
+		player.currentTime = stopAt;
 		player.play();
 		interval = setInterval(() => {
 			if (callback) {
@@ -63,13 +65,14 @@ module.exports = exports = (player) => {
 		},
 		stop: () => {
 			player.pause();
-			player.currentTime = 0;
+			stopAt = player.currentTime = 0;
 			clearInterval(interval);
 		},
 		changePlayType: (type) => {
 			playType = type;
 		},
 		pause: (callback) => {
+			stopAt = player.currentTime;
 			player.pause();
 			clearInterval(interval);
 		}
