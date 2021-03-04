@@ -85,7 +85,7 @@ const Logic = {
 		// 播放结束后动作
 		audio.addEventListener("ended", () => {
 			playingTabIndex.text("");
-			play.autoNext();
+			player.autoNext();
 			pgsBar.css({ width: "0%" });
 		});
 
@@ -96,22 +96,22 @@ const Logic = {
 
 		retweetBtn.on("click", () => {
 			playSwitchList.hide();
-			changeplaySwitch("retweet");
+			chgPlaySwitch("retweet");
 		});
 
 		retweetOneBtn.on("click", () => {
 			playSwitchList.hide();
-			changeplaySwitch("retweet-one");
+			chgPlaySwitch("retweet-one");
 		});
 
 		reorderListBtn.on("click", () => {
 			playSwitchList.hide();
-			changeplaySwitch("reorder-list");
+			chgPlaySwitch("reorder-list");
 		});
 
 		randomBtn.on("click", () => {
 			playSwitchList.hide();
-			changeplaySwitch("random");
+			chgPlaySwitch("random");
 		});
 
 		function playCallback(index, cutrentTime, duration) {
@@ -125,12 +125,12 @@ const Logic = {
 			playTitle.text(titles[index]);
 		}
 
-		function changeplaySwitch(name) {
+		function chgPlaySwitch(name) {
 			chgPlaySwitchBtn.attr(
 				"class",
 				`font-icons font-icons-btn font-icons-${name}`
 			);
-			player.changeplaySwitch(name);
+			player.chgPlaySwitch(name);
 		}
 
 		function changeTo(evt) {
@@ -189,8 +189,13 @@ const Logic = {
 				createPlayListItem(i, files[i]);
 			}
 
-			player.start(files, playCallback);
+			playBtn.attr(
+				"class",
+				"font-icons font-icons-btn font-icons-pause now-status"
+			);
 			playing = true;
+
+			player.start(files, playCallback);
 		});
 	}
 };

@@ -1,13 +1,13 @@
 /**
  * 播放逻辑，对应播放器的播放逻辑
  */
-const { Callbacks } = require("jquery");
 
 module.exports = exports = (player) => {
 
 	let playSwitch = "retweet";
 	let index = 0;
 	let playList = null;
+	let counts = 0;
 	let listSize = 0;
 	let interval = 0;
 	let stopAt = 0;
@@ -27,11 +27,12 @@ module.exports = exports = (player) => {
 
 	return {
 		isEmpty: () => {
-			return listSize === 0;
+			return counts === 0;
 		},
 		start: (list, callback) => {
 			playList = list;
-			listSize = playList.length - 1;
+			counts = playList.length;
+			listSize = counts - 1;
 			audio.loop = 0;
 			audio.preload = "metadata";
 			play(callback);
@@ -72,10 +73,10 @@ module.exports = exports = (player) => {
 			stopAt = player.currentTime = 0;
 			clearInterval(interval);
 		},
-		changeplaySwitch: (type) => {
+		chgPlaySwitch: (type) => {
 			playSwitch = type;
 		},
-		pause: (callback) => {
+		pause: () => {
 			stopAt = player.currentTime;
 			player.pause();
 			clearInterval(interval);
