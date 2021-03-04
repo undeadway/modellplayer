@@ -3,6 +3,7 @@
  */
 
 const fs = require("fs");
+const utils = require("./../util/utils");
 
 function openOpenDialog(window, typeName){
 
@@ -43,7 +44,13 @@ function openOpenDialog(window, typeName){
 			files = result;
 			break;
 		case "openDirectory":
-			files = fs.readdirSync(result[0]);
+			let folderName = result[0];
+			files = fs.readdirSync(folderName);
+
+			files = files.map(item => {
+				return folderName + utils.getSeparator() + item;
+			});
+
 			break;
 		default:
 	}
