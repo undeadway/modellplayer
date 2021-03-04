@@ -28,7 +28,7 @@
 
 ## 运行
 
-下载、解压周，直接双击 `ModellPlayer.exe` 即可运行程序。
+下载、解压之后，直接双击 `ModellPlayer.exe` 即可运行程序。
 
 ![](./documents/how-open.png)
 
