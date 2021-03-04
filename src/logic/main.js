@@ -22,8 +22,8 @@ const Logic = {
 		const backBtn = $("#back-btn");
 		const playBtn = $("#play-btn");
 		const nextBtn = $("#next-btn");
-		const changePlayTypeBtn = $("#change-play-type-btn");
-		const playTypeList = $("#play-type-list");
+		const chgPlaySwitchBtn = $("#chg-play-switch-btn");
+		const playSwitchList = $("#play-type-list");
 		const retweetBtn = $("#retweet-btn");
 		const retweetOneBtn = $("#retweet-one-btn");
 		const reorderListBtn = $("#reorder-list-btn");
@@ -76,7 +76,7 @@ const Logic = {
 		nextBtn.on("click", () => {
 			// index++;
 			// if (index >= playList.length) {
-			// 	if (playType === "") {
+			// 	if (playSwitch === "") {
 			// 		playing = false;
 			// 		stopBtn.attr(
 			// 			"class",
@@ -97,29 +97,29 @@ const Logic = {
 			playingTabIndex.text("");
 		});
 
-		playTypeList.hide();
-		changePlayTypeBtn.on("click", () => {
-			playTypeList.show();
+		playSwitchList.hide();
+		chgPlaySwitchBtn.on("click", () => {
+			playSwitchList.show();
 		});
 
 		retweetBtn.on("click", () => {
-			playTypeList.hide();
-			changePlayType("retweet");
+			playSwitchList.hide();
+			changeplaySwitch("retweet");
 		});
 
 		retweetOneBtn.on("click", () => {
-			playTypeList.hide();
-			changePlayType("retweet-one");
+			playSwitchList.hide();
+			changeplaySwitch("retweet-one");
 		});
 
 		reorderListBtn.on("click", () => {
-			playTypeList.hide();
-			changePlayType("reorder-list");
+			playSwitchList.hide();
+			changeplaySwitch("reorder-list");
 		});
 
 		randomBtn.on("click", () => {
-			playTypeList.hide();
-			changePlayType("random");
+			playSwitchList.hide();
+			changeplaySwitch("random");
 		});
 
 		function playCallback(index, cutrentTime, duration) {
@@ -133,12 +133,12 @@ const Logic = {
 			playTitle.text(titles[index]);
 		}
 
-		function changePlayType(name) {
-			changePlayTypeBtn.attr(
+		function changeplaySwitch(name) {
+			chgPlaySwitchBtn.attr(
 				"class",
 				`font-icons font-icons-btn font-icons-${name}`
 			);
-			player.changePlayType(name);
+			player.changeplaySwitch(name);
 		}
 
 		function changeTo(evt) {

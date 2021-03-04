@@ -5,7 +5,7 @@ const { Callbacks } = require("jquery");
 
 module.exports = exports = (player) => {
 
-	let playType = "retweet";
+	let playSwitch = "retweet";
 	let index = 0;
 	let playList = null;
 	let listSize = 0;
@@ -35,7 +35,7 @@ module.exports = exports = (player) => {
 		},
 		play: play,
 		autoNext: (callback) => {
-			switch (playType) {
+			switch (playSwitch) {
 				case "retweet":
 					break;
 				case "retweet-one":
@@ -68,8 +68,8 @@ module.exports = exports = (player) => {
 			stopAt = player.currentTime = 0;
 			clearInterval(interval);
 		},
-		changePlayType: (type) => {
-			playType = type;
+		changeplaySwitch: (type) => {
+			playSwitch = type;
 		},
 		pause: (callback) => {
 			stopAt = player.currentTime;
