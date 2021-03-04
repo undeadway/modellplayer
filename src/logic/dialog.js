@@ -24,9 +24,9 @@ function openOpenDialog(window, typeName){
 
 			options.title = "打开文件";
 			options.filters = [
-				{name: '音频文件', extensions: ["mp3", "aac", "ac3", "m4a"]},
-				{name: '无损音频', extensions: ["wav", "ape", "flac"]},
-				{name: '索引文件', extensions: ["cue"]}
+				{name: '有损压缩', extensions: ["mp3", "ogg"]},
+				{name: '无损压缩', extensions: ["mp3", "aac", "m4a"]},
+				{name: '无损音频', extensions: ["wav", "ape", "ac3", "flac"]}
 			];
 
 			break;
