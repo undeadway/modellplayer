@@ -16,7 +16,7 @@ exports.init = () => {
 				nativeWindowOpen: true,
 				nodeIntegration: true
 			},
-			minimizable: false,
+			minimizable: true,
 			maximizable: false,
 			icon: `./../..${AppConfig.base.ico[16]}`
 		});
