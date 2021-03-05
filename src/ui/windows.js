@@ -1,10 +1,12 @@
-const { app, BrowserWindow, ipcMain, Menu } = require('electron');
-const appmenu = require("./appmenu");
-const utils = require("./../util/utils");
+const { app, BrowserWindow, Menu, Tray } = require('electron');
+const path = require("path");
 
 exports.init = () => {
+	
+	const appmenu = require("./appmenu");
+	const utils = require("./../util/utils");
 
-	let mainWindow, perferencesWindow;
+	let mainWindow, perferencesWindow, tray;
 	const windows = {};
 
 	function createMainwindow () {
@@ -17,7 +19,7 @@ exports.init = () => {
 				nativeWindowOpen: true,
 				nodeIntegration: true
 			},
-			minimizable: false,
+			minimizable: true,
 			maximizable: false,
 			icon: `./../..${AppConfig.base.ico[16]}`
 		});
@@ -30,7 +32,7 @@ exports.init = () => {
 			mainWindow.webContents.openDevTools();
 		}
 
-		const menu = Menu.buildFromTemplate(appmenu(windows));
+		const menu = Menu.buildFromTemplate(appmenu.main(windows));
 		Menu.setApplicationMenu(menu);
 
 		// 当 window 被关闭，这个事件会被发出
@@ -39,6 +41,13 @@ exports.init = () => {
 			// 通常会把多个 window 对象存放在一个数组里面，
 			// 但这次不是。
 			mainWindow = null;
+			tray = null;
+			app.quit();
+		});
+
+		mainWindow.on("minimize", event => {
+			event.preventDefault();
+			mainWindow.hide();
 		});
 	}
 
@@ -69,8 +78,23 @@ exports.init = () => {
 		perferencesWindow.hide();
 	}
 
+	function createTray() {
+		const iconPath = path.join(__dirname,`./../..${AppConfig.base.ico[16]}`);
+		tray = new Tray(iconPath);
+		tray.setToolTip('never forget');
+		// 设置托盘菜单
+		const menu = Menu.buildFromTemplate(appmenu.tray(windows));
+		tray.setContextMenu(menu);
+
+		tray.on("click",()=>{
+			mainWindow.show();
+		});
+	}
+
 	app.on('ready', function () {
 		createMainwindow();
+		createPerferencesWindow();
+		createTray();
 	});
 
 	windows.getMainWindow = () => {
@@ -78,5 +102,9 @@ exports.init = () => {
 	};
 	windows.showPerferencesWindow = () => {
 		perferencesWindow.show();
+	}
+
+	windows.quit = () => {
+		app.quit();
 	}
 }
