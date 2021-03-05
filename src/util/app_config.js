@@ -10,6 +10,10 @@ global.AppConfig = {
 		main: {
 			width: 456,
 			height: 605
+		},
+		perferences: {
+			width: 456,
+			height: 605
 		}
 	}
 }
