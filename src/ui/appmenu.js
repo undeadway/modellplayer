@@ -2,7 +2,7 @@
 const { shell } =require('electron');
 const dialog = require("./../logic/dialog");
 
-module.exports = exports =(window) => {
+module.exports = exports =(windows) => {
 	return [
 		{
 			label: '文件',
@@ -11,14 +11,14 @@ module.exports = exports =(window) => {
 					label: '打开文件',
 					accelerator: 'CmdOrCtrl+F',
 					click() {
-						dialog.open(window, "openFile");
+						dialog.open(windows.getMainWindow(), "openFile");
 					},
 				},
 				{
 					label: '打开文件夹',
 					accelerator: 'CmdOrCtrl+D',
 					click() {
-						dialog.open(window, "openDirectory");
+						dialog.open(windows.getMainWindow(), "openDirectory");
 					},
 				},
 				{
@@ -62,7 +62,7 @@ module.exports = exports =(window) => {
 				{
 					label: '首选项',
 					click() {
-						windows.openWindow('exports');
+						windows.showPerferencesWindow();
 					},
 					accelerator: 'CmdOrCtrl+P'
 				},

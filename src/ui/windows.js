@@ -2,9 +2,10 @@ const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const appmenu = require("./appmenu");
 const utils = require("./../util/utils");
 
-let mainWindow, perferencesWindow;
-
 exports.init = () => {
+
+	let mainWindow, perferencesWindow;
+	const windows = {};
 
 	function createMainwindow () {
 
@@ -16,7 +17,7 @@ exports.init = () => {
 				nativeWindowOpen: true,
 				nodeIntegration: true
 			},
-			minimizable: true,
+			minimizable: false,
 			maximizable: false,
 			icon: `./../..${AppConfig.base.ico[16]}`
 		});
@@ -29,7 +30,7 @@ exports.init = () => {
 			mainWindow.webContents.openDevTools();
 		}
 
-		const menu = Menu.buildFromTemplate(appmenu(mainWindow));
+		const menu = Menu.buildFromTemplate(appmenu(windows));
 		Menu.setApplicationMenu(menu);
 
 		// 当 window 被关闭，这个事件会被发出
@@ -71,7 +72,11 @@ exports.init = () => {
 	app.on('ready', function () {
 		createMainwindow();
 	});
-}
- exports.openWindow = () => {
-	perferencesWindow.show();
+
+	windows.getMainWindow = () => {
+		return mainWindow;
+	};
+	windows.showPerferencesWindow = () => {
+		perferencesWindow.show();
+	}
 }
