@@ -104,7 +104,7 @@ exports.init = () => {
 		perferencesWindow.show();
 	}
 
-	windows.quit = () => {
-		app.quit();
+	windows.exit = () => {
+		app.exit();
 	}
 }

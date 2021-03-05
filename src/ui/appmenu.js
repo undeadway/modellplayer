@@ -73,7 +73,7 @@ module.exports = exports = {
 					{
 						label: '退出',
 						click() {
-							windows.quit();
+							windows.exit();
 						}
 					}
 				]
@@ -128,7 +128,7 @@ module.exports = exports = {
 			{
 				label: '退出',
 				click() {
-					windows.quit();
+					windows.exit();
 				}
 			}
 		];
