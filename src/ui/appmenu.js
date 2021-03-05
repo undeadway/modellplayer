@@ -126,6 +126,44 @@ module.exports = exports = {
 	tray: (windows) => {
 		return [
 			{
+				label: '播放',
+				submenu: [
+					{
+						label: '播放',
+						accelerator: 'CmdOrCtrl+P',
+						click() {
+						}
+					},
+					{
+						label: '暂停',
+						accelerator: 'CmdOrCtrl+T',
+						click() {
+						}
+					},
+					{
+						label: '停止',
+						accelerator: 'CmdOrCtrl+S',
+						click() {
+						}
+					},
+					{
+						label: '上一首',
+						accelerator: 'CmdOrCtrl+B',
+						click() {
+						}
+					},
+					{
+						label: '下一首',
+						accelerator: 'CmdOrCtrl+N',
+						click() {
+						}
+					},
+				]
+			},
+			{
+				type: 'separator'
+			},
+			{
 				label: '退出',
 				click() {
 					windows.exit();
