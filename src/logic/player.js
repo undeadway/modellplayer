@@ -12,15 +12,16 @@ module.exports = exports = (player) => {
 	let interval = 0;
 	let stopAt = 0;
 
-	function play(callback) {
+	function play(playCb, intervalCb) {
 		if (!playList) return;
 		player.src = playList[index];
 		if (!player.src) return;
 		player.currentTime = stopAt;
 		player.play();
+		playCb();
 		interval = setInterval(() => {
-			if (callback) {
-				callback(index, player.currentTime, player.duration);
+			if (intervalCb) {
+				intervalCb(index, player.currentTime, player.duration);
 			}
 		}, 50);
 	}
@@ -29,16 +30,16 @@ module.exports = exports = (player) => {
 		isEmpty: () => {
 			return counts === 0;
 		},
-		start: (list, callback) => {
+		start: (list, playCb, intervalCb) => {
 			playList = list;
 			counts = playList.length;
 			listSize = counts - 1;
 			audio.loop = 0;
 			audio.preload = "metadata";
-			play(callback);
+			play(playCb, intervalCb);
 		},
 		play: play,
-		autoNext: (callback) => {
+		autoNext: (playCb, intervalCb) => {
 			stopAt = player.currentTime = 0;
 			switch (playSwitch) {
 				case "retweet":
@@ -59,23 +60,23 @@ module.exports = exports = (player) => {
 					index = Math.trunc(Math.random() * (listSize + 1))
 					break;
 			}
-			play(callback);
+			play(playCb, intervalCb);
 		},
-		next: (callback) => {
+		next: (playCb, intervalCb) => {
 			if (++index > listSize) {
 				index = 0;
 			}
 			stopAt = 0;
 			clearInterval(interval);
-			play(callback);
+			play(playCb, intervalCb);
 		},
-		back: (callback) => {
+		back: (playCb, intervalCb) => {
 			if (--index < 0) {
 				index = listSize;
 			}
 			stopAt = 0;
 			clearInterval(interval);
-			play(callback);
+			play(playCb, intervalCb);
 		},
 		stop: () => {
 			player.pause();

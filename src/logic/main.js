@@ -57,7 +57,7 @@ const Logic = {
 		backBtn.on("click", () => {
 			if (player.isEmpty()) return;
 			playingTabIndex.text("");
-			player.back(playCallback);
+			player.back(playCallback, intervalCallback);
 		});
 		playBtn.on("click", () => {
 			if (player.isEmpty()) return;
@@ -73,14 +73,14 @@ const Logic = {
 					"class",
 					"font-icons font-icons-btn font-icons-pause now-status"
 				);
-				player.play(playCallback);
+				player.play(playCallback, intervalCallback);
 			}
 			playing = !playing;
 		});
 		nextBtn.on("click", () => {
 			if (player.isEmpty()) return;
 			playingTabIndex.text("");
-			player.next(playCallback);
+			player.next(playCallback, intervalCallback);
 		});
 
 		// 播放结束后动作，将所有的播放状态全部置为不播放
@@ -88,7 +88,7 @@ const Logic = {
 			playingTabIndex.text("");
 			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
 			pgsBar.css({ width: "0%" });
-			player.autoNext(playCallback);
+			player.autoNext(playCallback, intervalCallback);
 			playing = false;
 		});
 
@@ -118,12 +118,19 @@ const Logic = {
 		});
 
 		function playCallback(index, cutrentTime, duration) {
-			playing = true;
-			playBtn.attr("class", "font-icons font-icons-btn font-icons-pause now-status");
+			
+		
 			currentTimeDiv.html(utils.secondToTime(cutrentTime));
 			durationDiv.html(utils.secondToTime(duration));
 
 			pgsBar.css({ width: (cutrentTime / duration) * 100 + "%" });
+
+		}
+
+		function intervalCallback() {
+			playing = true;
+
+			playBtn.attr("class", "font-icons font-icons-btn font-icons-pause now-status");
 			playingTabIndex = $(`#playing-tab-${index}`);
 			playingTabIndex.text("▶");
 
@@ -199,7 +206,7 @@ const Logic = {
 				"font-icons font-icons-btn font-icons-pause now-status"
 			);
 
-			player.start(files, playCallback);
+			player.start(files, playCallback, intervalCallback);
 		});
 	}
 };
