@@ -67,6 +67,7 @@ const Logic = {
 					"class",
 					"font-icons font-icons-btn font-icons-play now-status"
 				);
+				playing = false;
 				player.pause();
 			} else {
 				playBtn.attr(
@@ -75,7 +76,6 @@ const Logic = {
 				);
 				player.play(playCallback, intervalCallback);
 			}
-			playing = !playing;
 		});
 		nextBtn.on("click", () => {
 			if (player.isEmpty()) return;
@@ -117,9 +117,8 @@ const Logic = {
 			chgPlaySwitch("random");
 		});
 
-		function playCallback(index, cutrentTime, duration) {
+		function intervalCallback(index, cutrentTime, duration) {
 			
-		
 			currentTimeDiv.html(utils.secondToTime(cutrentTime));
 			durationDiv.html(utils.secondToTime(duration));
 
@@ -127,7 +126,7 @@ const Logic = {
 
 		}
 
-		function intervalCallback() {
+		function playCallback(index) {
 			playing = true;
 
 			playBtn.attr("class", "font-icons font-icons-btn font-icons-pause now-status");
