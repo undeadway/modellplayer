@@ -18,7 +18,7 @@ module.exports = exports = (player) => {
 		if (!player.src) return;
 		player.currentTime = stopAt;
 		player.play();
-		playCb();
+		playCb(index);
 		interval = setInterval(() => {
 			if (intervalCb) {
 				intervalCb(index, player.currentTime, player.duration);
