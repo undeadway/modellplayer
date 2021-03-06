@@ -3,11 +3,22 @@
  */
 const fs = require("fs");
 
-const config = fs.readdirSync("./src/config");
+let rootPath = "./";
+if (fs.existsSync("./resources/")) {
+	if (fs.existsSync("./resources/app/")) {
+		rootPath = "./resources/app/";
+	} else {
+		rootPath = "./resources/app.asar/";
+	}
+}
+
+global.rootPath = rootPath;
+
+const config = fs.readdirSync(`${rootPath}src/config`);
 
 config.map(file => {
-    let configName = file.replace(".js", "");
-    configName = configName.charAt(0).toUpperCase() + configName.slice(1) + "Config";
+	let configName = file.replace(".js", "");
+	configName = configName.charAt(0).toUpperCase() + configName.slice(1) + "Config";
 
-    global[configName] = require(`./../../src/config/${file}`);
+	global[configName] = require(`./../../src/config/${file}`);
 });
