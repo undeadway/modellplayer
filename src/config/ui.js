@@ -1,4 +1,4 @@
-global.UiConfig = {
+module.exports = exports = {
 	base: {
 		ico: {
 			'16': '/res/ico/16_16.ico',
