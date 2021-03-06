@@ -1,5 +1,5 @@
 {
-	"“app-title": "木头人播放器",
+	"app-title": "木头人播放器",
 	"menu": {
 		"file": "文件",
 		"open-file": "打开文件",
@@ -20,7 +20,12 @@
 		"about": "关于"
 	},
 	"layout": {
-
+		"main": {
+			"play-title": "名称",
+			"play-list": "播放列表",
+			"play-file-names": "文件"
+		},
+		"perferences": {}
 	},
 	"action": {
 
