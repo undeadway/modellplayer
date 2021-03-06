@@ -6,14 +6,14 @@ exports.init = () => {
 	const appmenu = require("./appmenu");
 	const utils = require("./../util/utils");
 
-	let mainWindow, perferencesWindow, tray;
+	let mainWindow = null, perferencesWindow = null, tray = null;
 	const windows = {};
 
 	function createMainwindow () {
 
 		// 因为关闭窗口的时候 mainWindow 也会被清理掉，所以这里不能将 mainWindow 设置为 const
 		mainWindow = new BrowserWindow({
-			width: AppConfig.ui.main.width, height: AppConfig.ui.main.height,
+			width: UiConfig.ui.main.width, height: UiConfig.ui.main.height,
 			transparent: true,
 			webPreferences: {
 				nativeWindowOpen: true,
@@ -21,7 +21,7 @@ exports.init = () => {
 			},
 			minimizable: true,
 			maximizable: false,
-			icon: `./../..${AppConfig.base.ico[16]}`
+			icon: `./../..${UiConfig.base.ico[16]}`
 		});
 
 		// mainWindow.setMenu(null);
@@ -40,9 +40,7 @@ exports.init = () => {
 			// 取消引用 window 对象，如果你的应用支持多窗口的话，
 			// 通常会把多个 window 对象存放在一个数组里面，
 			// 但这次不是。
-			mainWindow = null;
-			tray = null;
-			app.quit();
+			exit();
 		});
 
 		mainWindow.on("minimize", event => {
@@ -54,7 +52,7 @@ exports.init = () => {
 	function createPerferencesWindow() {
 
 		perferencesWindow = new BrowserWindow({
-			width: AppConfig.ui.perferences.width, height: AppConfig.ui.perferences.height,
+			width: UiConfig.ui.perferences.width, height: UiConfig.ui.perferences.height,
 			transparent: true,
 			webPreferences: {
 				nativeWindowOpen: true,
@@ -62,7 +60,7 @@ exports.init = () => {
 			},
 			minimizable: false,
 			maximizable: false,
-			icon: `./../..${AppConfig.base.ico[16]}`
+			icon: `./../..${UiConfig.base.ico[16]}`
 		});
 		
 		perferencesWindow.setMenu(null);
@@ -74,12 +72,10 @@ exports.init = () => {
 			// 但这次不是。
 			perferencesWindow = null;
 		});
-		
-		perferencesWindow.hide();
 	}
 
 	function createTray() {
-		const iconPath = path.join(__dirname,`./../..${AppConfig.base.ico[16]}`);
+		const iconPath = path.join(__dirname,`./../..${UiConfig.base.ico[16]}`);
 		tray = new Tray(iconPath);
 		tray.setToolTip('never forget');
 		// 设置托盘菜单
@@ -93,18 +89,25 @@ exports.init = () => {
 
 	app.on('ready', function () {
 		createMainwindow();
-		createPerferencesWindow();
 		createTray();
 	});
 
 	windows.getMainWindow = () => {
 		return mainWindow;
 	};
-	windows.showPerferencesWindow = () => {
-		perferencesWindow.show();
+	windows.createPerferencesWindow = () => {
+		if (perferencesWindow === null) {
+			createPerferencesWindow();
+		}
 	}
 
-	windows.exit = () => {
+	function exit () {
+		// 退出前释放资源
+		mainWindow = null;
+		perferencesWindow = null;
+		tray = null;
 		app.exit();
 	}
+
+	windows.exit = exit;
 }
