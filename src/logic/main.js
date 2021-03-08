@@ -43,17 +43,20 @@ const Logic = {
 			name = name[name.length - 1];
 
 			titles.push(name);
-			playListDiv.append($(`<ul class="play-list" id="play-list-${index}">
-					<li id="playing-tab-${index}"></li><li>${name}</li>
-				</ul>`));
+
+			const ul = $(`<ul class="play-list" id="play-list-${index}">
+				<li id="playing-tab-${index}"></li><li>${name}</li>
+			</ul>`)
+
+			ul.on("dblclick", () => {
+				stop();
+				play(index);
+			});
+
+			playListDiv.append(ul);
 		}
 
-		stopBtn.on("click", () => {
-			if (player.isEmpty()) return;
-			playing = false;
-			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
-			player.stop();
-		});
+		stopBtn.on("click", stop);
 		backBtn.on("click", () => {
 			if (player.isEmpty()) return;
 			playingTabIndex.text("");
@@ -61,8 +64,8 @@ const Logic = {
 		});
 		playBtn.on("click", () => {
 			if (player.isEmpty()) return;
-			playingTabIndex.text("");
 			if (playing) {
+				playingTabIndex.text("");
 				playBtn.attr(
 					"class",
 					"font-icons font-icons-btn font-icons-play now-status"
@@ -70,13 +73,27 @@ const Logic = {
 				playing = false;
 				player.pause();
 			} else {
-				playBtn.attr(
-					"class",
-					"font-icons font-icons-btn font-icons-pause now-status"
-				);
-				player.play(playCallback, intervalCallback);
+				play();
 			}
 		});
+
+		function stop() {
+			if (player.isEmpty()) return;
+			playingTabIndex.text("");
+			playing = false;
+			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
+			player.stop();
+		}
+
+		function play(_index) {
+			playingTabIndex.text("");
+			playBtn.attr(
+				"class",
+				"font-icons font-icons-btn font-icons-pause now-status"
+			);
+			player.play(playCallback, intervalCallback, _index);
+		}
+
 		nextBtn.on("click", () => {
 			if (player.isEmpty()) return;
 			playingTabIndex.text("");
@@ -117,13 +134,12 @@ const Logic = {
 			chgPlaySwitch("random");
 		});
 
-		function intervalCallback(index, cutrentTime, duration) {
+		function intervalCallback(cutrentTime, duration, index) {
 			
 			currentTimeDiv.html(utils.secondToTime(cutrentTime));
 			durationDiv.html(utils.secondToTime(duration));
 
 			pgsBar.css({ width: (cutrentTime / duration) * 100 + "%" });
-
 		}
 
 		function playCallback(index) {

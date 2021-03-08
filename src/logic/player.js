@@ -21,7 +21,7 @@ module.exports = exports = (player) => {
 		playCb(index);
 		interval = setInterval(() => {
 			if (intervalCb) {
-				intervalCb(index, player.currentTime, player.duration);
+				intervalCb(player.currentTime, player.duration, index);
 			}
 		}, 50);
 	}
@@ -38,7 +38,14 @@ module.exports = exports = (player) => {
 			audio.preload = "metadata";
 			play(playCb, intervalCb);
 		},
-		play: play,
+		play: (playCb, intervalCb, i) => {
+
+			if (i !== undefined) {
+				index = i;
+			} 
+
+			play(playCb, intervalCb);
+		},
 		autoNext: (playCb, intervalCb) => {
 			stopAt = player.currentTime = 0;
 			switch (playSwitch) {
@@ -87,8 +94,8 @@ module.exports = exports = (player) => {
 			playSwitch = type;
 		},
 		pause: () => {
-			stopAt = player.currentTime;
 			player.pause();
+			stopAt = player.currentTime;
 			clearInterval(interval);
 		}
 	}
