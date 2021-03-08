@@ -36,9 +36,28 @@ const Logic = {
 
 		let playingTabIndex = null, titles = [];
 
+		function intervalCallback(cutrentTime, duration, index) {
+			
+			currentTimeDiv.html(utils.secondToTime(cutrentTime));
+			durationDiv.html(utils.secondToTime(duration));
+
+			pgsBar.css({ width: (cutrentTime / duration) * 100 + "%" });
+		}
+
+		function playCallback(index) {
+			playing = true;
+
+			playBtn.attr("class", "font-icons font-icons-btn font-icons-pause now-status");
+			playingTabIndex = $(`#playing-tab-${index}`);
+			playingTabIndex.text("▶");
+
+			playTitle.text(titles[index]);
+		}
+
 		const actions = {
 			play: (_index) => {
 				if (player.isEmpty()) return;
+				if (playing) return;
 				playingTabIndex.text("");
 				playBtn.attr(
 					"class", "font-icons font-icons-btn font-icons-pause now-status"
@@ -133,24 +152,6 @@ const Logic = {
 			chgPlaySwitch("random");
 		});
 
-		function intervalCallback(cutrentTime, duration, index) {
-			
-			currentTimeDiv.html(utils.secondToTime(cutrentTime));
-			durationDiv.html(utils.secondToTime(duration));
-
-			pgsBar.css({ width: (cutrentTime / duration) * 100 + "%" });
-		}
-
-		function playCallback(index) {
-			playing = true;
-
-			playBtn.attr("class", "font-icons font-icons-btn font-icons-pause now-status");
-			playingTabIndex = $(`#playing-tab-${index}`);
-			playingTabIndex.text("▶");
-
-			playTitle.text(titles[index]);
-		}
-
 		function chgPlaySwitch(name) {
 			chgPlaySwitchBtn.attr(
 				"class", `font-icons font-icons-btn font-icons-${name}`
@@ -199,7 +200,7 @@ const Logic = {
 		// pgsBox.on("mouseout", unbind);
 		// pgsBtn.on("mouseup", unbind);
 
-		ipcRenderer.on("selectPlay", (method) => {
+		ipcRenderer.on("chgPlayStatus", (event, method) => {
 			actions[method]();
 		});
 

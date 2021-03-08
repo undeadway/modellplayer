@@ -1,6 +1,7 @@
 // const { Menu,shell,ipcMain,BrowserWindow,app } =require('electron');
 const { shell } =require('electron');
 const dialog = require("./../logic/dialog");
+const actions = require("./../logic/actions");
 
 module.exports = exports = {
 	main: (windows) => {
@@ -51,32 +52,37 @@ module.exports = exports = {
 						submenu: [
 							{
 								label: '播放',
-								accelerator: 'CmdOrCtrl+P',
+								accelerator: 'CmdOrCtrl+S',
 								click() {
+									actions.chgPlayStatus(windows.getMainWindow(), "play");
 								}
 							},
 							{
 								label: '暂停',
-								accelerator: 'CmdOrCtrl+T',
+								accelerator: 'CmdOrCtrl+P',
 								click() {
+									actions.chgPlayStatus(windows.getMainWindow(), "pause");
 								}
 							},
 							{
 								label: '停止',
-								accelerator: 'CmdOrCtrl+S',
+								accelerator: 'CmdOrCtrl+T',
 								click() {
+									actions.chgPlayStatus(windows.getMainWindow(), "stop");
 								}
 							},
 							{
 								label: '上一首',
 								accelerator: 'CmdOrCtrl+B',
 								click() {
+									actions.chgPlayStatus(windows.getMainWindow(), "back");
 								}
 							},
 							{
 								label: '下一首',
 								accelerator: 'CmdOrCtrl+N',
 								click() {
+									actions.chgPlayStatus(windows.getMainWindow(), "next");
 								}
 							},
 						]
@@ -133,32 +139,37 @@ module.exports = exports = {
 				submenu: [
 					{
 						label: '播放',
-						accelerator: 'CmdOrCtrl+P',
+						accelerator: 'CmdOrCtrl+S',
 						click() {
+							actions.chgPlayStatus(windows.getMainWindow(), "play");
 						}
 					},
 					{
 						label: '暂停',
-						accelerator: 'CmdOrCtrl+T',
+						accelerator: 'CmdOrCtrl+P',
 						click() {
+							actions.chgPlayStatus(windows.getMainWindow(), "pause");
 						}
 					},
 					{
 						label: '停止',
-						accelerator: 'CmdOrCtrl+S',
+						accelerator: 'CmdOrCtrl+T',
 						click() {
+							actions.chgPlayStatus(windows.getMainWindow(), "stop");
 						}
 					},
 					{
 						label: '上一首',
 						accelerator: 'CmdOrCtrl+B',
 						click() {
+							actions.chgPlayStatus(windows.getMainWindow(), "back");
 						}
 					},
 					{
 						label: '下一首',
 						accelerator: 'CmdOrCtrl+N',
 						click() {
+							actions.chgPlayStatus(windows.getMainWindow(), "next");
 						}
 					},
 				]
