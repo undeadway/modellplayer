@@ -17,8 +17,8 @@ global.rootPath = rootPath;
 const config = fs.readdirSync(`${rootPath}src/config`);
 
 config.map(file => {
-	let configName = file.replace(".js", "");
-	configName = configName.charAt(0).toUpperCase() + configName.slice(1) + "Config";
+	let configs = file.replace(".js", "");
+	let configName = configs.charAt(0).toUpperCase() + configs.slice(1) + "Config";
 
 	global[configName] = require(`./../../src/config/${file}`);
 });
