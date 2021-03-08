@@ -5,10 +5,6 @@
 const fs = require("fs");
 const utils = require("./../util/utils");
 
-function importPlayList(playList) {
-
-}
-
 function openOpenDialog(window, typeName){
 
 	/*
