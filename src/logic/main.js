@@ -14,8 +14,8 @@ const Logic = {
 		let playing = false;
 
 		const playTitle = $("#play-title");
-		const pgsBox = $("#pgs-box");
-		const pgsBak = $("#pgs-bak");
+		// const pgsBox = $("#pgs-box");
+		// const pgsBak = $("#pgs-bak");
 		const pgsBar = $("#pgs-bar");
 		// const pgsBtn = $("#pgs-btn");
 		const stopBtn = $("#stop-btn");
@@ -32,10 +32,46 @@ const Logic = {
 		const currentTimeDiv = $("#currentTime");
 		const durationDiv = $("#duration");
 		const audio = document.getElementById("audio");
-		let playingTabIndex = null;
-		let titles = [];
-
 		const player = _Player(audio);
+
+		let playingTabIndex = null, titles = [];
+
+		const actions = {
+			play: (_index) => {
+				if (player.isEmpty()) return;
+				playingTabIndex.text("");
+				playBtn.attr(
+					"class", "font-icons font-icons-btn font-icons-pause now-status"
+				);
+				player.play(playCallback, intervalCallback, _index);
+			},
+			stop: () => {
+				if (player.isEmpty()) return;
+				playingTabIndex.text("");
+				playing = false;
+				playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
+				player.stop();
+			},
+			pause: () => {
+				if (player.isEmpty()) return;
+				playingTabIndex.text("");
+				playBtn.attr(
+					"class", "font-icons font-icons-btn font-icons-play now-status"
+				);
+				playing = false;
+				player.pause();
+			},
+			back: () => {
+				if (player.isEmpty()) return;
+				playingTabIndex.text("");
+				player.back(playCallback, intervalCallback);
+			},
+			next: () => {
+				if (player.isEmpty()) return;
+				playingTabIndex.text("");
+				player.next(playCallback, intervalCallback);
+			}
+		}
 
 		function createPlayListItem(index, name) {
 
@@ -49,55 +85,22 @@ const Logic = {
 			</ul>`)
 
 			ul.on("dblclick", () => {
-				stop();
-				play(index);
+				actions.stop();
+				actions.play(index);
 			});
 
 			playListDiv.append(ul);
 		}
 
-		stopBtn.on("click", stop);
-		backBtn.on("click", () => {
-			if (player.isEmpty()) return;
-			playingTabIndex.text("");
-			player.back(playCallback, intervalCallback);
-		});
+		stopBtn.on("click", actions.stop);
+		backBtn.on("click", actions.back);
+		nextBtn.on("click", actions.next);
 		playBtn.on("click", () => {
-			if (player.isEmpty()) return;
 			if (playing) {
-				playingTabIndex.text("");
-				playBtn.attr(
-					"class",
-					"font-icons font-icons-btn font-icons-play now-status"
-				);
-				playing = false;
-				player.pause();
+				actions.pause();
 			} else {
-				play();
+				actions.play();
 			}
-		});
-
-		function stop() {
-			if (player.isEmpty()) return;
-			playingTabIndex.text("");
-			playing = false;
-			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
-			player.stop();
-		}
-
-		function play(_index) {
-			playingTabIndex.text("");
-			playBtn.attr(
-				"class",
-				"font-icons font-icons-btn font-icons-pause now-status"
-			);
-			player.play(playCallback, intervalCallback, _index);
-		}
-
-		nextBtn.on("click", () => {
-			if (player.isEmpty()) return;
-			playingTabIndex.text("");
-			player.next(playCallback, intervalCallback);
 		});
 
 		// 播放结束后动作，将所有的播放状态全部置为不播放
@@ -113,22 +116,18 @@ const Logic = {
 		chgPlaySwitchBtn.on("click", () => {
 			playSwitchList.show();
 		});
-
 		retweetBtn.on("click", () => {
 			playSwitchList.hide();
 			chgPlaySwitch("retweet");
 		});
-
 		retweetOneBtn.on("click", () => {
 			playSwitchList.hide();
 			chgPlaySwitch("retweet-one");
 		});
-
 		reorderListBtn.on("click", () => {
 			playSwitchList.hide();
 			chgPlaySwitch("reorder-list");
 		});
-
 		randomBtn.on("click", () => {
 			playSwitchList.hide();
 			chgPlaySwitch("random");
@@ -154,8 +153,7 @@ const Logic = {
 
 		function chgPlaySwitch(name) {
 			chgPlaySwitchBtn.attr(
-				"class",
-				`font-icons font-icons-btn font-icons-${name}`
+				"class", `font-icons font-icons-btn font-icons-${name}`
 			);
 			player.chgPlaySwitch(name);
 		}
@@ -201,6 +199,10 @@ const Logic = {
 		// pgsBox.on("mouseout", unbind);
 		// pgsBtn.on("mouseup", unbind);
 
+		ipcRenderer.on("selectPlay", (method) => {
+			actions[method]();
+		});
+
 		ipcRenderer.on("sendFiles", (event, files) => {
 
 			player.stop();
@@ -217,8 +219,7 @@ const Logic = {
 			}
 
 			playBtn.attr(
-				"class",
-				"font-icons font-icons-btn font-icons-pause now-status"
+				"class", "font-icons font-icons-btn font-icons-pause now-status"
 			);
 
 			player.start(files, playCallback, intervalCallback);
