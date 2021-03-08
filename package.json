@@ -1,28 +1,31 @@
 {
-	"version": "0.0.1",
-	"name": "modellplayer",
-	"main": "main.js",
-	"dependencies": {
-    	"jquery": "^3.5.1"
-	},
-	"devDependencies": {
-		"electron": "6.0.1"
-	},
-	"author": "hzwaygc@gmail.com",
-	"keywords": [
-	  "electron",
-	  "music player"
-	],
-	"license": "Apache-2.0",
-	"bugs": {
-	  "url": "https://gitee.com/undeadway/modellplayer/issues"
-	},
-	"homepage": "http://prj.waygc.net/?coralian",
-	"scripts": {
-		"dev": "electron . --devmode",
-		"start": "electron .",
-		"debug": "electron . dev --devmode --debug-brk=5858",
-		"win-pkgtest": "electron-packager . ModellPlayer --win --out ./dist --arch=x64 -overwrite=force --icon=./res/ico/16_16 --ignore=\"(test|doc|.vscode|.gitignore|package-lock.json|README.md)\"",
-		"win-publish": "electron-packager . ModellPlayer --win --out ./dist --arch=x64 --asar --overwrite=force --icon=./res/ico/16_16 --ignore=\"(test|doc|.vscode|.gitignore|package-lock.json|README.md|help)\""
-	}
+  "version": "0.0.1",
+  "name": "modellplayer",
+  "main": "main.js",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "electron": "6.0.1",
+    "electron-packager": "^15.2.0"
+  },
+  "author": "hzwaygc@gmail.com",
+  "keywords": [
+    "electron",
+    "music player"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://gitee.com/undeadway/modellplayer/issues"
+  },
+  "homepage": "http://prj.waygc.net/?coralian",
+  "scripts": {
+    "dev": "electron . --devmode",
+    "start": "electron .",
+    "debug": "electron . dev --devmode --debug-brk=5858",
+    "win-package": "electron-packager . ModellPlayer   --win            --out ./dist --arch=x64        --overwrite=force --icon=./res/ico/16_16 --electron-version=6.0.1 -no-sandbox --download.mirrorOptions.mirror=https://npm.taobao.org/mirrors/electron/ --app-version=0.0.1 --build-version=0.0.1 --no-package-manager --ignore=\"(test|doc|.vscode|.gitignore|package-lock.json|README.md)\"",
+    "win-publish": "electron-packager . ModellPlayer   --win            --out ./dist --arch=x64 --asar --overwrite=force --icon=./res/ico/16_16 --electron-version=6.0.1 -no-sandbox --download.mirrorOptions.mirror=https://npm.taobao.org/mirrors/electron/ --app-version=0.0.1 --build-version=0.0.1 --no-package-manager --ignore=\"(test|doc|.vscode|.gitignore|package-lock.json|README.md)\"",
+    "linux-package": "electron-packager . ModellPlayer --platform=linux --out ./dist --arch=x64        --overwrite=force --icon=./res/ico/16_16 --electron-version=6.0.1 -no-sandbox --download.mirrorOptions.mirror=https://npm.taobao.org/mirrors/electron/ --app-version=0.0.1 --build-version=0.0.1 --no-package-manager --ignore=\"(test|doc|.vscode|.gitignore|package-lock.json|README.md)\"",
+    "linux-publish": "electron-packager . ModellPlayer --platform=linux --out ./dist --arch=x64 --asar --overwrite=force --icon=./res/ico/16_16 --electron-version=6.0.1 -no-sandbox --download.mirrorOptions.mirror=https://npm.taobao.org/mirrors/electron/ --app-version=0.0.1 --build-version=0.0.1 --no-package-manager --ignore=\"(test|doc|.vscode|.gitignore|package-lock.json|README.md)\""
+  }
 }

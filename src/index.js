@@ -1,3 +1,3 @@
-require("./util/app_init");
+require("./util/app-init");
 
 require("./ui/windows").init();

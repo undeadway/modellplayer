@@ -23,6 +23,30 @@ module.exports = exports = {
 						}
 					},
 					{
+						type: 'separator'
+					},
+					{
+						label: '首选项',
+						click() {
+							windows.createPerferencesWindow();
+						},
+						accelerator: 'CmdOrCtrl+P'
+					},
+					{
+						type: 'separator'
+					},
+					{
+						label: '退出',
+						click() {
+							windows.exit();
+						}
+					}
+				]
+			},
+			// {
+			// 	label: '播放',
+			// 	submenu: [
+					{
 						label: '播放',
 						submenu: [
 							{
@@ -57,60 +81,39 @@ module.exports = exports = {
 							},
 						]
 					},
-					{
-						type: 'separator'
-					},
-					{
-						label: '首选项',
-						click() {
-							windows.showPerferencesWindow();
-						},
-						accelerator: 'CmdOrCtrl+P'
-					},
-					{
-						type: 'separator'
-					},
-					{
-						label: '退出',
-						click() {
-							windows.exit();
-						}
-					}
-				]
-			},
-			{
-				label: '播放列表',
-				submenu: [
-					{
-						label: '导入播放列表',
-						accelerator: 'CmdOrCtrl+Shift+I',
-						click() {
-							dialog.open(window, "importPlayList");
-						},
-					},
-					{
-						label: '导出播放列表',
-						accelerator: 'CmdOrCtrl+Shift+E',
-						click() {
-							windows.openWindow('user_org');
-						},
-					},
-					{
-						label: '添加到播放列表',
-						click() {
-							windows.openWindow('exports');
-						},
-						accelerator: 'CmdOrCtrl++Shift+A'
-					},
-					{
-						label: '从播放列表中删除',
-						click() {
-							windows.openWindow('exports');
-						},
-						accelerator: 'CmdOrCtrl++Shift+D'
-					}
-				]
-			},
+					// {
+					// 	type: 'separator'
+					// },
+			// 		{
+			// 			label: '导入播放列表',
+			// 			accelerator: 'CmdOrCtrl+Shift+I',
+			// 			click() {
+			// 				dialog.open(window, "importPlayList");
+			// 			},
+			// 		},
+			// 		{
+			// 			label: '导出播放列表',
+			// 			accelerator: 'CmdOrCtrl+Shift+E',
+			// 			click() {
+			// 				windows.openWindow('user_org');
+			// 			},
+			// 		},
+			// 		{
+			// 			label: '添加到播放列表',
+			// 			click() {
+			// 				windows.openWindow('exports');
+			// 			},
+			// 			accelerator: 'CmdOrCtrl++Shift+A'
+			// 		},
+			// 		{
+			// 			label: '从播放列表中删除',
+			// 			click() {
+			// 				windows.openWindow('exports');
+			// 			},
+			// 			accelerator: 'CmdOrCtrl++Shift+D'
+			// 		}
+			// 	]
+			// },
 			{
 				label: '帮助',
 				submenu: [

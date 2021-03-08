@@ -1,4 +1,4 @@
-global.AppConfig = {
+module.exports = exports = {
 	base: {
 		ico: {
 			'16': '/res/ico/16_16.ico',
@@ -12,8 +12,8 @@ global.AppConfig = {
 			height: 605
 		},
 		perferences: {
-			width: 456,
-			height: 605
+			width: 400,
+			height: 600
 		}
 	}
 }
