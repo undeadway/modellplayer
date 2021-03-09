@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>木头人播放器</title>
+	<title></title>
 	<link rel="stylesheet" href="./../css/common.css" />
 	<link rel="stylesheet" href="./../css/btns.css" />
 	<body oncontextmenu="return false;" onselectstart="return false"></body>
@@ -163,7 +163,7 @@
 	<div class="box">
 		<!-- 上部，设置部分 -->
 		<div><!-- 进度条滑块 -->
-			<div class="name" id="play-title">名称</div>
+			<div class="name" id="play-title"></div>
 			<div class="pgsbar-box"  id="pgs-box">
 				<div class="pgsbar pgsbar-bk" id="pgs-bak"></div>
 				<div class="pgsbar pgsbar-played" style="width: 0%;" id="pgs-bar"></div>
@@ -174,7 +174,7 @@
 		<!-- 下部播放列表部分 -->
 		<div class="panel-tabs">
 			<ul>
-				<li class="labels name">播放列表</li>
+				<li class="labels name" id="play-list-name"></li>
 				<li class="times"><span id="currentTime">0000:00</span> / <span id="duration">0000:00</span></li><!-- 现在时间/总时长 -->
 				<li class="font-icons font-icons-btn font-icons-stop" id="stop-btn"></li><!-- 停止 -->
 				<li class="font-icons font-icons-btn font-icons-backward" id="back-btn"></li><!-- 上一曲 -->
@@ -195,7 +195,7 @@
 			</ul>
 			<div>
 				<ul class="play-list play-title">
-					<li></li><li id="play-file-names">标题</li></li>
+					<li></li><li id="play-file-names"></li></li>
 				</ul>
 				<div class="rows play-list" id="play-list">
 				</div>

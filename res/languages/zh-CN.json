@@ -1,9 +1,11 @@
 {
-	"app-title": "木头人播放器",
+	"common": {
+		"title": "木头人播放器"
+	},
 	"menu": {
 		"file": "文件",
-		"open-file": "打开文件",
-		"open-folder": "打开文件夹",
+		"openFile": "打开文件",
+		"openDirectory": "打开文件夹",
 		"play": "播放",
 		"pause": "暂停",
 		"stop": "停止",
@@ -17,13 +19,14 @@
 		"add-to-playlist": "添加到播放列表",
 		"del-from-playlist": "从播放列表中删除",
 		"help": "帮助",
-		"about": "关于"
+		"about": "关于",
+		"exit": "退出"
 	},
 	"layout": {
 		"main": {
 			"play-title": "名称",
-			"play-list": "播放列表",
-			"play-file-names": "文件"
+			"play-list-name": "播放列表",
+			"play-file-names": "标题"
 		},
 		"perferences": {}
 	},

@@ -2,22 +2,23 @@
 const { shell } =require('electron');
 const dialog = require("./dialog");
 const actions = require("./../logic/actions");
+const menu = require("./language").getMenu();
 
 module.exports = exports = {
 	main: (windows) => {
 		return [
 			{
-				label: '文件',
+				label: menu.file,
 				submenu: [
 					{
-						label: '打开文件',
+						label: menu.openFile,
 						accelerator: 'CmdOrCtrl+F',
 						click() {
 							dialog.open(windows.getMainWindow(), "openFile");
 						}
 					},
 					{
-						label: '打开文件夹',
+						label: menu.openDirectory,
 						accelerator: 'CmdOrCtrl+D',
 						click() {
 							dialog.open(windows.getMainWindow(), "openDirectory");
@@ -27,7 +28,7 @@ module.exports = exports = {
 						type: 'separator'
 					},
 					{
-						label: '首选项',
+						label: menu.perferences,
 						click() {
 							windows.createPerferencesWindow();
 						},
@@ -37,7 +38,7 @@ module.exports = exports = {
 						type: 'separator'
 					},
 					{
-						label: '退出',
+						label: menu.exit,
 						click() {
 							windows.exit();
 						}
@@ -48,38 +49,38 @@ module.exports = exports = {
 			// 	label: '播放',
 			// 	submenu: [
 					{
-						label: '播放',
+						label: menu.play,
 						submenu: [
 							{
-								label: '播放',
+								label: menu.play,
 								accelerator: 'CmdOrCtrl+S',
 								click() {
 									actions.chgPlayStatus(windows.getMainWindow(), "play");
 								}
 							},
 							{
-								label: '暂停',
+								label: menu.pause,
 								accelerator: 'CmdOrCtrl+P',
 								click() {
 									actions.chgPlayStatus(windows.getMainWindow(), "pause");
 								}
 							},
 							{
-								label: '停止',
+								label: menu.stop,
 								accelerator: 'CmdOrCtrl+T',
 								click() {
 									actions.chgPlayStatus(windows.getMainWindow(), "stop");
 								}
 							},
 							{
-								label: '上一首',
+								label: menu.back,
 								accelerator: 'CmdOrCtrl+B',
 								click() {
 									actions.chgPlayStatus(windows.getMainWindow(), "back");
 								}
 							},
 							{
-								label: '下一首',
+								label: menu.next,
 								accelerator: 'CmdOrCtrl+N',
 								click() {
 									actions.chgPlayStatus(windows.getMainWindow(), "next");
@@ -121,10 +122,10 @@ module.exports = exports = {
 			// 	]
 			// },
 			{
-				label: '帮助',
+				label: menu.help,
 				submenu: [
 					{
-						label: '关于',
+						label: menu.about,
 						accelerator: 'CmdOrCtrl+A',
 						click() { shell.openExternal('http://prj.waygc.net?modellplayer'); }
 					}
@@ -135,38 +136,38 @@ module.exports = exports = {
 	tray: (windows) => {
 		return [
 			{
-				label: '播放',
+				label: menu.play,
 				submenu: [
 					{
-						label: '播放',
+						label: menu.play,
 						accelerator: 'CmdOrCtrl+S',
 						click() {
 							actions.chgPlayStatus(windows.getMainWindow(), "play");
 						}
 					},
 					{
-						label: '暂停',
+						label: menu.pause,
 						accelerator: 'CmdOrCtrl+P',
 						click() {
 							actions.chgPlayStatus(windows.getMainWindow(), "pause");
 						}
 					},
 					{
-						label: '停止',
+						label: menu.stop,
 						accelerator: 'CmdOrCtrl+T',
 						click() {
 							actions.chgPlayStatus(windows.getMainWindow(), "stop");
 						}
 					},
 					{
-						label: '上一首',
+						label: menu.back,
 						accelerator: 'CmdOrCtrl+B',
 						click() {
 							actions.chgPlayStatus(windows.getMainWindow(), "back");
 						}
 					},
 					{
-						label: '下一首',
+						label: menu.next,
 						accelerator: 'CmdOrCtrl+N',
 						click() {
 							actions.chgPlayStatus(windows.getMainWindow(), "next");
@@ -178,7 +179,7 @@ module.exports = exports = {
 				type: 'separator'
 			},
 			{
-				label: '退出',
+				label: menu.exit,
 				click() {
 					windows.exit();
 				}

@@ -5,7 +5,7 @@ const $ = require("jquery");
 const { ipcRenderer }  = require("electron");
 const _Player = require("./../logic/player");
 const utils = require("./../util/utils");
-
+const language = require("./../ui/language");
 
 const Logic = {
 	init: () => {
@@ -34,6 +34,11 @@ const Logic = {
 		const audio = document.getElementById("audio");
 		const player = _Player(audio);
 
+		const config = language.get("main");
+		$("title").html(config.title);
+		for (let key in config.body) {
+			$(`#${key}`).html(config.body[key]);
+		}
 		let playingTabIndex = null, titles = [];
 
 		function intervalCallback(cutrentTime, duration, index) {
