@@ -1,10 +1,11 @@
-{	"common": {
-	"title": "Modell Player"
-},
+{
+	"common": {
+		"title": "Modell Player"
+	},
 	"menu": {
 		"file": "File",
 		"openFile": "Open File",
-		"openFolder": "Open Folder",
+		"openDirectory": "Open Folder",
 		"play": "Play",
 		"pause": "Pause",
 		"stop": "Stop",
@@ -18,15 +19,20 @@
 		"addToPlaylist": "Add To Playlist",
 		"delFromPlaylist": "Delete from playlist",
 		"help": "Help",
-		"about": "About"
+		"about": "About",
+		"exit": "Exit"
 	},
-	"layout": {
-		"main": {
+	"main": {
+		"title": "Modell Player",
+		"layout": {
 			"play-title": "Title",
 			"play-list-name": "Playlist",
 			"play-file-names": "File name"
-		},
-		"perferences": {}
+		}
+	},
+	"perferences": {
+		"title": "Perferences",
+		"layout": {}
 	},
 	"action": {
 

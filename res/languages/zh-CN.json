@@ -22,13 +22,19 @@
 		"about": "关于",
 		"exit": "退出"
 	},
-	"layout": {
-		"main": {
+	"main": {
+		"title": "木头人播放器",
+		"layout": {
 			"play-title": "名称",
 			"play-list-name": "播放列表",
 			"play-file-names": "标题"
-		},
-		"perferences": {}
+		}
+	},
+	"perferences": {
+		"title": "首选项",
+		"layout": {
+
+		}
 	},
 	"action": {
 
