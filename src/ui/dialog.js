@@ -3,7 +3,7 @@
  */
 
 const fs = require("fs");
-const utils = require("./../util/utils");
+const utils = require("../util/utils");
 
 function openOpenDialog(window, typeName){
 
