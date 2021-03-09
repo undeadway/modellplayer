@@ -1,0 +1,15 @@
+html, body, p, ul, li {
+	margin: 0px;
+	padding: 0px;
+}
+
+html, body {
+	color: #450745;
+	font-size: 15px;
+	overflow: hidden;
+	height: 100%;
+}
+
+.box {
+	background: #F7F7F7;
+}
