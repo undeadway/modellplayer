@@ -12,8 +12,8 @@ module.exports = exports = {
 			height: 605
 		},
 		perferences: {
-			width: 400,
-			height: 600
+			width: 600,
+			height: 400
 		}
 	}
 }
