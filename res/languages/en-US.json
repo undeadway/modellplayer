@@ -1,0 +1,34 @@
+{	"common": {
+	"title": "Modell Player"
+},
+	"menu": {
+		"file": "File",
+		"openFile": "Open File",
+		"openFolder": "Open Folder",
+		"play": "Play",
+		"pause": "Pause",
+		"stop": "Stop",
+		"back": "Back",
+		"next": "Next",
+		"perferences": "Perferences",
+		"playList": "Playlist",
+		"playTitle": "Title",
+		"importPlaylist": "Import Playlist",
+		"exportPlaylist": "Export PlayList",
+		"addToPlaylist": "Add To Playlist",
+		"delFromPlaylist": "Delete from playlist",
+		"help": "Help",
+		"about": "About"
+	},
+	"layout": {
+		"main": {
+			"play-title": "Title",
+			"play-list-name": "Playlist",
+			"play-file-names": "File name"
+		},
+		"perferences": {}
+	},
+	"action": {
+
+	}
+}
