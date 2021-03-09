@@ -1,9 +1,5 @@
-let LanguageConfig = null;
-if (global.LanguageConfig) {
-	LanguageConfig = global.LanguageConfig;
-} else {
-	LanguageConfig = require('electron').remote.getGlobal("LanguageConfig");
-}
+const LanguageConfig = global.LanguageConfig ? global.LanguageConfig : require('electron').remote.getGlobal("LanguageConfig");
+
 let langguage = LanguageConfig.getConfig("zh-CN");
 
 module.exports =  {
