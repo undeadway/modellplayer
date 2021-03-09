@@ -65,6 +65,10 @@ exports.init = () => {
 		
 		perferencesWindow.setMenu(null);
 		perferencesWindow.loadURL(__dirname + '/../../res/html/perferences.html');
+
+		if (utils.isDevMode()) {
+			perferencesWindow.webContents.openDevTools();
+		}
 		
 		perferencesWindow.on('closed', function () {
 			// 取消引用 window 对象，如果你的应用支持多窗口的话，
