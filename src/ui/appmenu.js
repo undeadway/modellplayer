@@ -12,17 +12,17 @@ module.exports = exports = {
 				submenu: [
 					{
 						label: menu.openFile,
-						accelerator: 'CmdOrCtrl+F',
 						click() {
 							dialog.open(windows.getMainWindow(), "openFile");
-						}
+						},
+						accelerator: 'CmdOrCtrl+O'
 					},
 					{
 						label: menu.openDirectory,
-						accelerator: 'CmdOrCtrl+D',
 						click() {
 							dialog.open(windows.getMainWindow(), "openDirectory");
-						}
+						},
+						accelerator: 'CmdOrCtrl+D'
 					},
 					{
 						type: 'separator'
@@ -53,35 +53,30 @@ module.exports = exports = {
 						submenu: [
 							{
 								label: menu.play,
-								accelerator: 'CmdOrCtrl+S',
 								click() {
 									actions.chgPlayStatus(windows.getMainWindow(), "play");
 								}
 							},
 							{
 								label: menu.pause,
-								accelerator: 'CmdOrCtrl+P',
 								click() {
 									actions.chgPlayStatus(windows.getMainWindow(), "pause");
 								}
 							},
 							{
 								label: menu.stop,
-								accelerator: 'CmdOrCtrl+T',
 								click() {
 									actions.chgPlayStatus(windows.getMainWindow(), "stop");
 								}
 							},
 							{
 								label: menu.back,
-								accelerator: 'CmdOrCtrl+B',
 								click() {
 									actions.chgPlayStatus(windows.getMainWindow(), "back");
 								}
 							},
 							{
 								label: menu.next,
-								accelerator: 'CmdOrCtrl+N',
 								click() {
 									actions.chgPlayStatus(windows.getMainWindow(), "next");
 								}
@@ -126,7 +121,6 @@ module.exports = exports = {
 				submenu: [
 					{
 						label: menu.about,
-						accelerator: 'CmdOrCtrl+A',
 						click() { shell.openExternal('http://prj.waygc.net?modellplayer'); }
 					}
 				]
@@ -140,35 +134,30 @@ module.exports = exports = {
 				submenu: [
 					{
 						label: menu.play,
-						accelerator: 'CmdOrCtrl+S',
 						click() {
 							actions.chgPlayStatus(windows.getMainWindow(), "play");
 						}
 					},
 					{
 						label: menu.pause,
-						accelerator: 'CmdOrCtrl+P',
 						click() {
 							actions.chgPlayStatus(windows.getMainWindow(), "pause");
 						}
 					},
 					{
 						label: menu.stop,
-						accelerator: 'CmdOrCtrl+T',
 						click() {
 							actions.chgPlayStatus(windows.getMainWindow(), "stop");
 						}
 					},
 					{
 						label: menu.back,
-						accelerator: 'CmdOrCtrl+B',
 						click() {
 							actions.chgPlayStatus(windows.getMainWindow(), "back");
 						}
 					},
 					{
 						label: menu.next,
-						accelerator: 'CmdOrCtrl+N',
 						click() {
 							actions.chgPlayStatus(windows.getMainWindow(), "next");
 						}
