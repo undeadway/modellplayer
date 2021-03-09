@@ -4,12 +4,26 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>木头人播放器 首选项</title>
+	<title></title>
 	<link rel="stylesheet" href="./../css/common.css" />
+	<body oncontextmenu="return false;" onselectstart="return false"></body>
 	<style>
+
+		.box {
+			position: relative;
+		}
+
+		.box>div {
+			display: inline-block;
+			vertical-align: top;
+			overflow-y: auto;
+			position: absolute;
+		}
+
 		.menu {
 			border-right: 1px solid #E0E4FE;
 			width: 100px;
+			height: 100%;
 			padding: 5px;
 			background: #FFFFFF;
 		}
@@ -18,34 +32,51 @@
 			margin-left: 10px;
 		}
 
-		.box>div {
+		.container {
+			width: 474px;
 			height: 100%;
-			display: inline-block;
-			vertical-align: top;
+			margin-left: 120px;
+		}
+
+		.layout-box {
+			height: calc(100% - 30px);
 			overflow-y: auto;
 		}
 
-		.container {
-			width: 100%;
+		
+		.layout-box>ul {
+			margin-bottom: 10px;
+		}
+
+		.layout-box>ul>li {
+			vertical-align: top;
+			display: inline-block;
+			margin-left: 20px;
+			min-height: 25px;
+		}
+
+		.layout-box>ul>li:first-child {
+			width: 80px;
+		}
+
+		.btn-box {
+			height: 30px;
+			text-align: right;
+			padding-right: 30px;
+		}
+
+		h2 {
+			margin-bottom: 10px;
+		}
+
+		h3 {
+			margin-top:-5px;
 		}
 	</style>
 </head>
 <body>
-	<!-- 
-		常规
-			Language
-			界面
-				显示托盘
-				最小化到托盘
-				关闭按钮到托盘
-		播放
-			快捷键
-		关于
-			版权
-			作者
-	 -->
 	 <div class="box">
-		<div class="menu">
+		<div class="menu" id="menu">
 			<ul>
 				<li>常规</li>
 				<li>
@@ -73,67 +104,50 @@
 				</li>
 			</ul>
 		</div>
-		<div>
-			<div class="container">
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
-				a<br />
+		<div class="container" id="container">
+			<div class="layout-box">
+				<h2>常规</h2>
+				<ul>
+					<li><h3>语言</h3></li>
+					<li><select id="langs-select"></select></li>
+				</ul>
+				<ul>
+					<li><h3>界面</h3></li>
+					<li>
+						切换语言需要重启
+						<div>
+							<input type="checkbox" value="" id="show-tray" />
+							<label for="show-tray" id="show-tray-label">显示托盘</label>
+						</div>
+						<div>
+							<input type="checkbox" value="" id="min-to-tray" />
+							<label for="min-to-tray" id="min-to-tray-label">最小化到托盘</label>
+						</div>
+						<div>
+							<input type="checkbox" value="" id="close-to-tray" />
+							<label for="close-to-tray" id="close-to-tray-label">关闭按钮到托盘</label>
+						</div>
+					</li>
+				</ul>
+				<h2>播放</h2>
+				<ul>
+					<li><h3>快捷键</h3></li>
+					<li>
+						<div>
+							<input type="checkbox" value="" id="show-tray" />
+							<label for="show-tray" id="show-tray-label">显示托盘</label>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="btn-box">
+				<button>确定</button>
 			</div>
 		</div>
 	 </div>
 </body>
+<script type="text/javascript">
+	const logic = require('./../../src/logic/perferences');
+	logic.init();
+</script>
 </html>
