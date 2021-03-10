@@ -1,0 +1,42 @@
+{
+	"common": {
+		"title": "ModellPlayer"
+	},
+	"menu": {
+		"file": "ファイル",
+		"openFile": "ファイルを開く",
+		"openDirectory": "フォルダを開く",
+		"play": "プレイ",
+		"pause": "",
+		"stop": "ストップ",
+		"back": "上一首",
+		"next": "下一首",
+		"perferences": "設定",
+		"playList": "プレイリスト",
+		"playTitle": "タイトル",
+		"importPlaylist": "プレイリストをインポート",
+		"exportPlaylist": "プレイリストをエクスポート",
+		"addToPlaylist": "プレイリストに添付",
+		"delFromPlaylist": "プレイリストから削除",
+		"help": "ヘルプ",
+		"about": "关于",
+		"exit": "退出"
+	},
+	"main": {
+		"title": "ModellPlayer",
+		"layout": {
+			"play-title": "名前",
+			"play-list-name": "プレイリスト",
+			"play-file-names": "タイトル"
+		}
+	},
+	"perferences": {
+		"title": "設定",
+		"layout": {
+
+		}
+	},
+	"action": {
+
+	}
+}
