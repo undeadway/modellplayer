@@ -72,6 +72,45 @@
 		h3 {
 			margin-top:-5px;
 		}
+
+		.hotkey li {
+			display: inline-block;
+		}
+		.hotkey {
+			border: 1px solid #CCCCCC; 
+		}
+		.hotkey ul {
+			border-top:1px solid #CCCCCC;
+		}
+		.hotkey ul:first-child {
+			border-top:0px;
+		}
+		.hotkey li:first-child {
+			border-right: 1px solid #CCCCCC;
+			width: 100px;
+			background: #c2dff3;
+		}
+		.hotkey li:last-child {
+			width: 200px;
+			background: #FFFFFF;
+		}
+
+		.follows li {
+			display: inline-block;
+			background-repeat: no-repeat;
+			background-size: auto 40px;
+			background-image: url(./../imgs/follows.png);
+			background-position-y: 0px;
+			margin-right: 10px;
+			width: 40px;
+			height: 40px;
+			border: 1px solid #FFFFFF;
+			cursor: pointer;
+		}
+
+		.follows li:hover {
+			border:1px solid #F7F7F7;
+		}
 	</style>
 </head>
 <body>
@@ -131,12 +170,32 @@
 				<h2>播放</h2>
 				<ul>
 					<li><h3>快捷键</h3></li>
-					<li>
-						<div>
-							<input type="checkbox" value="" id="show-tray" />
-							<label for="show-tray" id="show-tray-label">显示托盘</label>
-						</div>
+					<li class="hotkey">
+						<ul>
+							<li>播放/暂停</li>
+							<li id="play-pause-box">Space</li>
+						</ul>
+						<ul>
+							<li>快进</li>
+							<li id="5s-goto">&lt;</li>
+						</ul>
+						<ul>
+							<li>快退</li>
+							<li id="5s-back">&gt;</li>
+						</ul>
 					</li>
+				</ul>
+				<h2>关于</h2>
+				<ul>
+					<li><h3>作者</h3></li>
+					<li>
+						未古其人
+						<ul class="follows" id="follows"></ul>
+					</li>
+				</ul>
+				<ul>
+					<li><h3>版权</h3></li>
+					<li></li>
 				</ul>
 			</div>
 			<div class="btn-box">

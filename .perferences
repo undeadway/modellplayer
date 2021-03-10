@@ -6,5 +6,27 @@
 			"en-US": "English",
 			"ja-JP": "日本語"
 		}
+	},
+	"about": {
+		"author": [
+			{
+				"name": "blog",
+				"label": "博客",
+				"link": "http://waygc.net",
+				"left": 7
+			},
+			{
+				"name": "weibo",
+				"label": "微博",
+				"link": "https://weibo.com/undeadway",
+				"left": 0
+			},
+			{
+				"name": "gitee",
+				"label": "码云",
+				"link": "https://gitee.com/undeadway",
+				"left": 6
+			}
+		]
 	}
 }
