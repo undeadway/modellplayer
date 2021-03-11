@@ -7,7 +7,7 @@ exports = module.exports = {
 		return  JSON.parse(fs.readFileSync(fileName, "utf-8"));
 	},
 	write: (obj) => {
-		if (!fs.existsSync("./resources")) { //fs.existsSync(PERFERENCES_NAME)) {
+		if (!fs.existsSync("./resources")) {
 			fs.mkdirSync("./resources");
 		}
 		fs.writeFileSync(PERFERENCES_NAME, JSON.stringify(obj), "utf-8");
