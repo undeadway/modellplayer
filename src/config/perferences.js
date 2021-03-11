@@ -4,13 +4,25 @@ const fs = require("fs");
 
 exports = module.exports = {
 	get: () => {
-		let fileName = fs.existsSync(PERFERENCES_NAME) ? PERFERENCES_NAME :`${global.rootPath}res/config/perferences.json`;
-		return  JSON.parse(fs.readFileSync(fileName, "utf-8"));
+		let fileName = PERFERENCES_NAME;
+		if (!fs.existsSync(PERFERENCES_NAME)) {
+			fileName = `${global.rootPath}res/config/perferences.json`
+		}
+
+		let file = fs.readFileSync(fileName, "utf-8");
+
+		if (fs.existsSync(PERFERENCES_NAME)) {
+			file = Buffer.from(file, "base64").toString("utf-8");
+		}
+
+		return  JSON.parse(file);
 	},
 	write: (obj) => {
 		if (!fs.existsSync(RESOURCES)) {
 			fs.mkdirSync(RESOURCES);
 		}
-		fs.writeFileSync(PERFERENCES_NAME, JSON.stringify(obj), "utf-8");
+		let data = JSON.stringify(obj);
+		let base64 = Buffer.from(data).toString("base64");
+		fs.writeFileSync(PERFERENCES_NAME, base64, "utf-8");
 	}
 };
