@@ -10,15 +10,15 @@
 	"setting": {
 		"show-tray": {
 			"type": "checked",
-			"value": "checked"
+			"value": ""
 		},
 		"min-to-tray": {
 			"type": "checked",
-			"value": "checked"
+			"value": ""
 		},
 		"close-to-tray": {
 			"type": "checked",
-			"value": "checked"
+			"value": ""
 		},
 		"play-pause-chkbox": {
 			"type": "html",

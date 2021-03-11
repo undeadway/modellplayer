@@ -1,12 +1,15 @@
-const PERFERENCES_NAME = ".perferences";
+const PERFERENCES_NAME = "./resources/.perferences";
 const fs = require("fs");
 
 exports = module.exports = {
 	get: () => {
-		return  JSON.parse(fs.readFileSync(PERFERENCES_NAME, "utf-8"));
+		let fileName = fs.existsSync(PERFERENCES_NAME) ? PERFERENCES_NAME :`${global.rootPath}res/config/perferences.json`;
+		return  JSON.parse(fs.readFileSync(fileName, "utf-8"));
 	},
 	write: (obj) => {
-		let string = JSON.stringify(obj);
-		fs.writeFileSync(PERFERENCES_NAME, string, "utf-8");
+		if (!fs.existsSync("./resources")) { //fs.existsSync(PERFERENCES_NAME)) {
+			fs.mkdirSync("./resources");
+		}
+		fs.writeFileSync(PERFERENCES_NAME, JSON.stringify(obj), "utf-8");
 	}
 };
