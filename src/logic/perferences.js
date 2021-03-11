@@ -6,9 +6,9 @@ const PerferencesConfig = global.PerferencesConfig ? global.PerferencesConfig : 
 const Logic = {
 	init: () => {
 
-		const perferences = PerferencesConfig.get();
+		let perferences = PerferencesConfig.get();
 		const { language, about, setting } = perferences;
-		const newObj = Object.assign({}, perferences);
+		let newObj = Object.assign({}, perferences);
 
 		const langsSelect = $("#langs-select");
 		const follows = $("#follows");
