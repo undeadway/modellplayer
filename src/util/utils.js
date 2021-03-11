@@ -1,4 +1,5 @@
-const isWindows = require("os").type().toLocaleLowerCase().indexOf("windows") >= 0;
+const os = require("os");
+const isWindows = os.type().toLocaleLowerCase().indexOf("windows") >= 0;
 const separator = isWindows ? "\\" :  "/";
 const process = require("process");
 let isDevMode = null;
@@ -34,3 +35,7 @@ exports.isDevMode = () => {
 	isDevMode = false;
 	return isDevMode;
 }
+
+exports.getOS = () => {
+	return os;
+};
