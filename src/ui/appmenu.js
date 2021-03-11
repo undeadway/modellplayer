@@ -121,7 +121,9 @@ module.exports = exports = {
 				submenu: [
 					{
 						label: menu.about,
-						click() { shell.openExternal('http://prj.waygc.net?modellplayer'); }
+						click() {
+							windows.openAboutWindow();
+						}
 					}
 				]
 			}

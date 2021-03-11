@@ -4,9 +4,28 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>木头人播放器</title>
+	<title></title>
+	<link rel="stylesheet" href="./../css/common.css" />
+	<body oncontextmenu="return false;" onselectstart="return false"></body>
+	<style>
+		pre {
+			margin: 10px;
+			padding: 10px;
+		}
+	</style>
 </head>
 <body>
-	
+<pre>
+版本：<span>0.0.1</span>
+Nodejs：<span id="nodejs-version"></span>
+Electron：<span id="electron-version"></span>
+Chrome：<span id="chrome-version"></span>
+V8：<span id="v8-version"></span>
+操作系统：<span id="os-version"></span>
+</pre>
 </body>
+<script type="text/javascript">
+	const logic = require('./../../src/logic/about');
+	logic.init();
+</script>
 </html>

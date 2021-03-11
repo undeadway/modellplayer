@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, Tray } = require('electron');
+const { app, BrowserWindow, Menu, Tray, ipcMain } = require('electron');
 const path = require("path");
 
 exports.init = () => {
@@ -6,7 +6,7 @@ exports.init = () => {
 	const appmenu = require("./appmenu");
 	const utils = require("./../util/utils");
 
-	let mainWindow = null, perferencesWindow = null, tray = null;
+	let mainWindow = null, perferencesWindow = null, aboutWindow = null, tray = null;
 	const windows = {};
 
 	function createMainwindow () {
@@ -78,6 +78,32 @@ exports.init = () => {
 		});
 	}
 
+	function createAboutWindow() {
+		aboutWindow = new BrowserWindow({
+			width: UiConfig.ui.about.width, height: UiConfig.ui.about.height,
+			transparent: true,
+			webPreferences: {
+				nativeWindowOpen: true,
+				nodeIntegration: true
+			},
+			minimizable: false,
+			maximizable: false,
+			icon: `./../..${UiConfig.base.ico[16]}`
+		});
+		
+		aboutWindow.setMenu(null);
+		aboutWindow.loadURL(__dirname + '/../../res/html/about.html');
+
+		if (utils.isDevMode()) {
+			aboutWindow.webContents.openDevTools();
+		}
+
+		aboutWindow.on('close', function () {
+			aboutWindow.hide();
+		});
+		aboutWindow.hide();
+	}
+
 	function createTray() {
 		const iconPath = path.join(__dirname,`./../..${UiConfig.base.ico[16]}`);
 		tray = new Tray(iconPath);
@@ -93,6 +119,7 @@ exports.init = () => {
 
 	app.on('ready', function () {
 		createMainwindow();
+		createAboutWindow();
 		createTray();
 	});
 
@@ -105,13 +132,24 @@ exports.init = () => {
 		}
 	}
 
+	windows.openAboutWindow = () => {
+		aboutWindow.show();
+	}
+
 	function exit () {
+
 		// 退出前释放资源
 		mainWindow = null;
 		perferencesWindow = null;
+		aboutWindow = null;
 		tray = null;
+
 		app.exit();
 	}
 
 	windows.exit = exit;
+
+	ipcMain.on('closePerferencesWindow', () => {
+		perferencesWindow.close();
+	});
 }
