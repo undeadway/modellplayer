@@ -1,13 +1,12 @@
 const PERFERENCES_NAME = ".perferences";
 const fs = require("fs");
-const perferences = JSON.parse(fs.readFileSync(`${global.rootPath}${PERFERENCES_NAME}`, "utf-8"));
 
 exports = module.exports = {
 	get: () => {
-		return  perferences;
+		return  JSON.parse(fs.readFileSync(PERFERENCES_NAME, "utf-8"));
 	},
 	write: (obj) => {
 		let string = JSON.stringify(obj);
-		fs.writeFileSync(`${global.rootPath}${PERFERENCES_NAME}`, string, "utf-8");
+		fs.writeFileSync(PERFERENCES_NAME, string, "utf-8");
 	}
 };
