@@ -1,6 +1,6 @@
 {
 	"common": {
-		"title": "木头人播放器"
+		"title": "锚点播放器"
 	},
 	"menu": {
 		"file": "文件",
@@ -23,7 +23,7 @@
 		"exit": "退出"
 	},
 	"main": {
-		"title": "木头人播放器",
+		"title": "锚点播放器",
 		"layout": {
 			"play-title": "名称",
 			"play-list-name": "播放列表",
@@ -37,7 +37,7 @@
 		}
 	},
 	"about": {
-		"title": "木头人播放器",
+		"title": "锚点播放器",
 		"layout": {
 		}
 	},
