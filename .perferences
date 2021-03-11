@@ -7,6 +7,32 @@
 			"ja-JP": "日本語"
 		}
 	},
+	"setting": {
+		"show-tray": {
+			"type": "checked",
+			"value": "checked"
+		},
+		"min-to-tray": {
+			"type": "checked",
+			"value": "checked"
+		},
+		"close-to-tray": {
+			"type": "checked",
+			"value": "checked"
+		},
+		"play-pause-chkbox": {
+			"type": "html",
+			"value": "Space"
+		},
+		"forward-5s-chkbox": {
+			"type": "html",
+			"value": "&lt;"
+		},
+		"back-5s-chkbox": {
+			"type": "html",
+			"value": "&gt;"
+		}
+	},
 	"about": {
 		"author": [
 			{
