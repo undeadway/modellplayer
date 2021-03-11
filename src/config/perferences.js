@@ -6,8 +6,8 @@ exports = module.exports = {
 	get: () => {
 		return  perferences;
 	},
-	write: () => {
-		let string = JSON.stringify(perferences);
+	write: (obj) => {
+		let string = JSON.stringify(obj);
 		fs.writeFileSync(`${global.rootPath}${PERFERENCES_NAME}`, string, "utf-8");
 	}
 };
