@@ -40,7 +40,7 @@ module.exports = exports = {
 					{
 						label: menu.exit,
 						click() {
-							windows.exit();
+							windows.closeMainWindow();
 						}
 					}
 				]

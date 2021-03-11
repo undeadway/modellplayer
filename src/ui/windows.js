@@ -5,6 +5,7 @@ exports.init = () => {
 	
 	const appmenu = require("./appmenu");
 	const utils = require("./../util/utils");
+	const perferencesConfig = global.PerferencesConfig.get();
 
 	let mainWindow = null, perferencesWindow = null, aboutWindow = null, tray = null;
 	const windows = {};
@@ -44,8 +45,10 @@ exports.init = () => {
 		});
 
 		mainWindow.on("minimize", event => {
-			event.preventDefault();
-			mainWindow.hide();
+			if (perferencesConfig.setting["min-to-tray"].value === "checked") {
+				event.preventDefault();
+				mainWindow.hide();
+			}
 		});
 	}
 
@@ -120,7 +123,9 @@ exports.init = () => {
 	app.on('ready', function () {
 		createMainwindow();
 		createAboutWindow();
-		createTray();
+		if (perferencesConfig.setting["show-tray"].value === "checked") {
+			createTray();
+		}
 	});
 
 	windows.getMainWindow = () => {
@@ -131,7 +136,16 @@ exports.init = () => {
 			createPerferencesWindow();
 		}
 	}
-
+	windows.closeMainWindow = () => {
+		if (
+			perferencesConfig.setting["show-tray"].value === "checked"
+			&& perferencesConfig.setting["close-to-tray"].value === "checked"
+		) {
+			mainWindow.hide();
+		} else {
+			exit();
+		}
+	};
 	windows.openAboutWindow = () => {
 		aboutWindow.show();
 	}
