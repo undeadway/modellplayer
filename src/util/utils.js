@@ -4,14 +4,14 @@ const separator = isWindows ? "\\" :  "/";
 const process = require("process");
 let isDevMode = null;
 
-function a(e) {
+function _a(e) {
 	return 10 > e ? "0" + e : "" + e;
 }
 
 exports.secondToTime = function(e) {
 	let t = parseInt(e / 60),
 		i = parseInt(e - 60 * t);
-	return a(t) + ":" + a(i);
+	return _a(t) + ":" + _a(i);
 }
 
 exports.getSeparator = () => {

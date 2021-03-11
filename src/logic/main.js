@@ -3,7 +3,7 @@
  */
 const $ = require("jquery");
 const { ipcRenderer }  = require("electron");
-const _Player = require("./../logic/player");
+const Player = require("./../logic/player");
 const utils = require("./../util/utils");
 require("./../ui/language").init($, "main");
 
@@ -32,7 +32,7 @@ const Logic = {
 		const currentTimeDiv = $("#currentTime");
 		const durationDiv = $("#duration");
 		const audio = document.getElementById("audio");
-		const player = _Player(audio);
+		const player = Player(audio);
 
 		let playingTabIndex = null, titles = [];
 

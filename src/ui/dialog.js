@@ -11,7 +11,7 @@ function openOpenDialog(window, typeName){
 	 * 因为需要多次打开，所以这里需要用函数来不断引入
 	 * 暂时没找到怎么关闭 dialog 或者其他的处理方式
 	 */
-	const { dialog, BrowserWindow } = require('electron');
+	const { dialog } = require('electron');
 
 	let options = {
 		defaultPath: "",
