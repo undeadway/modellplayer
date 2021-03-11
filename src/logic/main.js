@@ -94,8 +94,8 @@ const Logic = {
 
 		function createPlayListItem(index, name) {
 
-			name = name.split(utils.getSeparator());
-			name = name[name.length - 1];
+			let names = name.split(utils.getSeparator());
+			name = names[names.length - 1];
 
 			titles.push(name);
 
@@ -159,20 +159,20 @@ const Logic = {
 			player.chgPlaySwitch(name);
 		}
 
-		function changeTo(evt) {
-			if (!canChange) return;
+		// function changeTo(evt) {
+		// 	if (!canChange) return;
 
-			let clientX = evt.clientX - 10;
-			if (clientX < -3) {
-				clientX = -3;
-			}
-			if (clientX > 430) {
-				clientX = 430;
-			}
+		// 	let clientX = evt.clientX - 10;
+		// 	if (clientX < -3) {
+		// 		clientX = -3;
+		// 	}
+		// 	if (clientX > 430) {
+		// 		clientX = 430;
+		// 	}
 
-			// pgsBtn.css({ left: clientX });
-			pgsBar.css({ width: (evt.clientX / 430) * 100 + "%" });
-		}
+		// 	// pgsBtn.css({ left: clientX });
+		// 	pgsBar.css({ width: (evt.clientX / 430) * 100 + "%" });
+		// }
 
 		function unbind () {
 			canChange = false;

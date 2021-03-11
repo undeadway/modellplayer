@@ -75,13 +75,12 @@ const Logic = {
 			ipcRenderer.send('closePerferencesWindow');
 		}
 
+		cancelBtn.on("click", close);
 		applyBtn.on("click", apply);
 		okBtn.on("click", () => {
 			apply();
 			close();
 		})
-		cancelBtn.on("click", close);
-
 	}
 };
 
