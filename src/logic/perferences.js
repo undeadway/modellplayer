@@ -17,7 +17,6 @@ const Logic = {
 		const cancelBtn = $("#cancel-btn");
 
 		for (let name in language.list) {
-			console.log(name, language.list[name]);
 			let option = $(`<option value="${name}">${language.list[name]}</option>`);
 			if (name === language.default) {
 				option.attr("selected", "selected");
@@ -27,7 +26,7 @@ const Logic = {
 
 		for (let name in setting) {
 			let obj = setting[name];
-			if (obj.type !== 'html') {
+			if (obj.type !== 'html' && obj.value) {
 				$(`#${name}`).attr(obj.type, obj.value);
 			} else {
 				$(`#${name}`).html(obj.value);
@@ -58,7 +57,7 @@ const Logic = {
 				if (obj.type !== 'html') {
 					setting[name] = {
 						type: obj.type,
-						value: $(`#${name}`).attr(obj.type)
+						value: $(`#${name}`).is(`:${obj.type}`) ? "checked": ""
 					};
 				} else {
 					setting[name] = {
