@@ -151,5 +151,6 @@ exports.init = () => {
 
 	ipcMain.on('closePerferencesWindow', () => {
 		perferencesWindow.close();
+		perferencesWindow = null;
 	});
 }
