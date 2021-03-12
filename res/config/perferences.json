@@ -20,17 +20,25 @@
 			"type": "checked",
 			"value": ""
 		},
-		"play-pause-chkbox": {
+		"play-pause-val": {
 			"type": "html",
 			"value": "Space"
 		},
-		"forward-5s-chkbox": {
+		"forward-5s-val": {
 			"type": "html",
-			"value": "&lt;"
+			"value": "Right"
 		},
-		"back-5s-chkbox": {
+		"back-5s-val": {
 			"type": "html",
-			"value": "&gt;"
+			"value": "Left"
+		},
+		"volume-up-val": {
+			"type": "html",
+			"value": "Up"
+		},
+		"volume-down-val": {
+			"type": "html",
+			"value": "Down"
 		}
 	},
 	"about": {
