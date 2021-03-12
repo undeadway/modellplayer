@@ -42,6 +42,15 @@
 
 ![](./documents/instance.png)
 
+### 跨平台
+
+本软件支持 Windows 和 Linux 两种操作系统。  
+因为我没有 mac ，所以不支持 Mac 操作系统。
+
+测试过的 Linux 平台。
+
+* Deepin
+
 ## 版本号
 
 0.0.1
@@ -94,6 +103,15 @@ It could play local music file, but can't play remote file.
 * change progress
 * more UI events
 * ant the others
+
+### Cross Platform
+
+This software are support windows and linux.
+And not support mac os because of I did not hot a mac machine.
+
+The tested Linux platform
+
+* Deepin(Debain base)
 
 ## Version
 0.0.1
