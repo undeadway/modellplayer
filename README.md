@@ -4,6 +4,10 @@
 
 锚点播放器（ModellPlayer）
 
+## 版本号
+
+0.0.1
+
 ## 简介
 
 无聊之下，写了一个音乐播放器。  
@@ -51,10 +55,6 @@
 
 * Deepin
 
-## 版本号
-
-0.0.1
-
 ## 版权
 
 ### License
@@ -81,7 +81,11 @@ Apache-2.0
 # English
 
 ## Name
+
 ModellPlayer
+
+## Version
+0.0.1
 
 ## About
 This software is a  music player build by electron.
@@ -113,9 +117,6 @@ And not support mac os because of I did not hot a mac machine.
 The tested Linux platform
 
 * Deepin(Debain base)
-
-## Version
-0.0.1
 
 ## Copyright
 
