@@ -16,7 +16,6 @@
 		.box>div {
 			display: inline-block;
 			vertical-align: top;
-			overflow-y: auto;
 			position: absolute;
 		}
 
@@ -25,6 +24,7 @@
 			width: 100px;
 			height: 100%;
 			padding: 5px;
+			overflow-y: auto;
 			background: #FFFFFF;
 		}
 		.menu li li {
@@ -35,11 +35,13 @@
 		.container {
 			width: 474px;
 			height: 100%;
+			overflow-y: hidden;
 			margin-left: 120px;
 		}
 
 		.layout-box {
-			height: calc(100% - 30px);
+			height: calc(100% - 70px);
+			margin: 10px 0px;
 			overflow-y: auto;
 		}
 
@@ -144,6 +146,7 @@
 			</ul>
 		</div>
 		<div class="container" id="container">
+			<p>所有设置在重启后才会生效</p>
 			<div class="layout-box">
 				<h2>常规</h2>
 				<ul>
