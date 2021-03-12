@@ -1,10 +1,10 @@
 const $ = require("jquery");
 const { remote, ipcRenderer } = require('electron');
 const PerferencesConfig = global.PerferencesConfig ? global.PerferencesConfig : require('electron').remote.getGlobal("PerferencesConfig");
-require("./../ui/language").init($, "perferences");
 
 const Logic = {
 	init: () => {
+		require("./../ui/language").init($, "perferences");
 
 		let perferences = PerferencesConfig.get();
 		const { language, about, setting } = perferences;
