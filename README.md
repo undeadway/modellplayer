@@ -116,7 +116,7 @@ And not support mac os because of I did not hot a mac machine.
 
 The tested Linux platform
 
-* Deepin(Debain base)
+* Deepin(Debian base)
 
 ## Copyright
 
