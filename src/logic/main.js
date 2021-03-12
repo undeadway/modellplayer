@@ -5,10 +5,10 @@ const $ = require("jquery");
 const { ipcRenderer }  = require("electron");
 const Player = require("./../logic/player");
 const utils = require("./../util/utils");
+require("./../ui/language").init($, "main");
 
 const Logic = {
 	init: () => {
-		require("./../ui/language").init($, "main");
 
 		let canChange = false;
 		let playing = false;

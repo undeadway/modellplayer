@@ -1,14 +1,9 @@
 const LanguageConfig = global.LanguageConfig ? global.LanguageConfig : require('electron').remote.getGlobal("LanguageConfig");
 const PerferencesConfig = global.PerferencesConfig ? global.PerferencesConfig : require('electron').remote.getGlobal("PerferencesConfig");
-let language = null;
-
-function initLanguage() {
-	language = LanguageConfig.getConfig(PerferencesConfig.get().language.default);
-}
+const language = LanguageConfig.getConfig(PerferencesConfig.get().language.default);
 
 module.exports =  {
 	init: ($, pageName) => {
-		initLanguage();
 
 		let mod = language[pageName];
 
