@@ -37,12 +37,14 @@ exports.init = () => {
 		Menu.setApplicationMenu(menu);
 
 		// 当 window 被关闭，这个事件会被发出
-		mainWindow.on('closed', function () {
+		mainWindow.on('closed',  () => {
 			// 取消引用 window 对象，如果你的应用支持多窗口的话，
 			// 通常会把多个 window 对象存放在一个数组里面，
 			// 但这次不是。
 			exit();
 		});
+
+		mainWindow.on("close", windows.closeMainWindow);
 
 		mainWindow.on("minimize", event => {
 			if (perferencesConfig.setting["min-to-tray"].value === "checked") {
@@ -122,7 +124,7 @@ exports.init = () => {
 
 	app.on('ready', function () {
 		createMainwindow();
-		createAboutWindow();
+		
 		if (perferencesConfig.setting["show-tray"].value === "checked") {
 			createTray();
 		}
@@ -136,18 +138,19 @@ exports.init = () => {
 			createPerferencesWindow();
 		}
 	}
-	windows.closeMainWindow = () => {
+	windows.closeMainWindow = (event) => {
 		if (
-			perferencesConfig.setting["show-tray"].value === "checked"
+			event && perferencesConfig.setting["show-tray"].value === "checked"
 			&& perferencesConfig.setting["close-to-tray"].value === "checked"
 		) {
+			event.preventDefault();
 			mainWindow.hide();
 		} else {
 			exit();
 		}
 	};
-	windows.openAboutWindow = () => {
-		aboutWindow.show();
+	windows.createAboutWindow = () => {
+		createAboutWindow();
 	}
 
 	function exit () {

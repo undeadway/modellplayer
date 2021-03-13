@@ -40,7 +40,7 @@ module.exports = exports = {
 					{
 						label: menu.exit,
 						click() {
-							windows.closeMainWindow();
+							windows.exit();
 						}
 					}
 				]
@@ -122,7 +122,7 @@ module.exports = exports = {
 					{
 						label: menu.about,
 						click() {
-							windows.openAboutWindow();
+							windows.createAboutWindow();
 						}
 					}
 				]
