@@ -10,7 +10,7 @@ require("./../ui/language").init($, "main");
 const Logic = {
 	init: () => {
 
-		let canChange = false;
+		// let canChange = false;
 		let playing = false;
 
 		const playTitle = $("#play-title");
@@ -174,11 +174,11 @@ const Logic = {
 		// 	pgsBar.css({ width: (evt.clientX / 430) * 100 + "%" });
 		// }
 
-		function unbind () {
-			canChange = false;
-			// pgsBox.unbind("mousemove");
-			// pgsBar.unbind("mousemove");
-		}
+		// function unbind () {
+		// 	canChange = false;
+		// 	// pgsBox.unbind("mousemove");
+		// 	// pgsBar.unbind("mousemove");
+		// }
 
 		// pgsBtn.on("mousedown", () => {
 		// 	canChange = true;
