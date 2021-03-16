@@ -1,5 +1,6 @@
 const $ = require("jquery");
 const { remote, ipcRenderer } = require('electron');
+const fs = require("fs");
 const PerferencesConfig = global.PerferencesConfig ? global.PerferencesConfig : require('electron').remote.getGlobal("PerferencesConfig");
 require("./../ui/language").init($, "perferences");
 
@@ -15,6 +16,7 @@ const Logic = {
 		const okBtn = $("#ok-btn");
 		const applyBtn = $("#apply-btn");
 		const cancelBtn = $("#cancel-btn");
+		const defaultBtn = $("#default-btn");
 
 		for (let name in language.list) {
 			let option = $(`<option value="${name}">${language.list[name]}</option>`);
@@ -81,6 +83,14 @@ const Logic = {
 			apply();
 			close();
 		})
+
+		defaultBtn.on("click", () => {
+			if (fs.existsSync("./resources/.perferences")) {
+				fs.rmSync("./resources/.perferences");
+			}
+			
+			close();
+		});
 	}
 };
 
