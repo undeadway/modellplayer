@@ -22,7 +22,7 @@ exports.init = () => {
 			},
 			minimizable: true,
 			maximizable: false,
-			icon: `./../..${UiConfig.base.ico[16]}`
+			icon: `./../..${UiConfig.base.ico[64]}`
 		});
 
 		// mainWindow.setMenu(null);
