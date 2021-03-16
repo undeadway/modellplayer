@@ -1,3 +1,5 @@
+![](./documents/logo.svg)
+
 # Chinese
 
 ## 名称
