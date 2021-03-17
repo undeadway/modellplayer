@@ -22,7 +22,7 @@ exports.init = () => {
 			},
 			minimizable: true,
 			maximizable: false,
-			icon: `./../..${UiConfig.base.ico[64]}`
+			icon: `./../..${UiConfig.base.ico[512]}`
 		});
 
 		// mainWindow.setMenu(null);
@@ -110,7 +110,7 @@ exports.init = () => {
 	}
 
 	function createTray() {
-		const iconPath = path.join(__dirname,`./../..${UiConfig.base.ico[16]}`);
+		const iconPath = path.join(__dirname,`./../..${UiConfig.base.ico[64]}`);
 		tray = new Tray(iconPath);
 		tray.setToolTip('never forget');
 		// 设置托盘菜单

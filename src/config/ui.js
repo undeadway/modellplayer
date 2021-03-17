@@ -3,7 +3,8 @@ module.exports = exports = {
 		ico: {
 			'64': '/res/ico/64_64.ico',
 			'128': '/res/ico/128_128.ico',
-			'256': '/res/ico/256_256.ico'
+			'256': '/res/ico/256_256.ico',
+			'512': '/res/ico/512_512.ico'
 		}
 	},
 	ui: {
