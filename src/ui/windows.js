@@ -65,7 +65,7 @@ exports.init = () => {
 			},
 			minimizable: false,
 			maximizable: false,
-			icon: `./../..${UiConfig.base.ico[16]}`
+			icon: `./../..${UiConfig.base.ico[512]}`
 		});
 		
 		perferencesWindow.setMenu(null);
@@ -93,7 +93,7 @@ exports.init = () => {
 			},
 			minimizable: false,
 			maximizable: false,
-			icon: `./../..${UiConfig.base.ico[16]}`
+			icon: `./../..${UiConfig.base.ico[512]}`
 		});
 		
 		aboutWindow.setMenu(null);
@@ -103,14 +103,13 @@ exports.init = () => {
 			aboutWindow.webContents.openDevTools();
 		}
 
-		aboutWindow.on('close', function () {
-			aboutWindow.hide();
+		aboutWindow.on('closed', function () {
+			aboutWindow = null;
 		});
-		aboutWindow.hide();
 	}
 
 	function createTray() {
-		const iconPath = path.join(__dirname,`./../..${UiConfig.base.ico[64]}`);
+		const iconPath = path.join(__dirname, `./../..${UiConfig.base.ico[512]}`);
 		tray = new Tray(iconPath);
 		tray.setToolTip('never forget');
 		// 设置托盘菜单
