@@ -15,9 +15,11 @@ module.exports = exports = (player) => {
 
 	function play(playCb, intervalCb) {
 		if (!playList) return;
-		if (!player.src) return;
 
 		player.src = playList[index];
+
+		if (!player.src) return;
+
 		player.volume = volume;
 		player.currentTime = stopAt;
 		player.play();
