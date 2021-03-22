@@ -10,14 +10,19 @@ require("./../ui/language").init($, "main");
 const Logic = {
 	init: () => {
 
-		// let canChange = false;
-		let playing = false;
+		let isPlay = false;
+		let canChgVol = false;
+		let canChgPgs = false;
 
+		const doc = $(document);
 		const playTitle = $("#play-title");
 		// const pgsBox = $("#pgs-box");
 		// const pgsBak = $("#pgs-bak");
 		const pgsBar = $("#pgs-bar");
 		// const pgsBtn = $("#pgs-btn");
+		const volBox = $("#vol-box");
+		const volBtn = $("#vol-btn");
+		const chgVolBtn = $("#chg-volume-btn");
 		const stopBtn = $("#stop-btn");
 		const backBtn = $("#back-btn");
 		const playBtn = $("#play-btn");
@@ -34,6 +39,8 @@ const Logic = {
 		const audio = document.getElementById("audio");
 		const player = Player(audio);
 
+		volBox.hide();
+
 		let playingTabIndex = null, titles = [];
 
 		function intervalCallback(cutrentTime, duration, index) {
@@ -45,7 +52,7 @@ const Logic = {
 		}
 
 		function playCallback(index) {
-			playing = true;
+			isPlay = true;
 
 			playBtn.attr("class", "font-icons font-icons-btn font-icons-pause now-status");
 			playingTabIndex = $(`#playing-tab-${index}`);
@@ -67,7 +74,7 @@ const Logic = {
 			stop: () => {
 				if (player.isEmpty()) return;
 				playingTabIndex.text("");
-				playing = false;
+				isPlay = false;
 				playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
 				player.stop();
 			},
@@ -77,7 +84,7 @@ const Logic = {
 				playBtn.attr(
 					"class", "font-icons font-icons-btn font-icons-play now-status"
 				);
-				playing = false;
+				isPlay = false;
 				player.pause();
 			},
 			back: () => {
@@ -111,6 +118,43 @@ const Logic = {
 			playListDiv.append(ul);
 		}
 
+		chgVolBtn.on("click", () => {
+			volBox.show();
+		});
+
+		volBox.on("mousedown", (event) => {
+			console.log(event.clientY);
+			canChgVol = true;
+		});
+		volBtn.on("mousedown", (event) => {
+			console.log(event.clientY);
+			canChgVol = true;
+		});
+		volBox.on("mouseup", () => {
+			canChgVol = false;
+			console.log("mouseup");
+		});
+		// volBox.on("mouseout", () => {
+		// 	canChgVol = false;
+		// 	console.log("mouseout");
+		// });
+		doc.on("mouseover", () => {
+			canChgVol = false;
+			console.log("mouseout");
+		});
+		volBox.on("mousemove", (event) => {
+			if (canChgVol) {
+				let top = (event.clientY - 89) / 75 * 100;
+				if (top > 93) {
+					top = 93;
+				}
+				if (top < 0) {
+					top = 0;
+				}
+				volBtn.css("top", `${top}%`);
+			}
+		});
+
 		stopBtn.on("click", actions.stop);
 		backBtn.on("click", actions.back);
 		nextBtn.on("click", actions.next);
@@ -128,7 +172,7 @@ const Logic = {
 			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
 			pgsBar.css({ width: "0%" });
 			player.autoNext(playCallback, intervalCallback);
-			playing = false;
+			isPlay = false;
 		});
 
 		playSwitchList.hide();

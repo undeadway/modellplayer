@@ -157,6 +157,38 @@
 			width: calc(100% - 48px);
 			border-left: 1px solid #FAFAFA;
 		}
+
+		.vol-li-box {
+			position:relative;
+		}
+
+		.vol-box {
+			z-index: 1;
+			position: absolute;
+			left: 5px;
+			height: 70px;
+			width: 3px;
+			border-left: 6px solid #FFFFFF;
+			border-right: 6px solid #FFFFFF;
+			border-top: 2px solid #FFFFFF;
+			border-bottom: 2px solid #FFFFFF;
+			background: #0066CC;
+		}
+
+		/* .vol-bar {
+			width: 3px;
+			background: #0066CC;
+			margin-left: 4px;
+		} */
+
+		.vol-btn {
+			z-index: 1000;
+			width: 9px;
+			height: 5px;
+			left: -3px;
+			position: absolute;
+			background: #d40000;
+		}
 	</style>
 </head>
 <body>
@@ -180,8 +212,13 @@
 				<li class="font-icons font-icons-btn font-icons-backward" id="back-btn"></li><!-- 上一曲 -->
 				<li class="font-icons font-icons-btn font-icons-play" id="play-btn"></li><!-- 播放 / 暂停 -->
 				<li class="font-icons font-icons-btn font-icons-forward" id="next-btn"></li><!-- 下一曲 -->
-				<li><!-- 调节音量 -->
+				<li class="vol-li-box"><!-- 调节音量 -->
 					<div class="font-icons font-icons-btn font-icons-volume-up" id="chg-volume-btn"></div>
+					<div id="vol-box" class="vol-box">
+						<div id="vol-btn" class="vol-btn" style="top:0%"></div>
+						<!-- 按钮 -->
+						<!-- <div class="vol-bar"></div> --><!-- 背景 -->
+					</div>
 				</li>
 				<li class="play-type-box"><!-- 设置播放顺序 -->
 					<div class="font-icons font-icons-btn font-icons-retweet" id="chg-play-switch-btn"></div>
@@ -195,15 +232,12 @@
 			</ul>
 			<div>
 				<ul class="play-list play-title">
-					<li></li><li id="play-file-names"></li></li>
+					<li></li><li id="play-file-names"></li>
 				</ul>
 				<div class="rows play-list" id="play-list">
 				</div>
 			</div>
 		</div>
-	</div>
-	<div style="display:none;">
-	<input type="file" id="file" />
 	</div>
 </body>
 <script type="text/javascript">

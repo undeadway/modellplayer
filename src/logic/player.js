@@ -10,17 +10,14 @@ module.exports = exports = (player) => {
 	let counts = 0;
 	let listSize = 0;
 	let interval = 0;
-	let volume = 0.5;
+	let volume = 50;
 	let stopAt = 0;
 
 	function play(playCb, intervalCb) {
 		if (!playList) return;
 
 		player.src = playList[index];
-
-		if (!player.src) return;
-
-		player.volume = volume;
+		player.volume = volume / 100;
 		player.currentTime = stopAt;
 		player.play();
 		playCb(index);
@@ -75,8 +72,12 @@ module.exports = exports = (player) => {
 			}
 			play(playCb, intervalCb);
 		},
-		chgVolume: (_v) => {
-			player.volume = volume = _v;
+		setVolume: (_v) => {
+			volume = _v;
+			player.volume = volume / 100;
+		},
+		getVolume: () => {
+			return volume;
 		},
 		next: (playCb, intervalCb) => {
 			if (++index > listSize) {
