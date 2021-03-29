@@ -7,7 +7,8 @@
     "jquery-ui": "^1.12.1"
   },
   "devDependencies": {
-    "electron": "6.0.1"
+    "electron": "6.0.1",
+    "electron-packager": "^15.2.0"
   },
   "author": "hzwaygc@gmail.com",
   "keywords": [
