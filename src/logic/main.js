@@ -118,42 +118,42 @@ const Logic = {
 			playListDiv.append(ul);
 		}
 
-		chgVolBtn.on("click", () => {
-			volBox.show();
-		});
+		// chgVolBtn.on("click", () => {
+		// 	volBox.show();
+		// });
 
-		volBox.on("mousedown", (event) => {
-			console.log(event.clientY);
-			canChgVol = true;
-		});
-		volBtn.on("mousedown", (event) => {
-			console.log(event.clientY);
-			canChgVol = true;
-		});
-		volBox.on("mouseup", () => {
-			canChgVol = false;
-			console.log("mouseup");
-		});
+		// volBox.on("mousedown", (event) => {
+		// 	console.log(event.clientY);
+		// 	canChgVol = true;
+		// });
+		// volBtn.on("mousedown", (event) => {
+		// 	console.log(event.clientY);
+		// 	canChgVol = true;
+		// });
+		// volBox.on("mouseup", () => {
+		// 	canChgVol = false;
+		// 	console.log("mouseup");
+		// });
 		// volBox.on("mouseout", () => {
 		// 	canChgVol = false;
 		// 	console.log("mouseout");
 		// });
-		doc.on("mouseover", () => {
-			canChgVol = false;
-			console.log("mouseout");
-		});
-		volBox.on("mousemove", (event) => {
-			if (canChgVol) {
-				let top = (event.clientY - 89) / 75 * 100;
-				if (top > 93) {
-					top = 93;
-				}
-				if (top < 0) {
-					top = 0;
-				}
-				volBtn.css("top", `${top}%`);
-			}
-		});
+		// doc.on("mouseover", () => {
+		// 	canChgVol = false;
+		// 	console.log("mouseout");
+		// });
+		// volBox.on("mousemove", (event) => {
+		// 	if (canChgVol) {
+		// 		let top = (event.clientY - 89) / 75 * 100;
+		// 		if (top > 93) {
+		// 			top = 93;
+		// 		}
+		// 		if (top < 0) {
+		// 			top = 0;
+		// 		}
+		// 		volBtn.css("top", `${top}%`);
+		// 	}
+		// });
 
 		stopBtn.on("click", actions.stop);
 		backBtn.on("click", actions.back);
