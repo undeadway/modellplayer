@@ -1,5 +1,5 @@
 const { app, BrowserWindow, Menu, Tray, ipcMain } = require('electron');
-const path = require("path");
+const { isWindows } = require("./../util/utils");
 
 exports.init = () => {
 	
@@ -26,7 +26,7 @@ exports.init = () => {
 		});
 
 		// mainWindow.setMenu(null);
-		mainWindow.loadURL(__dirname + '/../../res/html/main.html');
+		mainWindow.loadFile(__dirname + '/../../res/html/main.html');
 
 		// 打开开发者工具
 		if (utils.isDevMode()) {
@@ -69,7 +69,7 @@ exports.init = () => {
 		});
 		
 		perferencesWindow.setMenu(null);
-		perferencesWindow.loadURL(__dirname + '/../../res/html/perferences.html');
+		perferencesWindow.loadFile(__dirname + '/../../res/html/perferences.html');
 
 		if (utils.isDevMode()) {
 			perferencesWindow.webContents.openDevTools();
@@ -97,7 +97,7 @@ exports.init = () => {
 		});
 		
 		aboutWindow.setMenu(null);
-		aboutWindow.loadURL(__dirname + '/../../res/html/about.html');
+		aboutWindow.loadFile(__dirname + '/../../res/html/about.html');
 
 		if (utils.isDevMode()) {
 			aboutWindow.webContents.openDevTools();
@@ -109,6 +109,7 @@ exports.init = () => {
 	}
 
 	function createTray() {
+		if (!isWindows()) return; // 如果不是 windows 操作系统，则不创建系统托盘
 		const iconPath = path.join(__dirname, `./../..${UiConfig.base.ico[512]}`);
 		tray = new Tray(iconPath);
 		tray.setToolTip('never forget');
@@ -138,19 +139,25 @@ exports.init = () => {
 		}
 	}
 	windows.closeMainWindow = (event) => {
+
+		if (tray === null) {
+			exit();
+		}
+
 		if (
 			event && perferencesConfig.setting["show-tray"].value === "checked"
 			&& perferencesConfig.setting["close-to-tray"].value === "checked"
 		) {
 			event.preventDefault();
-			mainWindow.hide();
+			if (mainWindow !== null) {
+				mainWindow.hide();
+			}
+			
 		} else {
 			exit();
 		}
 	};
-	windows.createAboutWindow = () => {
-		createAboutWindow();
-	}
+	windows.createAboutWindow = createAboutWindow;
 
 	function exit () {
 
@@ -166,7 +173,9 @@ exports.init = () => {
 	windows.exit = exit;
 
 	ipcMain.on('closePerferencesWindow', () => {
-		perferencesWindow.close();
-		perferencesWindow = null;
+		if (perferencesWindow !== null) {
+			perferencesWindow.close();
+			perferencesWindow = null;
+		}
 	});
 }

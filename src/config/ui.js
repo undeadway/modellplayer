@@ -1,3 +1,5 @@
+const { isWindows } = require("./../util/utils");
+
 module.exports = exports = {
 	base: {
 		ico: {
@@ -8,8 +10,8 @@ module.exports = exports = {
 	},
 	ui: {
 		main: {
-			width: 456,
-			height: 605
+			width: isWindows() ? 456 : 450,
+			height: isWindows() ? 605 : 580
 		},
 		perferences: {
 			width: 600,

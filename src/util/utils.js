@@ -18,7 +18,7 @@ exports.getSeparator = () => {
 	return separator;
 }
 
-exports.isWIndows = () => {
+exports.isWindows = () => {
 	return isWindows;
 }
 
