@@ -1,5 +1,6 @@
 const { app, BrowserWindow, Menu, Tray, ipcMain } = require('electron');
 const { isWindows } = require("./../util/utils");
+const path = require("path");
 
 exports.init = () => {
 	

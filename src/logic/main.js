@@ -2,6 +2,7 @@
  * 主逻辑文件，对应播放器界面上的操作
  */
 const $ = require("jquery");
+global.jQuery = $;
 const ui= require("jquery-ui");
 const { ipcRenderer }  = require("electron");
 const Player = require("./../logic/player");
@@ -65,7 +66,7 @@ const Logic = {
 		const actions = {
 			play: (_index) => {
 				if (player.isEmpty()) return;
-				if (playing) return;
+				if (isPlay) return;
 				playingTabIndex.text("");
 				playBtn.attr(
 					"class", "font-icons font-icons-btn font-icons-pause now-status"
@@ -160,7 +161,7 @@ const Logic = {
 		backBtn.on("click", actions.back);
 		nextBtn.on("click", actions.next);
 		playBtn.on("click", () => {
-			if (playing) {
+			if (isPlay) {
 				actions.pause();
 			} else {
 				actions.play();
