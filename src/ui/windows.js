@@ -48,6 +48,7 @@ exports.init = () => {
 		mainWindow.on("close", windows.closeMainWindow);
 
 		mainWindow.on("minimize", event => {
+			if (tray === null) return;
 			if (perferencesConfig.setting["min-to-tray"].value === "checked") {
 				event.preventDefault();
 				mainWindow.hide();
