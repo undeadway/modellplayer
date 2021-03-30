@@ -1,4 +1,4 @@
-const { isWindows } = require("./../util/utils");
+const IS_WINDOWS = require("./../util/utils").isWindows();
 
 module.exports = exports = {
 	base: {
@@ -10,16 +10,16 @@ module.exports = exports = {
 	},
 	ui: {
 		main: {
-			width: isWindows() ? 456 : 450,
-			height: isWindows() ? 605 : 580
+			width:IS_WINDOWS ? 456 : 450,
+			height: IS_WINDOWS ? 605 : 580
 		},
 		perferences: {
 			width: 600,
 			height: 400
 		},
 		about: {
-			width: 350,
-			height: 200
+			width: IS_WINDOWS ? 350 :  360,
+			height: IS_WINDOWS ? 200 : 210
 		}
 	}
 }
