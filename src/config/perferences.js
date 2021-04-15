@@ -1,5 +1,5 @@
-const RESOURCES = "./resources";
-const PERFERENCES_NAME = `${RESOURCES}/.perferences`;
+const RESOURCES_STR = "./resources";
+const PERFERENCES_NAME = `${RESOURCES_STR}/.perferences`;
 const fs = require("fs");
 const rootPath = require("./../util/utils").getRootPath();
 
@@ -19,8 +19,8 @@ exports = module.exports = {
 		return  JSON.parse(file);
 	},
 	write: (obj) => {
-		if (!fs.existsSync(RESOURCES)) {
-			fs.mkdirSync(RESOURCES);
+		if (!fs.existsSync(RESOURCES_STR)) {
+			fs.mkdirSync(RESOURCES_STR);
 		}
 		let data = JSON.stringify(obj);
 		let base64 = Buffer.from(data).toString("base64");
