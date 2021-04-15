@@ -10,6 +10,7 @@ exports.init = () => {
 
 	let mainWindow = null, perferencesWindow = null, aboutWindow = null, tray = null;
 	const windows = {};
+	Menu.setApplicationMenu(null)
 
 	function createMainwindow () {
 
@@ -21,12 +22,12 @@ exports.init = () => {
 				nativeWindowOpen: true,
 				nodeIntegration: true
 			},
+			resizable: false,
 			minimizable: true,
 			maximizable: false,
 			icon: `./../..${UiConfig.base.ico[512]}`
 		});
 
-		// mainWindow.setMenu(null);
 		mainWindow.loadFile(__dirname + '/../../res/html/main.html');
 
 		// 打开开发者工具
@@ -35,7 +36,8 @@ exports.init = () => {
 		}
 
 		const menu = Menu.buildFromTemplate(appmenu.main(windows));
-		Menu.setApplicationMenu(menu);
+		mainWindow.setMenu(menu);
+		// Menu.setApplicationMenu(menu);
 
 		// 当 window 被关闭，这个事件会被发出
 		mainWindow.on('closed',  () => {
@@ -65,6 +67,7 @@ exports.init = () => {
 				nativeWindowOpen: true,
 				nodeIntegration: true
 			},
+			resizable: false,
 			minimizable: false,
 			maximizable: false,
 			icon: `./../..${UiConfig.base.ico[512]}`
@@ -93,6 +96,7 @@ exports.init = () => {
 				nativeWindowOpen: true,
 				nodeIntegration: true
 			},
+			resizable: false,
 			minimizable: false,
 			maximizable: false,
 			icon: `./../..${UiConfig.base.ico[512]}`
