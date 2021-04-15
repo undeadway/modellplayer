@@ -1,20 +1,8 @@
 /**
  * 项目所要用到的库的预载入
  */
-const fs = require("fs");
-
-let rootPath = "./";
-if (fs.existsSync("./resources/")) {
-	if (fs.existsSync("./resources/app/")) {
-		rootPath = "./resources/app/";
-	} else {
-		rootPath = "./resources/app.asar/";
-	}
-}
-
-global.rootPath = rootPath;
-
-const config = fs.readdirSync(`${rootPath}src/config`);
+const rootPath = require("./utils").getRootPath();
+const config = require("fs").readdirSync(`${rootPath}src/config`);
 
 config.map(file => {
 	let configs = file.replace(".js", "");

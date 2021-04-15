@@ -1,8 +1,18 @@
 const os = require("os");
+const fs = require("fs");
 const isWindows = os.type().toLocaleLowerCase().indexOf("windows") >= 0;
 const separator = isWindows ? "\\" :  "/";
 const process = require("process");
 let isDevMode = null;
+
+let rootPath = "./";
+if (fs.existsSync("./resources/")) {
+	if (fs.existsSync("./resources/app/")) {
+		rootPath = "./resources/app/";
+	} else {
+		rootPath = "./resources/app.asar/";
+	}
+}
 
 function _a(e) {
 	return 10 > e ? "0" + e : "" + e;
@@ -39,3 +49,7 @@ exports.isDevMode = () => {
 exports.getOS = () => {
 	return os;
 };
+
+exports.getRootPath = () => {
+	return rootPath;
+}

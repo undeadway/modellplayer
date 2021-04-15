@@ -1,12 +1,13 @@
 const RESOURCES = "./resources";
 const PERFERENCES_NAME = `${RESOURCES}/.perferences`;
 const fs = require("fs");
+const rootPath = require("./../util/utils").getRootPath();
 
 exports = module.exports = {
 	get: () => {
 		let fileName = PERFERENCES_NAME;
 		if (!fs.existsSync(PERFERENCES_NAME)) {
-			fileName = `${global.rootPath}res/config/perferences.json`
+			fileName = `${rootPath}res/config/perferences.json`
 		}
 
 		let file = fs.readFileSync(fileName, "utf-8");
