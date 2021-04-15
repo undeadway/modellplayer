@@ -3,6 +3,7 @@ const fs = require("fs");
 const isWindows = os.type().toLocaleLowerCase().indexOf("windows") >= 0;
 const separator = isWindows ? "\\" :  "/";
 const process = require("process");
+const { remote } = require('electron');
 let isDevMode = null;
 
 let rootPath = "./";
@@ -52,4 +53,16 @@ exports.getOS = () => {
 
 exports.getRootPath = () => {
 	return rootPath;
+}
+
+exports.getGlobalConfig = (... names) => {
+	let configs = [];
+	for (let name of names) {
+		let config = global[name];
+		if (!config) {
+			config = remote.getGlobal(name);
+		}
+		configs.push(config);
+	}
+	return configs;
 }

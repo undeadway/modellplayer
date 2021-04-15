@@ -1,5 +1,7 @@
-const LanguageConfig = global.LanguageConfig ? global.LanguageConfig : require('electron').remote.getGlobal("LanguageConfig");
-const PerferencesConfig = global.PerferencesConfig ? global.PerferencesConfig : require('electron').remote.getGlobal("PerferencesConfig");
+// const LanguageConfig = global.LanguageConfig ? global.LanguageConfig : require('electron').remote.getGlobal("LanguageConfig");
+// const PerferencesConfig = global.PerferencesConfig ? global.PerferencesConfig : require('electron').remote.getGlobal("PerferencesConfig");
+const utils = require("./../util/utils");
+const [PerferencesConfig, LanguageConfig] = utils.getGlobalConfig("PerferencesConfig", "LanguageConfig");
 const language = LanguageConfig.getConfig(PerferencesConfig.get().language.default);
 
 module.exports =  {
