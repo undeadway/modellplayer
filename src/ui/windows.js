@@ -111,17 +111,20 @@ exports.init = () => {
 	}
 
 	function createTray() {
-		if (!isWindows()) return; // 如果不是 windows 操作系统，则不创建系统托盘
-		const iconPath = path.join(__dirname, `./../..${UiConfig.base.ico[512]}`);
-		tray = new Tray(iconPath);
-		tray.setToolTip('never forget');
-		// 设置托盘菜单
-		const menu = Menu.buildFromTemplate(appmenu.tray(windows));
-		tray.setContextMenu(menu);
-
-		tray.on("click",()=>{
-			mainWindow.show();
-		});
+		if (isWindows()) {
+			// windows 下，则直接创建 tray
+			const iconPath = path.join(__dirname, `./../..${UiConfig.base.ico[512]}`);
+			tray = new Tray(iconPath);
+			// 设置托盘菜单
+			const menu = Menu.buildFromTemplate(appmenu.tray(windows));
+			tray.setContextMenu(menu);
+	
+			tray.on("click",()=>{
+				mainWindow.show();
+			});
+		} else {
+			// linux 下则暂时不生成通知栏图标
+		}
 	}
 
 	app.on('ready', function () {
