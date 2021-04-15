@@ -18,7 +18,7 @@ module.exports = exports = {
 			height: 400
 		},
 		about: {
-			width: IS_WINDOWS ? 350 :  360,
+			width: IS_WINDOWS ? 350 :  400,
 			height: IS_WINDOWS ? 200 : 210
 		}
 	}
