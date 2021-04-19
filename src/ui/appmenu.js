@@ -1,4 +1,3 @@
-// const { Menu,shell,ipcMain,BrowserWindow,app } =require('electron');
 const { shell } =require('electron');
 const dialog = require("./dialog");
 const actions = require("./../logic/actions");

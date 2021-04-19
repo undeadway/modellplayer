@@ -1,7 +1,7 @@
 const $ = require("jquery");
 const { remote, ipcRenderer } = require('electron');
 const fs = require("fs");
-const [PerferencesConfig] = require("./../util/utils").getGlobalConfig("PerferencesConfig");
+const [ PerferencesConfig ] = require("./../util/utils").getGlobalConfig("PerferencesConfig");
 require("./../ui/language").init($, "perferences");
 
 const Logic = {
