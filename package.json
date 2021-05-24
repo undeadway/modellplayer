@@ -8,7 +8,8 @@
   },
   "devDependencies": {
     "electron": "6.0.1",
-    "electron-packager": "^15.2.0"
+    "electron-packager": "^15.2.0",
+    "pkg": "^5.2.0"
   },
   "author": "hzwaygc@gmail.com",
   "keywords": [
