@@ -116,8 +116,8 @@ exports.init = () => {
 
 	function createTray() {
 		// 创建 tray
-		const iconPath = path.join(__dirname, `./../..${UiConfig.base.ico}`);
-		let nimage = nativeImage.createFromPath(iconPath); // linux 用 ico 图标 无法正常显示，所以用 png 代替
+		const iconPath = path.join(__dirname, `./../..${UiConfig.base.ico.png}`);
+		let nimage = nativeImage.createFromPath(iconPath);
 		tray = new Tray(nimage);
 		// 设置托盘菜单
 		const menu = Menu.buildFromTemplate(appmenu.tray(windows));
