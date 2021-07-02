@@ -2,12 +2,12 @@ const IS_WINDOWS = require("./../util/utils").isWindows();
 
 module.exports = exports = {
 	base: {
-		ico: '/res/images/logo.png'
-		// ico: {
-		// 	'16': '/res/ico/16_16.ico',
-		// 	'64': '/res/ico/64_64.ico',
-		// 	'512': '/res/ico/512_512.ico'
-		// }
+		ico: {
+			png: '/res/images/logo.png',
+			'16': '/res/ico/16_16.ico',
+			'64': '/res/ico/64_64.ico',
+			'512': '/res/ico/512_512.ico'
+		}
 	},
 	ui: {
 		main: {
