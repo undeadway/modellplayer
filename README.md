@@ -38,17 +38,13 @@
 
 ### 运行
 
-下载、解压之后，直接双击 `ModellPlayer.exe` 即可运行程序。
-
-![](./documents/how-open.png)
-
 下载链接：[度盘提取码：**fru0**](https://pan.baidu.com/s/1XWUq-68uPNNjJKBG9Zos5A)  
 
 ### 实例图
 
 ![](./documents/instance.png)
 
-### 跨平台
+#### 跨平台
 
 本软件支持 Windows 和 Linux 两种操作系统。  
 因为我没有 mac ，所以不支持 Mac 操作系统。
@@ -57,9 +53,13 @@
 
 * Deepin
 
-## 版权
+#### Windows
+下载、解压之后，直接双击 `ModellPlayer.exe` 即可运行程序。
 
-### License
+#### Linux
+下载 `ModellPlayer-x86_64.AppImage` ，双击直接运行即可。
+
+## License
 
 Apache-2.0
 
@@ -120,9 +120,7 @@ The tested Linux platform
 
 * Deepin(Debian base)
 
-## Copyright
-
-### License
+## License
 
 Apache-2.0
 
