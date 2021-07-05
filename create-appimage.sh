@@ -1,5 +1,9 @@
 #!/bin/bash
 
+rm -rf dist/ModellPlayer-*
+
+npm run pkg:linux
+
 cd dist
 mv ModellPlayer-linux-x64/ bin
 mkdir ModellPlayer-linux-x64
