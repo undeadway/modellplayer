@@ -6,12 +6,12 @@ const process = require("process");
 const { remote } = require('electron');
 let isDevMode = null;
 
-let rootPath = "./";
+let rootPath = __dirname.slice(0, __dirname.length - 8);
 if (fs.existsSync("./resources/")) {
 	if (fs.existsSync("./resources/app/")) {
-		rootPath = "./resources/app/";
+		rootPath += "resources/app/";
 	} else {
-		rootPath = "./resources/app.asar/";
+		rootPath += "resources/app.asar/";
 	}
 }
 

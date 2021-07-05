@@ -8,5 +8,5 @@ config.map(file => {
 	let configs = file.replace(".js", "");
 	let configName = configs.charAt(0).toUpperCase() + configs.slice(1) + "Config";
 
-	global[configName] = require(`./../../src/config/${file}`);
+	global[configName] = require(`${rootPath}src/config/${file}`);
 });
