@@ -115,7 +115,8 @@ exports.init = () => {
 
 	function createTray() {
 		// 创建 tray
-		const iconPath = path.join(__dirname, `./../..${UiConfig.base.ico.png}`);
+		const pathType = utils.isWindows() ? "64" : 'png'
+		const iconPath = path.join(__dirname, `./../..${UiConfig.base.ico[pathType]}`);
 		let nimage = nativeImage.createFromPath(iconPath);
 		tray = new Tray(nimage);
 		// 设置托盘菜单
