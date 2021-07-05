@@ -4,6 +4,7 @@ module.exports = exports = {
 	base: {
 		ico: {
 			png: '/res/images/logo.png',
+			svg: '/res/images/logo.svg',
 			'16': '/res/ico/16_16.ico',
 			'64': '/res/ico/64_64.ico',
 			'512': '/res/ico/512_512.ico'
