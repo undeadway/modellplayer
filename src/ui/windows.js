@@ -4,8 +4,10 @@ const path = require("path");
 exports.init = () => {
 	
 	const appmenu = require("./appmenu");
-	const utils = require("./../util/utils");
+	const { isDevMode, isWindows } = require("./../util/utils");
 	const perferencesConfig = global.PerferencesConfig.get();
+	const pathType = isWindows() ? "64" : 'png'
+	const ICON_PATH = `./../..${UiConfig.base.ico[pathType]}`;
 
 	let mainWindow = null, perferencesWindow = null, aboutWindow = null, tray = null;
 	const windows = {};
@@ -24,13 +26,13 @@ exports.init = () => {
 			resizable: false,
 			minimizable: true,
 			maximizable: false,
-			icon: `./../..${UiConfig.base.ico[512]}`
+			icon: ICON_PATH
 		});
 
 		mainWindow.loadFile(__dirname + '/../../res/html/main.html');
 
 		// 打开开发者工具
-		if (utils.isDevMode()) {
+		if (isDevMode()) {
 			mainWindow.webContents.openDevTools();
 		}
 
@@ -69,13 +71,13 @@ exports.init = () => {
 			resizable: false,
 			minimizable: false,
 			maximizable: false,
-			icon: `./../..${UiConfig.base.ico[512]}`
+			icon: ICON_PATH
 		});
 		
 		perferencesWindow.setMenu(null);
 		perferencesWindow.loadFile(__dirname + '/../../res/html/perferences.html');
 
-		if (utils.isDevMode()) {
+		if (isDevMode()) {
 			perferencesWindow.webContents.openDevTools();
 		}
 		
@@ -98,13 +100,13 @@ exports.init = () => {
 			resizable: false,
 			minimizable: false,
 			maximizable: false,
-			icon: `./../..${UiConfig.base.ico[512]}`
+			icon: ICON_PATH
 		});
 		
 		aboutWindow.setMenu(null);
 		aboutWindow.loadFile(__dirname + '/../../res/html/about.html');
 
-		if (utils.isDevMode()) {
+		if (isDevMode()) {
 			aboutWindow.webContents.openDevTools();
 		}
 
@@ -115,8 +117,7 @@ exports.init = () => {
 
 	function createTray() {
 		// 创建 tray
-		const pathType = utils.isWindows() ? "64" : 'png'
-		const iconPath = path.join(__dirname, `./../..${UiConfig.base.ico[pathType]}`);
+		const iconPath = path.join(__dirname, ICON_PATH);
 		let nimage = nativeImage.createFromPath(iconPath);
 		tray = new Tray(nimage);
 		// 设置托盘菜单
