@@ -4,4 +4,3 @@ test
 node_modules
 yarn.lock
 package-lock.json
-resources
