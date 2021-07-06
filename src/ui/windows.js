@@ -4,7 +4,7 @@ const path = require("path");
 exports.init = () => {
 	
 	const appmenu = require("./appmenu");
-	const { isDevMode, isWindows } = require("./../util/utils");
+	const { isDebug, isWindows } = require("./../util/utils");
 	const perferencesConfig = global.PerferencesConfig.get();
 	const pathType = isWindows() ? "64" : 'png'
 	const ICON_PATH = `./../..${UiConfig.base.ico[pathType]}`;
@@ -32,7 +32,7 @@ exports.init = () => {
 		mainWindow.loadFile(__dirname + '/../../res/html/main.html');
 
 		// 打开开发者工具
-		if (isDevMode()) {
+		if (isDebug()) {
 			mainWindow.webContents.openDevTools();
 		}
 
@@ -77,7 +77,7 @@ exports.init = () => {
 		perferencesWindow.setMenu(null);
 		perferencesWindow.loadFile(__dirname + '/../../res/html/perferences.html');
 
-		if (isDevMode()) {
+		if (isDebug()) {
 			perferencesWindow.webContents.openDevTools();
 		}
 		
@@ -106,7 +106,7 @@ exports.init = () => {
 		aboutWindow.setMenu(null);
 		aboutWindow.loadFile(__dirname + '/../../res/html/about.html');
 
-		if (isDevMode()) {
+		if (isDebug()) {
 			aboutWindow.webContents.openDevTools();
 		}
 
