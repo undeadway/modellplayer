@@ -7,10 +7,10 @@
 		"openFile": "ファイルを開く",
 		"openDirectory": "フォルダを開く",
 		"play": "プレイ",
-		"pause": "",
+		"pause": "一時停止",
 		"stop": "ストップ",
-		"back": "上一首",
-		"next": "下一首",
+		"back": "前へ",
+		"next": "次へ",
 		"perferences": "設定",
 		"playList": "プレイリスト",
 		"playTitle": "タイトル",
@@ -20,7 +20,7 @@
 		"delFromPlaylist": "プレイリストから削除",
 		"help": "ヘルプ",
 		"about": "关于",
-		"exit": "退出"
+		"exit": "終了"
 	},
 	"main": {
 		"title": "ModellPlayer",
@@ -34,6 +34,11 @@
 		"title": "設定",
 		"layout": {
 
+		}
+	},
+	"about": {
+		"title": "关于",
+		"layout": {
 		}
 	},
 	"action": {
