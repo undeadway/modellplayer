@@ -1,5 +1,4 @@
 const { app, BrowserWindow, Menu, Tray, ipcMain, nativeImage } = require('electron');
-const path = require("path");
 
 exports.init = () => {
 
@@ -19,10 +18,11 @@ exports.init = () => {
 			}
 		});
 
+		const path = require("path");
 		const appmenu = require("./appmenu");
-		const { isDebug, isWindows } = require("./../util/utils");
+		const { isDebug, os } = require("./../util/utils");
 		const perferencesConfig = global.PerferencesConfig.get();
-		const pathType = isWindows() ? "64" : 'png'
+		const pathType = os.isWindows() ? "64" : 'png'
 		const ICON_PATH = `./../..${UiConfig.base.ico[pathType]}`;
 
 		perferencesWindow = null, aboutWindow = null, tray = null;

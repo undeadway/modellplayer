@@ -1,9 +1,9 @@
 const $ = require("jquery");
-const utils = require("./../util/utils");
+const { getRootPath, os } = require("./../util/utils");
 const { versions } = require("process");
-const os = utils.getOS();
+const os = os.get();
 require("./../ui/language").init($, "about");
-const app = JSON.parse(require("fs").readFileSync(utils.getRootPath() + "package.json"));
+const app = JSON.parse(require("fs").readFileSync(getRootPath() + "package.json"));
 
 const Logic = {
 	init: () => {

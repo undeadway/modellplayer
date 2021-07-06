@@ -65,9 +65,22 @@ exports.isDebug = () => {
 	return isDebug;
 }
 
-exports.getOS = () => {
-	return os;
-};
+// exports.os = () => {
+// 	return os;
+// };
+
+Object.defineProperty(exports, "os", {
+	get: () => {
+		return {
+			get: () => {
+				return os;
+			},
+			isWindows: () => {
+				return isWindows;
+			}
+		}
+	}
+})
 
 exports.getRootPath = () => {
 	return rootPath;
