@@ -1,5 +1,5 @@
 const fs = require("fs");
-const PERFERENCES_NAME = `./resources/perferences.json`;
+const PERFERENCES_NAME = `./res/config/perferences.json`;
 const CONFIG_DIR_PATH = process.env.HOME + "/.modellplayer/"
 const CONFIG_FILE_PATH = `${CONFIG_DIR_PATH}perferences`
 const rootPath = require("./../util/utils").getRootPath();
