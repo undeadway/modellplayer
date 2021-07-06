@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf dist/ModellPlayer-*
+rm -rf dist/
 
 npm run pkg:linux
 
