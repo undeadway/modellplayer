@@ -85,9 +85,8 @@ const Logic = {
 		})
 
 		defaultBtn.on("click", () => {
-			if (fs.existsSync("./resources/.perferences")) {
-				fs.rmSync("./resources/.perferences");
-			}
+
+			PerferencesConfig.clear();
 			
 			close();
 		});

@@ -28,11 +28,14 @@ let rootPath = (() => {
 	let result = tmp.join("/") + "/";
 	return result;
 })();
-if (fs.existsSync("./resources/")) {
-	if (fs.existsSync("./resources/app/")) {
-		rootPath += "resources/app/";
-	} else {
-		rootPath += "resources/app.asar/";
+
+if (!isDevMode) {
+	if (fs.existsSync("./resources/")) {
+		if (fs.existsSync("./resources/app/")) {
+			rootPath += "resources/app/";
+		} else {
+			rootPath += "resources/app.asar/";
+		}
 	}
 }
 

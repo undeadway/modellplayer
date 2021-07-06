@@ -10,3 +10,5 @@ config.map(file => {
 
 	global[configName] = require(`${rootPath}src/config/${file}`);
 });
+
+PerferencesConfig.init();
