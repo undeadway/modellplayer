@@ -164,19 +164,19 @@ exports.init = () => {
 
 			if (tray === null) {
 				exit();
-			}
-
-			if (
-				event && perferencesConfig.setting["show-tray"].value === "checked"
-				&& perferencesConfig.setting["close-to-tray"].value === "checked"
-			) {
-				event.preventDefault();
-				if (mainWindow !== null) {
-					mainWindow.hide();
-				}
-				
 			} else {
-				exit();
+				if (
+					event && perferencesConfig.setting["show-tray"].value === "checked"
+					&& perferencesConfig.setting["close-to-tray"].value === "checked"
+				) {
+					event.preventDefault();
+					if (mainWindow !== null) {
+						mainWindow.hide();
+					}
+					
+				} else {
+					exit();
+				}
 			}
 		};
 		windows.createAboutWindow = createAboutWindow;
