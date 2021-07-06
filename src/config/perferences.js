@@ -1,14 +1,22 @@
 const fs = require("fs");
-const PERFERENCES_NAME = `./res/config/perferences.json`;
+const rootPath = require("./../util/utils").getRootPath();
+const PERFERENCES_NAME = `${rootPath}res/config/perferences.json`;
 const CONFIG_DIR_PATH = process.env.HOME + "/.modellplayer/"
 const CONFIG_FILE_PATH = `${CONFIG_DIR_PATH}perferences`
-const rootPath = require("./../util/utils").getRootPath();
 
-const config = {
+let config = null;
+
+const configObj = {
 	init: () => {
-		let file = fs.readFileSync(PERFERENCES_NAME, "utf-8");
+		let file = null;
+		if (fs.existsSync(CONFIG_FILE_PATH)) {
+			configObj.get();
+			return;
+		} else {
+			file = fs.readFileSync(PERFERENCES_NAME, "utf-8");
+		}
 
-		config.write(JSON.parse(file));
+		configObj.write(JSON.parse(file));
 	},
 	clear: () => {
 		if (fs.existsSync(CONFIG_FILE_PATH)) {
@@ -17,21 +25,24 @@ const config = {
 	},
 	get: () => {
 
-		if (!fs.existsSync(CONFIG_FILE_PATH)) {
-			config.init();
+		if (config === null) {
+			if (!fs.existsSync(CONFIG_FILE_PATH)) {
+				configObj.init();
+			}
+	
+			let file = fs.readFileSync(CONFIG_FILE_PATH, "utf-8");
+			let tmp = Buffer.from(file, "base64").toString("utf-8");
+			config = JSON.parse(tmp);
 		}
 
-		let file = fs.readFileSync(CONFIG_FILE_PATH, "utf-8");
-		file = Buffer.from(file, "base64").toString("utf-8");
-		return JSON.parse(file);
+		return config;
+
 	},
 	write: (obj) => {
 
 		if (!fs.existsSync(CONFIG_DIR_PATH)) {
 			fs.mkdirSync(CONFIG_DIR_PATH);
 		}
-
-		if (fs.existsSync(CONFIG_FILE_PATH)) return;
 
 		let data = JSON.stringify(obj);
 		let base64 = Buffer.from(data).toString("base64")
@@ -41,4 +52,4 @@ const config = {
 };
 
 
-exports = module.exports = config;
+exports = module.exports = configObj;
