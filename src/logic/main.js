@@ -42,6 +42,7 @@ const Logic = {
 		const player = Player(audio);
 
 		volBox.hide();
+		playSwitchList.hide();
 
 		let playingTabIndex = null, titles = [];
 
@@ -177,7 +178,6 @@ const Logic = {
 			isPlay = false;
 		});
 
-		playSwitchList.hide();
 		chgPlaySwitchBtn.on("click", () => {
 			playSwitchList.show();
 		});
