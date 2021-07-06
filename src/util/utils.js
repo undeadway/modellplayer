@@ -2,11 +2,32 @@ const os = require("os");
 const fs = require("fs");
 const isWindows = os.type().toLocaleLowerCase().indexOf("windows") >= 0;
 const separator = isWindows ? "\\" :  "/";
-const process = require("process");
 const { remote } = require('electron');
-let isDevMode = null;
+let isDevMode = (() => {
+	_isDevMode = false;
+	const process = require("process");
+	for (let i = 0, len = process.argv.length; i < len; i++) {
+		if (process.argv[i] === "--devmode") {
+			_isDevMode = true;
+			break;
+		}
+	}
+	return _isDevMode;
+})();
 
-let rootPath = __dirname.slice(0, __dirname.length - 8);
+let rootPath = (() => {
+	let tmp = __dirname.split("/");
+	tmp.pop();
+	tmp.pop();
+
+	if (!isDevMode && tmp[1] === 'home') {
+		tmp.pop();
+		tmp.pop();
+	}
+
+	let result = tmp.join("/") + "/";
+	return result;
+})();
 if (fs.existsSync("./resources/")) {
 	if (fs.existsSync("./resources/app/")) {
 		rootPath += "resources/app/";
@@ -34,16 +55,6 @@ exports.isWindows = () => {
 }
 
 exports.isDevMode = () => {
-	if (isDevMode !== null) {
-		return isDevMode;
-	}
-	for (let i = 0, len = process.argv.length; i < len; i++) {
-		if (process.argv[i] === "--devmode") {
-			isDevMode = true;
-			return isDevMode;
-		}
-	}
-	isDevMode = false;
 	return isDevMode;
 }
 
