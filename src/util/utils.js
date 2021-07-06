@@ -3,16 +3,17 @@ const fs = require("fs");
 const isWindows = os.type().toLocaleLowerCase().indexOf("windows") >= 0;
 const separator = isWindows ? "\\" :  "/";
 const { remote } = require('electron');
-let isDevMode = (() => {
-	_isDevMode = false;
+let isDevMode = false, isDebug = false;
+ (() => {
 	const process = require("process");
 	for (let i = 0, len = process.argv.length; i < len; i++) {
 		if (process.argv[i] === "--devmode") {
-			_isDevMode = true;
-			break;
+			isDevMode = true;
+		}
+		if (process.argv[i] === "-debug") {
+			isDebug = true;
 		}
 	}
-	return _isDevMode;
 })();
 
 let rootPath = (() => {
@@ -59,6 +60,9 @@ exports.isWindows = () => {
 
 exports.isDevMode = () => {
 	return isDevMode;
+}
+exports.isDebug = () => {
+	return isDebug;
 }
 
 exports.getOS = () => {
