@@ -6,17 +6,32 @@
 
 锚点播放器（ModellPlayer）
 
-## 版本号
+## 简介
+
+### 版本号
 
 0.0.1
 
-## 简介
-
+### 概要
 无聊之下，写了一个音乐播放器。  
 用 `Electron` 编写的媒体播放器，可以播放本地的音乐。  
 不能播放远程（网络）文件。  
 体积有点大，不过既然是用 `Electron` 写的，那体积问题就可以完全甩锅给 `Electron` 了。  
 嗯。
+
+
+### 实例图
+
+![](./documents/instance.png)
+
+### 跨平台
+
+本软件支持 Windows 和 Linux 两种操作系统。  
+因为我没有 mac ，所以不支持 Mac 操作系统。
+
+测试过的 Linux 平台。
+
+* Deepin
 ​
 ### 实现功能
 
@@ -38,23 +53,10 @@
 
 ### 运行
 
-下载链接：[度盘提取码：**fru0**](https://pan.baidu.com/s/1XWUq-68uPNNjJKBG9Zos5A)  
-
-### 实例图
-
-![](./documents/instance.png)
-
-#### 跨平台
-
-本软件支持 Windows 和 Linux 两种操作系统。  
-因为我没有 mac ，所以不支持 Mac 操作系统。
-
-测试过的 Linux 平台。
-
-* Deepin
+下载链接：[度盘提取码：](https://pan.baidu.com/s/1wVvIaWKk2IQDdaUNpZhVgQ)**xvav**
 
 #### Windows
-下载、解压之后，直接双击 `ModellPlayer.exe` 即可运行程序。
+下载 `ModellPlayer-win32-x64.zip`，解压进入后双击 `ModellPlayer.exe` 即可运行程序。
 
 #### Linux
 下载 `ModellPlayer-x86_64.AppImage` ，双击直接运行即可。
@@ -86,12 +88,28 @@ Apache-2.0
 
 ModellPlayer
 
-## Version
+## About
+
+### Version
 0.0.1
 
-## About
+### About this software
+
 This software is a  music player build by electron.
 It could play local music file, but can't play remote file.
+
+### Running Instance
+
+![](./documents/instance.png)
+
+### Cross Platform
+
+This software are support windows and linux.
+And not support mac os because of I did not hot a mac machine.
+
+The tested Linux platform
+
+* Deepin(Debian base)
 
 ### Products
 
@@ -102,7 +120,7 @@ It could play local music file, but can't play remote file.
 * Can set how to minisize.
 * Can double click the name in play list to choose a new file to play.
 
-### Todos
+### TODOs
 
 * Hot keys
 * Volume setting
@@ -111,14 +129,15 @@ It could play local music file, but can't play remote file.
 * more UI events
 * ant the others
 
-### Cross Platform
+### How to use
 
-This software are support windows and linux.
-And not support mac os because of I did not hot a mac machine.
+Download link:
+[度盘提取码：](https://pan.baidu.com/s/1wVvIaWKk2IQDdaUNpZhVgQ)**xvav**
 
-The tested Linux platform
+#### Windows
 
-* Deepin(Debian base)
+#### Linux
+To download  `ModellPlayer-x86_64.AppImage`, and double click that to run.
 
 ## License
 
