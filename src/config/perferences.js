@@ -1,7 +1,13 @@
 const fs = require("fs");
-const rootPath = require("./../util/utils").getRootPath();
+
+const  [rootPath, CONFIG_DIR_PATH ] = (() => {
+	const { isWindows , getRootPath } = require("./../util/utils");
+
+	let configDirPath = isWindows() ? process.env.USERPROFILE : process.env.HOME
+
+	return [getRootPath(), configDirPath +  "/.modellplayer/"];
+})();
 const PERFERENCES_NAME = `${rootPath}res/config/perferences.json`;
-const CONFIG_DIR_PATH = process.env.HOME + "/.modellplayer/"
 const CONFIG_FILE_PATH = `${CONFIG_DIR_PATH}perferences`
 
 let config = null;

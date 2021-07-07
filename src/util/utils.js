@@ -17,25 +17,25 @@ let isDevMode = false, isDebug = false;
 })();
 
 let rootPath = (() => {
-	let tmp = __dirname.split("/");
+	let tmp = __dirname.split(separator);
 	tmp.pop();
 	tmp.pop();
 
-	if (!isDevMode && tmp[1] === 'home') {
+	if (!isDevMode && (tmp[1] === 'home' || isWindows)) {
 		tmp.pop();
 		tmp.pop();
 	}
 
-	let result = tmp.join("/") + "/";
+	let result = tmp.join(separator) + separator;
 	return result;
 })();
 
 if (!isDevMode) {
-	if (fs.existsSync("./resources/")) {
-		if (fs.existsSync("./resources/app/")) {
-			rootPath += "resources/app/";
+	if (fs.existsSync(`.${separator}resources${separator}`)) {
+		if (fs.existsSync(`.${separator}resources${separator}app${separator}`)) {
+			rootPath += `resources${separator}app${separator}`;
 		} else {
-			rootPath += "resources/app.asar/";
+			rootPath += `resources${separator}app.asar${separator}`;
 		}
 	}
 }
