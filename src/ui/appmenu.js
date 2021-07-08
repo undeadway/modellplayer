@@ -51,17 +51,17 @@ module.exports = exports = {
 						label: menu.play,
 						submenu: [
 							{
-								label: menu.play,
+								label: menu.playOrPause,
 								click() {
-									actions.chgPlayStatus(windows.getMainWindow(), "play");
+									actions.chgPlayStatus(windows.getMainWindow(), "playOrPause");
 								}
 							},
-							{
-								label: menu.pause,
-								click() {
-									actions.chgPlayStatus(windows.getMainWindow(), "pause");
-								}
-							},
+							// {
+							// 	label: menu.pause,
+							// 	click() {
+							// 		actions.chgPlayStatus(windows.getMainWindow(), "pause");
+							// 	}
+							// },
 							{
 								label: menu.stop,
 								click() {
@@ -134,17 +134,17 @@ module.exports = exports = {
 				label: menu.play,
 				submenu: [
 					{
-						label: menu.play,
+						label: menu.playOrPause,
 						click() {
-							actions.chgPlayStatus(windows.getMainWindow(), "play");
+							actions.chgPlayStatus(windows.getMainWindow(), "playOrPause");
 						}
 					},
-					{
-						label: menu.pause,
-						click() {
-							actions.chgPlayStatus(windows.getMainWindow(), "pause");
-						}
-					},
+					// {
+					// 	label: menu.pause,
+					// 	click() {
+					// 		actions.chgPlayStatus(windows.getMainWindow(), "pause");
+					// 	}
+					// },
 					{
 						label: menu.stop,
 						click() {

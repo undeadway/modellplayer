@@ -64,7 +64,16 @@ const Logic = {
 			playTitle.text(titles[index]);
 		}
 
+		function playOrPause () {
+			if (isPlay) {
+				actions.pause();
+			} else {
+				actions.play();
+			}
+		}
+
 		const actions = {
+			playOrPause: playOrPause,
 			play: (_index) => {
 				if (player.isEmpty()) return;
 				if (isPlay) return;
@@ -161,13 +170,7 @@ const Logic = {
 		stopBtn.on("click", actions.stop);
 		backBtn.on("click", actions.back);
 		nextBtn.on("click", actions.next);
-		playBtn.on("click", () => {
-			if (isPlay) {
-				actions.pause();
-			} else {
-				actions.play();
-			}
-		});
+		playBtn.on("click", playOrPause);
 
 		// 播放结束后动作，将所有的播放状态全部置为不播放
 		audio.addEventListener("ended", () => {

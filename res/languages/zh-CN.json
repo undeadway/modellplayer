@@ -7,7 +7,7 @@
 		"openFile": "打开文件",
 		"openDirectory": "打开文件夹",
 		"play": "播放",
-		"pause": "暂停",
+		"playOrPause": "播放/暂停",
 		"stop": "停止",
 		"back": "上一首",
 		"next": "下一首",
