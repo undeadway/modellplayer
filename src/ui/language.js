@@ -4,10 +4,10 @@ const language = LanguageConfig.getConfig(PerferencesConfig.get().language.defau
 
 module.exports =  {
 	init: ($, pageName) => {
-
 		let mod = language[pageName];
 
 		$("title").html(mod.title || language.common.title);
+		$("#app-version").html(language.version);
 		for (let key in mod.layout) {
 			$(`#${key}`).html(mod.layout[key]);
 		}

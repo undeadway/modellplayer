@@ -1,19 +1,17 @@
 const $ = require("jquery");
 const { getRootPath, os } = require("./../util/utils");
 const { versions } = require("process");
-const os = os.get();
+const _os = os.get();
 require("./../ui/language").init($, "about");
-const app = JSON.parse(require("fs").readFileSync(getRootPath() + "package.json"));
 
 const Logic = {
 	init: () => {
 
-		$("#app-version").text(app.version);
-		$("#nodejs-version").text(versions.node);
-		$("#electron-version").text(versions.electron);
-		$("#chrome-version").text(versions.chrome);
-		$("#v8-version").text(versions.v8);
-		$("#os-version").text(os.type() + " " + os.arch() + " " + os.release());
+		$("#nodejs-version").html(versions.node);
+		$("#electron-version").html(versions.electron);
+		$("#chrome-version").html(versions.chrome);
+		$("#v8-version").html(versions.v8);
+		$("#os-version").html(_os.type() + " " + _os.arch() + " " + _os.release());
 	}
 };
 
