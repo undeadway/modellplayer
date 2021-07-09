@@ -7,7 +7,7 @@ module.exports =  {
 		let mod = language[pageName];
 
 		$("title").html(mod.title || language.common.title);
-		$("#app-version").html(language.version);
+		$("#app-version").html(language.common.version);
 		for (let key in mod.layout) {
 			$(`#${key}`).html(mod.layout[key]);
 		}
