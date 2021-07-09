@@ -22,7 +22,7 @@
   },
   "homepage": "http://prj.waygc.net/?modellplayer",
   "scripts": {
-    "dev": "electron . --devmode",
+    "dev": "electron . --devmode -debug",
     "start": "electron .",
     "pkg:appimage": "./create-appimage.sh",
     "debug": "electron . dev --devmode --debug-brk=5858",
