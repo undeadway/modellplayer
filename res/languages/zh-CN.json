@@ -1,5 +1,6 @@
 {
 	"common": {
+		"version": "0.0.1",
 		"title": "锚点播放器"
 	},
 	"menu": {
@@ -39,6 +40,8 @@
 	"about": {
 		"title": "关于",
 		"layout": {
+			"version-label": "版本",
+			"os-label": "操作系统"
 		}
 	},
 	"action": {

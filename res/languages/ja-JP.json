@@ -1,6 +1,7 @@
 {
 	"common": {
-		"title": "ModellPlayer"
+		"version": "0.0.1",
+		"title": "Modellプレイヤー"
 	},
 	"menu": {
 		"file": "ファイル",
