@@ -32,7 +32,8 @@
 测试过的 Linux 平台。
 
 * Deepin
-​
+
+
 ### 实现功能
 
 * 可以加入文件和文件夹。
@@ -136,8 +137,11 @@ Download link:
 
 #### Windows
 
+To downoad the file named `ModellPlayer-win32-x64.zip`, unzip the file, and into the folder, and double click the file `ModellPlayer.exe` to run. 
+
 #### Linux
-To download  `ModellPlayer-x86_64.AppImage`, and double click that to run.
+
+To download the file named `ModellPlayer-x86_64.AppImage`, and double click it to run.
 
 ## License
 
