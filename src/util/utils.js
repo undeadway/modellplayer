@@ -21,7 +21,7 @@ let rootPath = (() => {
 	tmp.pop();
 	tmp.pop();
 
-	if (!isDevMode && (tmp[1] === 'home' || isWindows)) {
+	if (!isDevMode && ((tmp[0] === "" && tmp[1] === "home") || isWindows)) {
 		tmp.pop();
 		tmp.pop();
 	}
