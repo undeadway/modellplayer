@@ -45,7 +45,7 @@ module.exports = exports = {
 				]
 			},
 			{
-				label: '播放',
+				label: menu.play,
 				submenu: [
 					{
 						label: menu.play,
@@ -75,42 +75,26 @@ module.exports = exports = {
 								}
 							},
 						]
+					},
+					{
+						label: menu.playList,
+						submenu: [
+							{
+								label: menu.importPlaylist
+							},
+							{
+								label: menu.exportPlaylist
+							},
+							{
+								label: menu.addToPlaylist
+							},
+							{
+								label: menu.delFromPlaylist
+							}
+						]
 					}
 				]
 			},
-					// {
-					// 	type: 'separator'
-					// },
-			// 		{
-			// 			label: '导入播放列表',
-			// 			accelerator: 'CmdOrCtrl+Shift+I',
-			// 			click() {
-			// 				dialog.open(window, "importPlayList");
-			// 			},
-			// 		},
-			// 		{
-			// 			label: '导出播放列表',
-			// 			accelerator: 'CmdOrCtrl+Shift+E',
-			// 			click() {
-			// 				windows.openWindow('user_org');
-			// 			},
-			// 		},
-			// 		{
-			// 			label: '添加到播放列表',
-			// 			click() {
-			// 				windows.openWindow('exports');
-			// 			},
-			// 			accelerator: 'CmdOrCtrl++Shift+A'
-			// 		},
-			// 		{
-			// 			label: '从播放列表中删除',
-			// 			click() {
-			// 				windows.openWindow('exports');
-			// 			},
-			// 			accelerator: 'CmdOrCtrl++Shift+D'
-			// 		}
-			// 	]
-			// },
 			{
 				label: menu.help,
 				submenu: [
@@ -135,12 +119,6 @@ module.exports = exports = {
 							actions.chgPlayStatus(windows.getMainWindow(), "playOrPause");
 						}
 					},
-					// {
-					// 	label: menu.pause,
-					// 	click() {
-					// 		actions.chgPlayStatus(windows.getMainWindow(), "pause");
-					// 	}
-					// },
 					{
 						label: menu.stop,
 						click() {
@@ -159,6 +137,23 @@ module.exports = exports = {
 							actions.chgPlayStatus(windows.getMainWindow(), "next");
 						}
 					},
+				]
+			},
+			{
+				label: menu.playList,
+				submenu: [
+					{
+						label: menu.importPlaylist
+					},
+					{
+						label: menu.exportPlaylist
+					},
+					{
+						label: menu.addToPlaylist
+					},
+					{
+						label: menu.delFromPlaylist
+					}
 				]
 			},
 			{
