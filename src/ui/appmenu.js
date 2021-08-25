@@ -44,9 +44,9 @@ module.exports = exports = {
 					}
 				]
 			},
-			// {
-			// 	label: '播放',
-			// 	submenu: [
+			{
+				label: '播放',
+				submenu: [
 					{
 						label: menu.play,
 						submenu: [
@@ -56,12 +56,6 @@ module.exports = exports = {
 									actions.chgPlayStatus(windows.getMainWindow(), "playOrPause");
 								}
 							},
-							// {
-							// 	label: menu.pause,
-							// 	click() {
-							// 		actions.chgPlayStatus(windows.getMainWindow(), "pause");
-							// 	}
-							// },
 							{
 								label: menu.stop,
 								click() {
@@ -81,7 +75,9 @@ module.exports = exports = {
 								}
 							},
 						]
-					},
+					}
+				]
+			},
 					// {
 					// 	type: 'separator'
 					// },
