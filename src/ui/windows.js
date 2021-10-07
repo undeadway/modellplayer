@@ -89,14 +89,14 @@ exports.init = () => {
 				maximizable: false,
 				icon: ICON_PATH
 			});
-			
+
 			perferencesWindow.setMenu(null);
 			perferencesWindow.loadFile(__dirname + '/../../res/html/perferences.html');
 
 			if (isDebug()) {
 				perferencesWindow.webContents.openDevTools();
 			}
-			
+
 			perferencesWindow.on('closed', function () {
 				// 取消引用 window 对象，如果你的应用支持多窗口的话，
 				// 通常会把多个 window 对象存放在一个数组里面，
@@ -118,7 +118,7 @@ exports.init = () => {
 				maximizable: false,
 				icon: ICON_PATH
 			});
-			
+
 			aboutWindow.setMenu(null);
 			aboutWindow.loadFile(__dirname + '/../../res/html/about.html');
 
@@ -146,7 +146,7 @@ exports.init = () => {
 
 		app.on('ready', function () {
 			createMainwindow();
-			
+
 			if (perferencesConfig.setting["show-tray"].value === "checked") {
 				createTray();
 			}
@@ -173,7 +173,6 @@ exports.init = () => {
 					if (mainWindow !== null) {
 						mainWindow.hide();
 					}
-					
 				} else {
 					exit();
 				}

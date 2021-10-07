@@ -47,7 +47,7 @@ const Logic = {
 		let playingTabIndex = null, titles = [];
 
 		function intervalCallback(cutrentTime, duration, index) {
-			
+
 			currentTimeDiv.html(utils.secondToTime(cutrentTime));
 			durationDiv.html(utils.secondToTime(duration));
 

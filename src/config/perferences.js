@@ -36,7 +36,7 @@ const configObj = {
 			if (!fs.existsSync(CONFIG_FILE_PATH)) {
 				configObj.init();
 			}
-	
+
 			let file = fs.readFileSync(CONFIG_FILE_PATH, "utf-8");
 			let tmp = Buffer.from(file, "base64").toString("utf-8");
 			config = JSON.parse(tmp);
