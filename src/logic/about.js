@@ -1,5 +1,5 @@
 const $ = require("jquery");
-const { getRootPath, os } = require("./../util/utils");
+const { os } = require("./../util/utils");
 const { versions } = require("process");
 const _os = os.get();
 require("./../ui/language").init($, "about");
