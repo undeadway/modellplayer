@@ -25,7 +25,7 @@ exports.init = () => {
 		const pathType = os.isWindows() ? "64" : 'png'
 		const ICON_PATH = `./../..${UiConfig.base.ico[pathType]}`;
 
-		perferencesWindow = null, aboutWindow = null, tray = null;
+		let perferencesWindow = null, aboutWindow = null, tray = null;
 		const windows = {};
 		Menu.setApplicationMenu(null)
 
