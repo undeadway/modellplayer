@@ -27,18 +27,21 @@ const rootPath = (() => {
 	}
 
 	let result = tmp.join(separator) + separator;
+
+	if (!isDevMode) {
+		if (fs.existsSync(`.${separator}resources${separator}`)) {
+			if (fs.existsSync(`.${separator}resources${separator}app${separator}`)) {
+				result += `resources${separator}app${separator}`;
+			} else {
+				result += `resources${separator}app.asar${separator}`;
+			}
+		}
+	}
+
 	return result;
 })();
 
-if (!isDevMode) {
-	if (fs.existsSync(`.${separator}resources${separator}`)) {
-		if (fs.existsSync(`.${separator}resources${separator}app${separator}`)) {
-			rootPath += `resources${separator}app${separator}`;
-		} else {
-			rootPath += `resources${separator}app.asar${separator}`;
-		}
-	}
-}
+
 
 function _a(e) {
 	return 10 > e ? "0" + e : "" + e;
