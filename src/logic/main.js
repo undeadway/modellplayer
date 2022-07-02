@@ -39,7 +39,7 @@ const Logic = {
 		const currentTimeDiv = $("#currentTime");
 		const durationDiv = $("#duration");
 		const audio = document.getElementById("audio");
-		const player = Player(audio);
+		let player = null;
 
 		volBox.hide();
 		playSwitchList.hide();
@@ -54,7 +54,13 @@ const Logic = {
 			pgsBar.css({ width: (cutrentTime / duration) * 100 + "%" });
 		}
 
-		function playCallback(index) {
+		function playCallback(index, onError) {
+
+			if (onError) {
+				stop();
+				return;
+			}
+
 			isPlay = true;
 
 			playBtn.attr("class", "font-icons font-icons-btn font-icons-pause now-status");
@@ -72,6 +78,14 @@ const Logic = {
 			}
 		}
 
+		function stop () {
+			if (player.isEmpty()) return;
+			playingTabIndex.text("");
+			isPlay = false;
+			playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
+			player.stop();
+		}
+
 		const actions = {
 			playOrPause: playOrPause,
 			play: (_index) => {
@@ -83,16 +97,10 @@ const Logic = {
 				);
 				player.play(playCallback, intervalCallback, _index);
 			},
-			stop: () => {
-				if (player.isEmpty()) return;
-				playingTabIndex.text("");
-				isPlay = false;
-				playBtn.attr("class", "font-icons font-icons-btn font-icons-play");
-				player.stop();
-			},
+			stop: stop,
 			pause: () => {
 				if (player.isEmpty()) return;
-				playingTabIndex.text("");
+				playingTabIndex.text("||");
 				playBtn.attr(
 					"class", "font-icons font-icons-btn font-icons-play now-status"
 				);
@@ -254,6 +262,8 @@ const Logic = {
 		});
 
 		ipcRenderer.on("sendFiles", (event, files) => {
+
+			player = Player(audio); // 每次打开新文件全部重新载入新的 Player
 
 			player.stop();
 			if (playingTabIndex) {

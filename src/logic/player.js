@@ -12,11 +12,33 @@ module.exports = exports = (player) => {
 	let interval = 0;
 	let volume = 50;
 	let stopAt = 0;
+	let errorIndexes = [];
+
+	let playCallback, intervalCallback;
+
+	player.addEventListener("error", () => {
+		console.log(player.error);
+		errorIndexes.push(index);
+		playCallback(index, true);
+		_p.next(playCallback, intervalCallback);
+	});
 
 	function play(playCb, intervalCb) {
 		if (!playList) return;
 
+		if (-1 < errorIndexes.indexOf(index)) {
+			_p.next(playCb, intervalCb);
+			return;
+		}
+
+		playCallback = playCb;
+		intervalCallback = intervalCb;
+
+		try {
 		player.src = playList[index];
+		} catch (e) {
+			console.log(e);
+		}
 		player.volume = volume / 100;
 		player.currentTime = stopAt;
 		player.play();
@@ -29,7 +51,7 @@ module.exports = exports = (player) => {
 		}, 50);
 	}
 
-	return {
+	const _p = {
 		isEmpty: () => {
 			return counts === 0;
 		},
@@ -109,4 +131,6 @@ module.exports = exports = (player) => {
 			clearInterval(interval);
 		}
 	}
+
+	return _p;
 };
