@@ -19,44 +19,44 @@
 
 .font-icons-play:before {
 	content: "\f04b";
-  }
-  
-  .font-icons-pause:before {
+}
+
+.font-icons-pause:before {
 	content: "\f04c";
-  }
-  
-  .font-icons-stop:before {
+}
+
+.font-icons-stop:before {
 	content: "\f04d";
-  }
-  
-  .font-icons-forward:before {
+}
+
+.font-icons-forward:before {
 	content: "\f04e";
-  }
+}
 
-  .font-icons-backward:before {
-    content: "\f04a";
-  }
+.font-icons-backward:before {
+  content: "\f04a";
+}
 
-  .font-icons-retweet:before {
-    content: "\f079";
-  }
-  
-  .font-icons-retweet-one:before {
-    content: "\f080";
-  }
+.font-icons-retweet:before {
+  content: "\f079";
+}
 
-  .font-icons-reorder-list:before {
-    content: "\f0c9";
-  }
+.font-icons-retweet-one:before {
+  content: "\f080";
+}
 
-  .font-icons-random:before {
-    content: "\f074";
-  }
-  
-  .font-icons-sounds::before {
-    content: "\25E2"
-  }
+.font-icons-reorder-list:before {
+  content: "\f0c9";
+}
 
-  .font-icons-volume-up:before {
-    content: "\f028";
-  }
+.font-icons-random:before {
+  content: "\f074";
+}
+
+.font-icons-sounds::before {
+  content: "\25E2"
+}
+
+.font-icons-volume-up:before {
+  content: "\f028";
+}
