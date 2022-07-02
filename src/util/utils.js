@@ -16,7 +16,7 @@ let isDevMode = false, isDebug = false;
 	}
 })();
 
-let rootPath = (() => {
+const rootPath = (() => {
 	let tmp = __dirname.split(separator);
 	tmp.pop();
 	tmp.pop();
