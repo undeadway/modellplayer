@@ -13,7 +13,7 @@ module.exports = exports = {
 	ui: {
 		main: {
 			width:IS_WINDOWS ? 456 : 450,
-			height: IS_WINDOWS ? 605 : 580
+			height: IS_WINDOWS ? 630 : 600 // windows 下，最小化到任务栏在返回后，会缩进一点，不知道为什么，所以配置中加长一段
 		},
 		perferences: {
 			width: 600,
