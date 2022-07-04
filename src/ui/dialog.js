@@ -4,6 +4,7 @@
 
 const fs = require("fs");
 const utils = require("../util/utils");
+const cue = require("../util/cue");
 
 function openOpenDialog(window, typeName){
 
@@ -24,7 +25,7 @@ function openOpenDialog(window, typeName){
 			options.title = "打开文件";
 			options.filters = [
 				{name: '有损压缩', extensions: ["mp3", "ogg"]},
-				{name: '无损压缩', extensions: ["mp3", "aac", "m4a"]},
+				{name: '无损压缩', extensions: ["aac", "m4a"]},
 				{name: '无损音频', extensions: ["wav", "ape", "ac3", "flac"]}
 			];
 
@@ -58,7 +59,13 @@ function openOpenDialog(window, typeName){
 			});
 			break;
 		case "importPlayList":
-			importPlayList(files[0]);
+			try {
+				files = cue.import(result[0]);
+			} catch (e) {
+				dialog.showErrorBox("发生错误", e.message);
+				return;
+			}
+			
 			break;
 		default:
 	}
