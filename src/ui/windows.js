@@ -139,6 +139,7 @@ exports.init = () => {
 			// 设置托盘菜单
 			const menu = Menu.buildFromTemplate(appmenu.tray(windows));
 			tray.setContextMenu(menu);
+			// 这段代码好像只有 windows 下有效
 			tray.on("click",()=>{
 				mainWindow.show();
 			});
@@ -191,6 +192,9 @@ exports.init = () => {
 			app.exit();
 		}
 
+		windows.show = () => {
+			mainWindow.show();
+		};
 		windows.exit = exit;
 
 		ipcMain.on('closePerferencesWindow', () => {

@@ -157,6 +157,12 @@ module.exports = exports = {
 				]
 			},
 			{
+				label: menu.main,
+				click () {
+					windows.show();
+				}
+			},
+			{
 				type: 'separator'
 			},
 			{
