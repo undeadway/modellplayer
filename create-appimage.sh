@@ -13,4 +13,3 @@ cp -r ../appimage/* ModellPlayer-linux-x64/
 appimagetool ModellPlayer-linux-x64
 
 chmod +x ModellPlayer-x86_64.AppImage
-./ModellPlayer-x86_64.AppImage
